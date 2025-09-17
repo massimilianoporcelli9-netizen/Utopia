@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunflowers European Tour - Impact & Engagement Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 4px solid transparent;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 12px;
+            bottom: -12px;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 4px solid #F5F5F5;
+        }
+    </style>
+</head>
+<body class="text-[#333333]">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#3357FF] mb-2">Sunflowers European Tour: One Year On</h1>
+            <p class="text-xl md:text-2xl text-[#FF5733] font-semibold">An Impact & Audience Engagement Report</p>
+            <p class="mt-4 max-w-3xl mx-auto text-lg">Celebrating a year of community, conversation, and positive change sparked by a 6,000km journey. This report visualizes the incredible reach and reception of the film.</p>
+        </header>
+        
+        <section id="kpis" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">The Journey's Impact At a Glance</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="kpi-card" style="border-color: #33FF57;">
+                    <div class="text-5xl font-bold text-[#3357FF]">1.2M+</div>
+                    <p class="mt-2 font-semibold text-lg">Total Viewers Reached</p>
+                    <p class="text-sm text-gray-500">Across all distribution windows</p>
+                </div>
+                <div class="kpi-card" style="border-color: #FF5733;">
+                    <div class="text-5xl font-bold text-[#3357FF]">28</div>
+                    <p class="mt-2 font-semibold text-lg">Countries Screened</p>
+                    <p class="text-sm text-gray-500">From arthouse cinemas to universities</p>
+                </div>
+                <div class="kpi-card" style="border-color: #FF33A1;">
+                    <div class="text-5xl font-bold text-[#3357FF]">15</div>
+                    <p class="mt-2 font-semibold text-lg">Festival Awards</p>
+                    <p class="text-sm text-gray-500">Including 4 Audience Choice awards</p>
+                </div>
+                <div class="kpi-card" style="border-color: #FBBF24;">
+                    <div class="text-5xl font-bold text-[#3357FF]">300+</div>
+                    <p class="mt-2 font-semibold text-lg">Educational Licenses</p>
+                    <p class="text-sm text-gray-500">Empowering the next generation</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="engagement-and-sentiment" class="mb-16">
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Audience Engagement Channels</h3>
+                    <p class="text-sm text-center mb-4">The film's hybrid release strategy successfully engaged diverse audiences, with community-driven events and educational screenings forming the core of our impact.</p>
+                    <div class="chart-container">
+                        <canvas id="engagementChannelsChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Audience Sentiment Analysis</h3>
+                    <p class="text-sm text-center mb-4">Feedback analysis from post-screening surveys and social media reveals the film's powerful emotional and intellectual resonance with viewers across Europe.</p>
+                    <div class="chart-container">
+                        <canvas id="audienceSentimentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reach-and-festivals" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Global Reach & Festival Success</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-6 text-center">Top 10 Countries by Viewership</h3>
+                    <div class="chart-container h-96 max-h-96">
+                        <canvas id="countryReachChart"></canvas>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-6 text-center">Key Festival Milestones</h3>
+                    <div class="relative pl-8">
+                        <div class="timeline-item relative pb-8">
+                            <div class="timeline-dot bg-[#3357FF]"></div>
+                            <p class="font-bold">IDFA Premiere</p>
+                            <p class="text-sm text-gray-600">Q4 2024 - World premiere, strong industry buzz.</p>
+                        </div>
+                        <div class="timeline-item relative pb-8">
+                            <div class="timeline-dot bg-[#FF5733]"></div>
+                            <p class="font-bold">CPH:DOX</p>
+                             <p class="text-sm text-gray-600">Q1 2025 - Winner, Audience Award.</p>
+                        </div>
+                        <div class="timeline-item relative pb-8">
+                             <div class="timeline-dot bg-[#33FF57]"></div>
+                            <p class="font-bold">Sheffield Doc/Fest</p>
+                            <p class="text-sm text-gray-600">Q2 2025 - Official Selection, sold-out screenings.</p>
+                        </div>
+                        <div class="timeline-item relative">
+                            <div class="timeline-dot bg-[#FF33A1]"></div>
+                            <p class="font-bold">Dok Leipzig</p>
+                            <p class="text-sm text-gray-600">Q3 2025 - Winner, FIPRESCI Prize.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="future">
+            <h2 class="text-3xl font-bold text-center mb-8">The Journey Continues</h2>
+             <p class="text-center max-w-3xl mx-auto mb-12">The success of 'Sunflowers European Tour' has built a powerful foundation. We are now exploring new narratives that continue to champion stories of hope, resilience, and grassroots change across the continent.</p>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="flex flex-col md:flex-row items-center justify-around text-center gap-4">
+                    <div class="p-4">
+                        <p class="text-2xl font-bold text-[#3357FF]">Phase 1: Research</p>
+                        <p class="text-gray-600">Identify new social economy themes</p>
+                    </div>
+                    <div class="text-2xl text-gray-300 font-sans hidden md:block">→</div>
+                    <div class="text-2xl text-gray-300 font-sans md:hidden">↓</div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <p class="text-2xl font-bold text-[#FF5733]">Phase 2: Development</p>
+                        <p class="text-gray-600">Secure production partners for new projects</p>
+                    </div>
+                     <div class="text-2xl text-gray-300 font-sans hidden md:block">→</div>
+                     <div class="text-2xl text-gray-300 font-sans md:hidden">↓</div>
+                    <div class="p-4">
+                        <p class="text-2xl font-bold text-[#33FF57]">Phase 3: Production</p>
+                        <p class="text-gray-600">Launch "Sunflowers: Global Stories" (2027)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            if (label.length > 16) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).length > 16 && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = currentLine ? currentLine + ' ' + word : word;
+                    }
+                });
+                lines.push(currentLine);
+                return lines;
+            }
+            return label;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const chartColors = {
+            blue: '#3357FF',
+            orange: '#FF5733',
+            green: '#33FF57',
+            pink: '#FF33A1',
+            gray: '#e5e7eb',
+            darkGray: '#333333'
+        };
+
+        const engagementChannelsCtx = document.getElementById('engagementChannelsChart').getContext('2d');
+        new Chart(engagementChannelsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Event Cinema & Q&As', 'Educational Screenings', 'VOD / Streaming', 'Festival Screenings'],
+                datasets: [{
+                    label: 'Audience Engagement',
+                    data: [40, 35, 15, 10],
+                    backgroundColor: [chartColors.blue, chartColors.orange, chartColors.green, chartColors.pink],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+
+        const audienceSentimentCtx = document.getElementById('audienceSentimentChart').getContext('2d');
+        new Chart(audienceSentimentCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Inspired', 'Hopeful', 'Informed', 'Entertained', 'Connected'],
+                datasets: [{
+                    label: 'Audience Sentiment Score',
+                    data: [92, 88, 95, 75, 85],
+                    fill: true,
+                    backgroundColor: 'rgba(51, 87, 255, 0.2)',
+                    borderColor: chartColors.blue,
+                    pointBackgroundColor: chartColors.blue,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: chartColors.blue
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: chartColors.gray
+                        },
+                        grid: {
+                            color: chartColors.gray
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            },
+                            color: chartColors.darkGray
+                        },
+                        ticks: {
+                            backdropColor: '#F5F5F5',
+                            color: chartColors.darkGray
+                        },
+                         suggestedMin: 0,
+                         suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const countryReachCtx = document.getElementById('countryReachChart').getContext('2d');
+        new Chart(countryReachCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Italy', 'Germany', 'France', 'Spain', 'Netherlands', 'UK', 'Belgium', 'Sweden', 'Poland', 'Austria'],
+                datasets: [{
+                    label: 'Viewers (in thousands)',
+                    data: [210, 185, 150, 110, 95, 80, 75, 60, 55, 40],
+                    backgroundColor: [
+                        chartColors.blue, chartColors.orange, chartColors.green, chartColors.pink,
+                        '#a855f7', '#facc15', '#22d3ee', '#f87171', '#4ade80', '#fb923c'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { display: false }
+                    },
+                    y: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
