@@ -1,0 +1,696 @@
+<!-- Presentazione generata da Gemini (Canvas) su base Report Partnership Docufilm _Sunflowers_ - 16/09/2025 -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentazione: Report Partnership Docufilm "Sunflowers European Tour"</title>
+    <style>
+        /* --- RESET AND SETUP --- */
+        :root {
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --color-text: #212529;
+            --color-bg: #f8f9fa;
+            --color-primary: #1a535c;
+            --color-secondary: #4ecdc4;
+            --color-accent: #ffc107; /* Sunflower Yellow */
+            --color-accent-dark: #fca311;
+            --color-white: #ffffff;
+            --color-border: #dee2e6;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- ACCESSIBILITY --- */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+        :focus-visible {
+            outline: 3px solid var(--color-secondary);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1.2;
+            margin-bottom: 0.75em;
+        }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); border-bottom: 2px solid var(--color-border); padding-bottom: 0.3em; margin-bottom: 1.2em;}
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h4 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
+
+        p, ul, ol, dl, table {
+            margin-bottom: 1rem;
+            max-width: 75ch;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        li { margin-bottom: 0.5rem; }
+
+        a {
+            color: var(--color-secondary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        a:hover, a:focus {
+            text-decoration: underline;
+            color: var(--color-primary);
+        }
+
+        /* --- LAYOUT & SLIDES --- */
+        .slide {
+            min-height: 100vh;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide:last-of-type {
+            border-bottom: none;
+        }
+        .slide-content {
+            width: 100%;
+        }
+
+        #cover {
+            text-align: center;
+        }
+        #cover h1 {
+            color: var(--color-accent-dark);
+        }
+        #cover .logo-placeholder {
+            border: 2px dashed var(--color-border);
+            height: 80px;
+            width: 120px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem;
+            color: var(--color-border);
+            font-size: 0.8rem;
+        }
+
+        /* --- COMPONENTS --- */
+        .callout-box {
+            background-color: #e9f5ff;
+            border-left: 5px solid var(--color-secondary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .callout-box h3 { color: var(--color-primary); margin-top: 0; }
+        
+        .card {
+            background-color: var(--color-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 1rem;
+            border: 1px solid var(--color-border);
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        table caption {
+            font-size: 1.2rem;
+            font-weight: 600;
+            caption-side: bottom;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            text-align: left;
+            color: #6c757d;
+        }
+        th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border: 1px solid var(--color-border);
+        }
+        thead {
+            background-color: #e9ecef;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+        tbody tr:nth-child(odd) {
+            background-color: var(--color-white);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3em 0.6em;
+            font-size: 0.8em;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+        }
+        .badge-pronto { background-color: #d1e7dd; color: #0f5132; }
+        .badge-lavorazione { background-color: #fff3cd; color: #664d03; }
+        .badge-da-compilare { background-color: #f8d7da; color: #842029; }
+
+        .risk-low { color: #198754; font-weight: bold;}
+        .risk-medium { color: #ffc107; font-weight: bold;}
+        .risk-high { color: #dc3545; font-weight: bold;}
+        .risk-vhigh { color: #842029; font-weight: bold;}
+
+        /* --- NAVIGATION --- */
+        #presentation-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            z-index: 10;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-controls, .nav-toc {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-controls button, .nav-toc a {
+            background: none;
+            border: 1px solid var(--color-secondary);
+            color: var(--color-white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .nav-controls button:hover, .nav-toc a:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 5px;
+            background-color: var(--color-accent);
+            width: 0%;
+            z-index: 20;
+        }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            body {
+                background-color: var(--color-white);
+                color: #000;
+            }
+            .slide {
+                min-height: auto;
+                padding: 1.5cm;
+                page-break-after: always;
+                border: none;
+            }
+            #toc, #presentation-nav, .skip-link {
+                display: none;
+            }
+            h1, h2, h3 { color: #000; border: none; }
+            a { color: #000; text-decoration: none; }
+            .card { box-shadow: none; border: 1px solid #ccc; }
+            table { font-size: 8pt; }
+            thead { background-color: #eee !important; color: #000 !important; print-color-adjust: exact; }
+            tbody tr:nth-child(odd) { background-color: #f9f9f9 !important; print-color-adjust: exact;}
+            .badge { border: 1px solid #ccc; color: #000 !important; background-color: #fff !important; print-color-adjust: exact;}
+            
+            @page {
+                size: A4 portrait;
+                margin: 1cm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="progress-bar"></div>
+    <a href="#toc" class="skip-link">Salta al sommario</a>
+
+    <header role="banner">
+        <nav id="toc" class="slide" aria-labelledby="toc-heading">
+            <div class="slide-content">
+                <h2 id="toc-heading">Indice della Presentazione</h2>
+                <ol>
+                    <li><a href="#cover">Copertina</a></li>
+                    <li><a href="#summary">Executive Summary</a></li>
+                    <li><a href="#scenario">Scenario Europa (2022–2026)</a></li>
+                    <li><a href="#positioning">Posizionamento del Docufilm</a></li>
+                    <li><a href="#target">Target & Audience</a></li>
+                    <li><a href="#benchmark">Best Practices & Benchmark</a></li>
+                    <li><a href="#strategy">Strategia di Distribuzione</a></li>
+                    <li><a href="#value">Proposta di Valore per Distributori</a></li>
+                    <li><a href="#appendices">Appendici</a></li>
+                </ol>
+            </div>
+        </nav>
+    </header>
+
+    <main id="presentation" role="main">
+
+        <!-- SLIDE 1: COVER -->
+        <section id="cover" class="slide" aria-labelledby="cover-title">
+            <!-- NOTE: Iniziare la presentazione da qui. Presentare il titolo e il sottotitolo, introducendo brevemente l'obiettivo del report e della presentazione. Menzionare l'autore. -->
+            <div class="slide-content">
+                <h1 id="cover-title">Sunflowers European Tour</h1>
+                <h3>Analisi di Mercato e Strategia di Distribuzione</h3>
+                <p>Report di Supporto per Proposte di Partnership Distributiva</p>
+                <br>
+                <p><strong>Autore:</strong> Jlenia Fiorentini</p>
+                <p><strong>Data:</strong> 16 Settembre 2025</p>
+                <div style="margin-top: 2rem;">
+                    <figure class="logo-placeholder" role="img" aria-label="Logo della casa di produzione (segnaposto)">Logo Produzione</figure>
+                    <figure class="logo-placeholder" role="img" aria-label="Logo del partner distributivo (segnaposto)">Logo Distributore</figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: EXECUTIVE SUMMARY -->
+        <section id="summary" class="slide" aria-labelledby="summary-title">
+            <!-- NOTE: Sintetizzare i punti chiave. Ogni bullet point è un argomento da espandere brevemente. Sottolineare la solidità del progetto: mercato in crescita, prodotto unico, strategia chiara e rete già attiva. -->
+            <div class="slide-content">
+                <h2 id="summary-title">Executive Summary</h2>
+                <ul>
+                    <li>Il mercato del documentario in Europa è trainato dallo SVOD, ma la <strong>discoverability</strong> è la sfida principale. Una strategia passiva è destinata a fallire.</li>
+                    <li><em>Sunflowers</em> è un progetto <strong>transmediale</strong> (film, libro, educational) che unisce un formato ad alto potenziale (road movie in bici) a temi di forte attualità (economia sociale, sostenibilità).</li>
+                    <li>La strategia di distribuzione è incrementale e de-rischiata: <strong>Festival</strong> per il prestigio, <strong>Eventi Community</strong> per monetizzare la rete, <strong>Educational</strong> per ricavi a lungo termine, e infine <strong>TV/OTT</strong> con un prodotto già validato.</li>
+                    <li>Il modello <strong>"community-first"</strong> sfrutta una rete pre-attivata di ONG, cooperative e università, riducendo drasticamente i costi e i rischi di P&A.</li>
+                    <li>La proposta di valore è un'opportunità di investimento a <strong>basso rischio</strong>: produzione finanziata, contenuto "evergreen" e "brand-safe", pacchetto di distribuzione completo.</li>
+                    <li>Non offriamo solo un film, ma un <strong>ecosistema di contenuti</strong> e una "dote" strategica di partner civici, garantendo un percorso chiaro verso la redditività e l'impatto culturale.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: SCENARIO -->
+        <section id="scenario" class="slide" aria-labelledby="scenario-title">
+             <!-- NOTE: Illustrare il contesto di mercato. Il mercato cresce solo nel digitale, ma i film europei sono sottovalutati. Il pubblico però cerca attivamente film basati sul TEMA, e questo è il nostro punto di forza. La tabella riassume come la nostra strategia risponde a ogni tendenza. -->
+            <div class="slide-content">
+                <h2 id="scenario-title">Scenario Europa (2022–2026)</h2>
+                <p>Il mercato audiovisivo europeo è in trasformazione. La crescita è concentrata sullo streaming (SVOD), mentre i canali tradizionali stagnano. Il pubblico in sala è più selettivo e privilegia film-evento. La sfida non è la mancanza di contenuti, ma la <strong>difficoltà di emergere (discoverability)</strong> in cataloghi immensi.</p>
+                
+                <table>
+                    <caption>Tabella 1: Principali Tendenze e Implicazioni per Sunflowers</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Tendenza</th>
+                            <th scope="col">Fonte Dati</th>
+                            <th scope="col">Implicazione Strategica per Sunflowers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Stagnazione Mercato Tradizionale</td>
+                            <td>European Audiovisual Observatory</td>
+                            <td>La distribuzione theatrical deve essere concepita come "film-evento" mirato, non come un'uscita di massa, per massimizzare il ROI per singola proiezione.</td>
+                        </tr>
+                        <tr>
+                            <td>Concentrazione e Sottoperformance su SVOD</td>
+                            <td>European Audiovisual Observatory</td>
+                            <td>Non fare affidamento esclusivo sulla discoverability algoritmica. È necessario costruire un'audience "calda" attraverso le finestre precedenti (festival, eventi) per guidare la visione su VOD.</td>
+                        </tr>
+                        <tr>
+                            <td>Impatto Misurabile del Cinema Sociale</td>
+                            <td>Moving Docs Survey</td>
+                            <td>Sfruttare la forte domanda di contenuti che generano consapevolezza e azione. Il tema del film è il principale asset di marketing.</td>
+                        </tr>
+                        <tr>
+                            <td>Centralità dei Festival per il Lancio</td>
+                            <td>Industry Best Practices</td>
+                            <td>Una premiere in un festival di primo piano è cruciale per costruire valore di mercato, attrarre critica e avviare trattative di distribuzione.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: POSIZIONAMENTO -->
+        <section id="positioning" class="slide" aria-labelledby="positioning-title">
+             <!-- NOTE: Mettere in luce cosa rende il film unico. L'USP non è "un documentario sull'economia sociale", ma "un'avventura epica europea che scopre storie di speranza". Lo SWOT mostra che i punti di forza (concept, rete) mitigano le debolezze (tema di nicchia). -->
+            <div class="slide-content">
+                <h2 id="positioning-title">Posizionamento del Docufilm</h2>
+                <h3>Mappa delle Unique Selling Propositions (USPs)</h3>
+                <ul>
+                    <li><strong>Scala Epica, Prospettiva Umana:</strong> 6.000 km in bici attraverso 10 Paesi, un "gancio" di marketing immediato che incornicia storie intime e personali.</li>
+                    <li><strong>Tema Unificante e Positivo:</strong> Un approccio "solutions-oriented" che risponde alla domanda di contenuti costruttivi e di speranza.</li>
+                    <li><strong>Mosaico Pan-Europeo dal Basso:</strong> Un ritratto autentico dell'Europa, ideale per la distribuzione in molteplici mercati e per partnership istituzionali.</li>
+                </ul>
+                <div class="card" style="margin-top: 2rem;">
+                    <h4>Analisi SWOT Sintetica</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <h5>Strengths (Punti di Forza)</h5>
+                            <ul>
+                                <li>Concept unico e visivamente forte</li>
+                                <li>Tema positivo e attuale</li>
+                                <li>Portata pan-europea</li>
+                                <li>Continuità con film precedente</li>
+                                <li>Rete di partner già attivabile</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5>Weaknesses (Punti di Debolezza)</h5>
+                             <ul>
+                                <li>Rischio percezione tema di "nicchia"</li>
+                                <li>Assenza di "nomi forti" / celebrità</li>
+                                <li>Efficacia narrativa legata alle storie</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5>Opportunities (Opportunità)</h5>
+                            <ul>
+                                <li>Domanda per contenuti "feel-good"</li>
+                                <li>Potenziale Educational a lungo termine</li>
+                                <li>Sfruttamento community ciclismo</li>
+                                <li>Format evento replicabile</li>
+                            </ul>
+                        </div>
+                         <div>
+                            <h5>Threats (Minacce)</h5>
+                            <ul>
+                                <li>Mercato documentari affollato</li>
+                                <li>Competizione per premiere festival "A"</li>
+                                <li>Possibile "stanchezza" verso temi europei</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: TARGET -->
+        <section id="target" class="slide" aria-labelledby="target-title">
+            <!-- NOTE: Questa slide mostra che non abbiamo un solo pubblico, ma tanti pubblici diversi, e abbiamo un piano specifico per raggiungere ciascuno di loro. La tabella è la chiave: per ogni gruppo, sappiamo cosa vuole, cosa dirgli e come raggiungerlo. -->
+            <div class="slide-content">
+                <h2 id="target-title">Target & Audience Potenziali</h2>
+                <p>La strategia si basa su un approccio differenziato per attivare un mosaico di comunità di interesse, trasformando il pubblico da passivo a partner attivo della distribuzione.</p>
+                <table>
+                    <caption>Tabella “Segmenti di Pubblico, Bisogni, Messaggi, Formati”</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Segmento</th>
+                            <th scope="col">Bisogno Chiave</th>
+                            <th scope="col">Messaggio Centrale</th>
+                            <th scope="col">Formato/Canale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Programmatori di Festival</td>
+                            <td>Qualità, rilevanza, potenziale di anteprima</td>
+                            <td>"Un viaggio cinematografico epico con una prospettiva fresca e speranzosa sull'Europa."</td>
+                            <td>Submission mirate, pitch a mercati, EPK professionale.</td>
+                        </tr>
+                        <tr>
+                            <td>Esercenti Sale d'Essai</td>
+                            <td>Attrarre pubblico, creare eventi unici</td>
+                            <td>"Offri al tuo pubblico un'esperienza unica: film ispiratore + incontro con gli autori."</td>
+                            <td>Proposta tour proiezioni-evento con Q&A, materiali promo localizzabili.</td>
+                        </tr>
+                         <tr>
+                            <td>Docenti / Insegnanti</td>
+                            <td>Contenuti didattici pertinenti e coinvolgenti</td>
+                            <td>"Uno strumento didattico 'chiavi in mano' per esplorare l'economia sociale e la sostenibilità."</td>
+                            <td>Kit educational (film + guida), licenze DSL/streaming via piattaforme accademiche.</td>
+                        </tr>
+                        <tr>
+                            <td>Manager ONG / Cooperative</td>
+                            <td>Strumenti per sensibilizzare e mobilitare</td>
+                            <td>"Usa questo film per raccontare la tua storia e ispirare la tua comunità."</td>
+                            <td>Partnership per community screenings, co-branding, uso in eventi e campagne.</td>
+                        </tr>
+                        <tr>
+                            <td>Appassionati Ciclismo / Avventura</td>
+                            <td>Storie di sfide, viaggi e scoperta</td>
+                            <td>"Vivi un'avventura incredibile attraverso l'Europa e scopri il potere del viaggio."</td>
+                            <td>Marketing su media di settore, partnership con club, proiezioni a tema.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: BENCHMARK -->
+        <section id="benchmark" class="slide" aria-labelledby="benchmark-title">
+            <!-- NOTE: Qui mostriamo di aver studiato il mercato. Abbiamo esempi di successo per ogni percorso possibile: il prestigio (Dahomey), l'appeal emotivo per lo streaming (Ibelin), e l'attivazione di una nicchia (Sean Conway). Sunflowers ha il potenziale per combinare questi tre percorsi. -->
+            <div class="slide-content">
+                <h2 id="benchmark-title">Best practices & Benchmark</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>No Other Land (2024)</h4>
+                        <p><strong>Percorso:</strong> Premiere e doppio premio a Berlino, distribuzione in 24 paesi. Tema politicamente sensibile ha ostacolato alcuni mercati.</p>
+                        <p><strong>Cosa impariamo:</strong> Una premiere a Berlino è un catalizzatore potente. I temi polarizzanti possono essere una barriera commerciale, anche per film di altissima qualità.</p>
+                    </div>
+                     <div class="card">
+                        <h4>Dahomey (2024)</h4>
+                        <p><strong>Percorso:</strong> Orso d'Oro a Berlino. Acquisito da distributori prestigiosi (MUBI) per una distribuzione globale di qualità.</p>
+                        <p><strong>Cosa impariamo:</strong> Vincere un premio principale in un festival "A-list" traduce il prestigio artistico direttamente in valore commerciale e accordi vantaggiosi.</p>
+                    </div>
+                    <div class="card">
+                        <h4>The Remarkable Life of Ibelin (2024)</h4>
+                        <p><strong>Percorso:</strong> Doppio premio (Pubblico, Regia) al Sundance. Acquisizione globale immediata da parte di Netflix.</p>
+                        <p><strong>Cosa impariamo:</strong> Una storia umana universale e commovente, validata da un premio del pubblico, può bypassare il circuito d'essai e approdare a un grande streamer.</p>
+                    </div>
+                     <div class="card">
+                        <h4>Sean Conway's 'Europe or Bust' (2020)</h4>
+                        <p><strong>Percorso:</strong> Modello grassroots, auto-prodotto, distribuito direttamente alla community del ciclismo e dell'ultra-endurance tramite social e piattaforme online.</p>
+                        <p><strong>Cosa impariamo:</strong> Valida la strategia di attivare una nicchia appassionata. Un forte legame con una sottocultura garantisce un impatto mirato e significativo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: STRATEGIA -->
+        <section id="strategy" class="slide" aria-labelledby="strategy-title">
+            <!-- NOTE: Questa è la roadmap operativa. Presentare il Gantt come un percorso logico in 4 fasi, dove ogni passo costruisce valore per il successivo. La checklist P&A dimostra che abbiamo già pianificato gli strumenti di marketing essenziali. -->
+            <div class="slide-content">
+                <h2 id="strategy-title">Strategia di Distribuzione (Roadmap)</h2>
+                <h4>Cronologia Finestre di Distribuzione (18-24 mesi)</h4>
+                <div class="card">
+                    <!-- Gantt Chart with CSS Grid -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; border-left: 1px solid #ccc; border-top: 1px solid #ccc; font-size: 0.8rem; text-align: center;">
+                        <div style="padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; font-weight: bold;">Q2 '26</div>
+                        <div style="padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; font-weight: bold;">Q3 '26</div>
+                        <div style="padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; font-weight: bold;">Q4 '26</div>
+                        <div style="padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; font-weight: bold;">Q1 '27</div>
+                        <div style="padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; font-weight: bold;">Q2 '27</div>
+                        <div style="padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; font-weight: bold;">Q3 '27+</div>
+                        <div style="grid-column: 1 / 3; background: #4ecdc433; padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc;">FASE 1: Festival</div>
+                        <div style="grid-column: 3 / 6; background: #ffc10733; padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc;">FASE 2: Event Cinema Tour</div>
+                        <div style="grid-column: 4 / 7; background: #1a535c33; padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc;">FASE 3: Educational</div>
+                        <div style="grid-column: 6 / 7; background: #fca31133; padding: 0.5rem; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc;">FASE 4: TV/OTT</div>
+                    </div>
+                </div>
+                 <h4>Checklist P&A Essenziale</h4>
+                <ul style="columns: 2;">
+                    <li>✅ Trailer Cinematografico (90-120s)</li>
+                    <li>✅ Teaser per Social Media (30-45s)</li>
+                    <li>✅ Poster Ufficiale / Key Art</li>
+                    <li>✅ Electronic Press Kit (EPK)</li>
+                    <li>✅ Sito Web Dedicato</li>
+                    <li>✅ Campagna Social Media</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: VALUE PROPOSITION -->
+        <section id="value" class="slide" aria-labelledby="value-title">
+             <!-- NOTE: La slide conclusiva, il "pitch" diretto al distributore. Sottolineare i 5 punti chiave. Il messaggio principale è: "Questo non è solo un altro documentario. È un investimento sicuro, supportato da una rete e con molteplici vie di ricavo." -->
+            <div class="slide-content">
+                <h2 id="value-title">Proposta di Valore per i Distributori</h2>
+                <p>Collaborare a <em>Sunflowers European Tour</em> significa investire in un progetto maturo, a basso rischio e con un percorso chiaro verso il successo commerciale e culturale.</p>
+                <div class="callout-box">
+                    <h3>Key Takeaways per il Distributore</h3>
+                    <ol>
+                        <li><strong>Prodotto Unico e Tempestivo:</strong> Un documentario "feel-good" con profondità, che intercetta la domanda di mercato per storie positive e di soluzioni.</li>
+                        <li><strong>Rischio di Marketing Mitigato:</strong> Accesso diretto a una rete europea di ONG, cooperative e università; un'audience pre-attivata per eventi di successo a basso costo.</li>
+                        <li><strong>Potenziale Multi-Piattaforma:</strong> Un asset transmediale (film, libro, educational) che offre flessibilità strategica e diversificazione dei ricavi a lungo termine.</li>
+                        <li><strong>Asset Pronti e Supporto Attivo:</strong> La produzione fornisce un kit di distribuzione "chiavi in mano" e la piena disponibilità dei talent per il tour promozionale.</li>
+                        <li><strong>Contenuto "Evergreen" e Sicuro:</strong> Tematiche universali e un tono costruttivo garantiscono una lunga vita commerciale, evitando le controversie che bloccano altri titoli.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: APPENDICI -->
+        <section id="appendices" class="slide" aria-labelledby="appendices-title">
+            <!-- NOTE: Le appendici sono qui come "backup slides". Non è necessario presentarle tutte in dettaglio, ma averle pronte per rispondere a eventuali domande specifiche su festival, materiali, rischi, etc. Dimostrano la profondità del nostro lavoro di preparazione. -->
+            <div class="slide-content">
+                <h2 id="appendices-title">Appendici / Backup Slides</h2>
+                
+                <h3 id="festivals">Festival Target (Selezione)</h3>
+                <ul>
+                    <li><strong>Premiere & Mercati Principali:</strong> Berlinale (Panorama), CPH:DOX, Visions du Réel, Sheffield DocFest, IDFA.</li>
+                    <li><strong>Diritti Umani e Impatto Sociale:</strong> One World Prague, Movies that Matter, FIFDH Geneva.</li>
+                    <li><strong>Ambiente e Sostenibilità:</strong> FIPADOC, Thessaloniki Documentary Festival, DocsBarcelona.</li>
+                    <li><strong>Europa e Viaggio:</strong> Crossing Europe Film Festival, Biografilm Festival.</li>
+                    <li><strong>Nicchia (Ciclismo/Avventura):</strong> Kendal Mountain Festival, International Cycling Film Festival.</li>
+                </ul>
+
+                <h3 id="kit" style="margin-top: 2rem;">Kit per il Distributore</h3>
+                <table>
+                    <thead><tr><th scope="col">Materiale</th><th scope="col">Stato</th></tr></thead>
+                    <tbody>
+                        <tr><td>Master Video (ProRes 422 HQ)</td><td><span class="badge badge-lavorazione">In Lavorazione</span></td></tr>
+                        <tr><td>DCP (Digital Cinema Package)</td><td><span class="badge badge-da-compilare">[DA COMPILARE]</span></td></tr>
+                        <tr><td>Traccia M&E (Music & Effects)</td><td><span class="badge badge-lavorazione">In Lavorazione</span></td></tr>
+                        <tr><td>Trailer Ufficiale (120 sec.)</td><td><span class="badge badge-lavorazione">In Lavorazione</span></td></tr>
+                        <tr><td>Fotografie di Scena (Stills)</td><td><span class="badge badge-pronto">Pronto</span></td></tr>
+                        <tr><td>Fotografie di Backstage</td><td><span class="badge badge-pronto">Pronto</span></td></tr>
+                    </tbody>
+                </table>
+                
+                <h3 id="risk" style="margin-top: 2rem;">Risk Log (Sintesi)</h3>
+                <table>
+                    <thead><tr><th scope="col">Rischio</th><th scope="col">Probabilità/Impatto</th><th scope="col">Mitigazione</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>Mancata selezione festival "A-list"</td>
+                            <td><span class="risk-medium">Media / Alto</span></td>
+                            <td>Strategia a cascata su festival di secondo livello; anteprime prestigiose con partner.</td>
+                        </tr>
+                        <tr>
+                            <td>Scarsa partecipazione eventi</td>
+                            <td><span class="risk-low">Bassa / Medio</span></td>
+                            <td>Modello "Community-first": ogni evento è co-organizzato e promosso da un partner locale.</td>
+                        </tr>
+                        <tr>
+                            <td>Problemi di clearance diritti (musica/archivio)</td>
+                            <td><span class="risk-low">Bassa / Molto Alto</span></td>
+                            <td>Processo legale rigoroso in parallelo alla post-produzione; utilizzo prioritario di musiche originali.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
+    </main>
+
+    <nav id="presentation-nav" aria-label="Controlli presentazione">
+        <div class="nav-toc">
+             <a href="#toc" title="Vai all'indice">☰ Indice</a>
+        </div>
+        <div class="nav-controls">
+            <button id="prev-slide" aria-label="Slide precedente" title="Slide precedente (Freccia Sinistra)">←</button>
+            <button id="next-slide" aria-label="Slide successiva" title="Slide successiva (Freccia Destra)">→</button>
+        </div>
+    </nav>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = Array.from(document.querySelectorAll('.slide'));
+            const progressBar = document.getElementById('progress-bar');
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+
+            function updateProgressBar() {
+                const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPosition = window.pageYOffset;
+                const progress = (scrollPosition / scrollTotal) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            function getCurrentSlideIndex() {
+                let currentSlideIndex = 0;
+                const viewportCenter = window.innerHeight / 2;
+                
+                slides.forEach((slide, index) => {
+                    const slideRect = slide.getBoundingClientRect();
+                    if (slideRect.top < viewportCenter && slideRect.bottom > viewportCenter) {
+                        currentSlideIndex = index;
+                    }
+                });
+                return currentSlideIndex;
+            }
+
+            function goToSlide(index) {
+                if (index >= 0 && index < slides.length) {
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            prevButton.addEventListener('click', () => {
+                const currentIndex = getCurrentSlideIndex();
+                goToSlide(currentIndex - 1);
+            });
+
+            nextButton.addEventListener('click', () => {
+                const currentIndex = getCurrentSlideIndex();
+                goToSlide(currentIndex + 1);
+            });
+
+            window.addEventListener('scroll', updateProgressBar);
+            updateProgressBar(); // Initial call
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                const currentIndex = getCurrentSlideIndex();
+                if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                    e.preventDefault();
+                    goToSlide(currentIndex + 1);
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    e.preventDefault();
+                    goToSlide(currentIndex - 1);
+                } else if (e.key === 'Home') {
+                    e.preventDefault();
+                    goToSlide(0);
+                } else if (e.key === 'End') {
+                    e.preventDefault();
+                    goToSlide(slides.length - 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
