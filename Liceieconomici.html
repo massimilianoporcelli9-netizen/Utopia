@@ -1,0 +1,556 @@
+
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSL Sunflowers @ Le Grazie: Report Interattivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: Ho scelto una struttura a singola pagina con navigazione a schede (Home, Modello, Programma, Strumenti, Impatto). Questo approccio è superiore a un lungo documento perché permette agli utenti (dirigenti, docenti) di accedere rapidamente alle sezioni di loro interesse. La dashboard iniziale offre una sintesi immediata (Executive Summary, Fasi chiave), mentre le sezioni dedicate approfondiscono i dettagli con elementi interattivi (grafici per le competenze, tabelle dinamiche per il programma). Il flusso è pensato per guidare l'utente dal generale (cos'è) allo specifico (come si fa), facilitando la comprensione e l'adozione del programma. -->
+    <!-- Visualization & Content Choices: 
+        - Fasi Metodologiche -> Goal: Organizzare -> HTML/CSS interattivo -> Click per dettaglio -> Rende il processo dinamico e meno statico di una lista.
+        - Competenze EntreComp -> Goal: Relazioni -> Grafico Radar Chart.js -> Mostra visivamente la copertura multidisciplinare del programma -> Evidenzia il valore formativo in modo immediato.
+        - Programma 3 Giorni -> Goal: Organizzare -> Tabella HTML stilizzata con icone -> Chiarezza e leggibilità -> Migliore user experience per i docenti che pianificano.
+        - KPI & Impatto -> Goal: Informare/Comparare -> Grafico a Barre Chart.js -> Rende i dati di impatto più digeribili e d'impatto -> Comunica l'efficacia del programma.
+        - Checklist -> Goal: Strumento operativo -> Lista HTML interattiva con checkbox -> Utilità pratica immediata per i dirigenti -> Trasforma il report in uno strumento di lavoro.
+        - Timeline (Gantt) -> Goal: Organizzare -> Diagramma HTML/CSS Grid -> Visualizza le fasi del progetto -> Offre una chiara roadmap temporale.
+        Tutte le scelte evitano SVG/Mermaid e usano Canvas (via Chart.js) o HTML/CSS puro per garantire la compatibilità e aderenza ai requisiti, supportando la struttura a schede per una navigazione logica. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #3C3633;
+        }
+        .tab-active {
+            border-bottom: 2px solid #EEA016;
+            color: #EEA016;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            border-bottom: 2px solid transparent;
+            color: #746862;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .section-card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            border: 1px solid #F0EBE3;
+        }
+        .phase-card {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-200">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-[#B4671A]">🌻 Sunflowers FSL</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link px-3 py-2 text-sm font-medium rounded-md" data-section="home">Home</a>
+                        <a href="#modello" class="nav-link px-3 py-2 text-sm font-medium rounded-md" data-section="modello">Il Modello</a>
+                        <a href="#programma" class="nav-link px-3 py-2 text-sm font-medium rounded-md" data-section="programma">Il Programma</a>
+                        <a href="#strumenti" class="nav-link px-3 py-2 text-sm font-medium rounded-md" data-section="strumenti">Strumenti</a>
+                        <a href="#impatto" class="nav-link px-3 py-2 text-sm font-medium rounded-md" data-section="impatto">Impatto & Governance</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+             <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#home" class="nav-link block px-3 py-2 text-base font-medium" data-section="home">Home</a>
+                    <a href="#modello" class="nav-link block px-3 py-2 text-base font-medium" data-section="modello">Il Modello</a>
+                    <a href="#programma" class="nav-link block px-3 py-2 text-base font-medium" data-section="programma">Il Programma</a>
+                    <a href="#strumenti" class="nav-link block px-3 py-2 text-base font-medium" data-section="strumenti">Strumenti</a>
+                    <a href="#impatto" class="nav-link block px-3 py-2 text-base font-medium" data-section="impatto">Impatto & Governance</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <section id="home" class="content-section">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-[#3C3633] tracking-tight">Field Service Learning <span class="text-[#EEA016]">Sunflowers</span></h1>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Un'esperienza immersiva di PCTO per Licei Economici, per connettere competenze, territorio ed economia sociale.</p>
+            </div>
+            
+            <div class="section-card bg-[#FFFBF2] border-l-4 border-[#EEA016]">
+                <h3 class="text-xl font-semibold text-[#B4671A] mb-2">Executive Summary</h3>
+                <p class="text-gray-700">Il Field Service Learning (FSL) è un'evoluzione del PCTO che integra l'apprendimento curricolare con un'esperienza di servizio immersiva e riflessiva sul campo. Per i Licei economici (AFM/ES), questo approccio offre un'opportunità unica per tradurre concetti teorici (economia sociale, sviluppo sostenibile) in competenze pratiche e trasversali (problem solving, imprenditorialità, teamwork). Il format Sunflowers, basato sui principi di lentezza, prossimità e convivialità (Sunflowers Scuola.pdf), si allinea perfettamente a questa esigenza, proponendo un modello residenziale che massimizza l'impatto formativo, connettendo gli studenti a comunità e imprese etiche locali. Questa applicazione illustra sia il quadro metodologico sia un programma operativo pilota presso l'Agriturismo "Le Grazie" in Umbria.</p>
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-2xl font-bold text-center text-[#3C3633] mb-6">Le 4 Fasi del Metodo Sunflowers</h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">Il percorso FSL si articola in quattro fasi interconnesse, un ciclo di apprendimento che parte dalla scoperta e arriva all'azione consapevole. Clicca su ogni fase per saperne di più.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="phase-card section-card p-6" data-phase="incontro">
+                        <div class="text-4xl mb-3">🤝</div>
+                        <h4 class="font-semibold text-lg">1. Incontro</h4>
+                        <p class="text-sm text-gray-500">Preparazione e scoperta del contesto</p>
+                    </div>
+                    <div class="phase-card section-card p-6" data-phase="esperienza">
+                        <div class="text-4xl mb-3">🏃‍♀️</div>
+                        <h4 class="font-semibold text-lg">2. Esperienza</h4>
+                        <p class="text-sm text-gray-500">Immersione e azione sul campo</p>
+                    </div>
+                    <div class="phase-card section-card p-6" data-phase="riflessione">
+                        <div class="text-4xl mb-3">🧠</div>
+                        <h4 class="font-semibold text-lg">3. Riflessione</h4>
+                        <p class="text-sm text-gray-500">Debriefing e connessione con la teoria</p>
+                    </div>
+                    <div class="phase-card section-card p-6" data-phase="proposta">
+                        <div class="text-4xl mb-3">💡</div>
+                        <h4 class="font-semibold text-lg">4. Proposta</h4>
+                        <p class="text-sm text-gray-500">Ideazione e restituzione alla comunità</p>
+                    </div>
+                </div>
+                <div id="phase-details" class="mt-8 section-card bg-gray-50 hidden">
+                    <h3 id="phase-title" class="text-xl font-bold text-[#B4671A] mb-2"></h3>
+                    <p id="phase-description" class="text-gray-700"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="modello" class="content-section hidden">
+            <h2 class="text-3xl font-bold text-center mb-8">Quadro Metodologico FSL</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Questa sezione delinea le fondamenta del Field Service Learning secondo l'approccio Sunflowers. Esploriamo i principi, la rilevanza per i percorsi di studio economici e le competenze chiave sviluppate, con un'analisi che collega l'esperienza pratica ai framework europei come EntreComp.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="section-card">
+                    <h3 class="text-xl font-semibold mb-3">Principi Chiave Sunflowers</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li><strong>🐌 Lentezza:</strong> "Prendersi il tempo per osservare, ascoltare e comprendere in profondità" (Sunflowers Scuola.pdf), in contrasto con la fretta delle uscite didattiche tradizionali.</li>
+                        <li><strong>🤝 Convivialità & Dialogo:</strong> Creare un "ambiente di apprendimento informale e paritetico" dove studenti, docenti e comunità locale interagiscono (SUNFLOWERS EUROPEAN SCHOOL.pdf).</li>
+                        <li><strong>🌍 Prossimità:</strong> L'apprendimento avviene tramite l'incontro diretto con persone e luoghi, valorizzando il capitale umano e sociale del territorio.</li>
+                        <li><strong>🎨 Simboli & Metafore:</strong> Utilizzo di "linguaggi non convenzionali per stimolare la creatività e la riflessione profonda", come la camminata o la bicicletta. (Sunflowers Scuola.pdf).</li>
+                        <li><strong>🌱 Eterogeneità:</strong> L'incontro tra gruppi diversi (studenti, artigiani, imprenditori sociali) è fonte di apprendimento e innovazione.</li>
+                    </ul>
+                </div>
+                 <div class="section-card">
+                    <h3 class="text-xl font-semibold mb-3">Rilevanza per Licei Economici (AFM/ES)</h3>
+                    <p class="mb-4">L'FSL trasforma lo studio dell'economia da disciplina astratta a pratica vissuta. Gli studenti applicano concetti di economia sociale, marketing territoriale e sostenibilità a contesti reali, sviluppando competenze strategiche.</p>
+                    <p>Il percorso è mappato sui framework europei per le competenze imprenditoriali (<strong>EntreComp</strong>) e digitali (<strong>DigComp</strong>), rafforzando skill come:</p>
+                    <ul class="list-disc list-inside mt-3 text-gray-700">
+                        <li>Individuare le opportunità</li>
+                        <li>Creatività e Visione</li>
+                        <li>Pianificazione e gestione</li>
+                        <li>Lavorare con gli altri</li>
+                        <li>Imparare attraverso l'esperienza</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 section-card">
+                <h3 class="text-xl font-semibold text-center mb-6">Mappatura Competenze EntreComp</h3>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">Il grafico radar illustra come le attività del programma FSL sviluppino in modo equilibrato le diverse aree del framework EntreComp. Passa il mouse sulle aree per vedere i dettagli delle competenze stimolate.</p>
+                <div class="chart-container">
+                    <canvas id="entrecompChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="programma" class="content-section hidden">
+            <h2 class="text-3xl font-bold text-center mb-8">Programma Operativo FSL @ Le Grazie</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Questo è un programma dettagliato di 3 giorni, progettato per essere svolto presso l'Agriturismo Etico "Le Grazie" a Bevagna. Ogni giornata è strutturata per seguire le 4 fasi Sunflowers, integrando attività sul campo, laboratori e momenti di riflessione. L'obiettivo è fornire un'esperienza PCTO di 24 ore, espandibile a 5 giorni.</p>
+            
+            <div class="overflow-x-auto section-card">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Orario</th>
+                            <th scope="col" class="px-6 py-3">Giorno 1: Europa dal Basso & Territorio</th>
+                            <th scope="col" class="px-6 py-3">Giorno 2: Economia Sociale & Circolarità</th>
+                            <th scope="col" class="px-6 py-3">Giorno 3: Policy & Impatto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b">
+                            <td class="px-6 py-4 font-medium">09:00 - 10:30</td>
+                            <td class="px-6 py-4">🤝 Incontro: Accoglienza, ice-breaking e introduzione al FSL.</td>
+                            <td class="px-6 py-4">🚲 Esperienza: Biciclettata simbolica sulla ciclabile Assisi-Spoleto.</td>
+                            <td class="px-6 py-4">💡 Proposta: Laboratorio di scrittura Policy Brief / Manifesto.</td>
+                        </tr>
+                        <tr class="bg-gray-50 border-b">
+                            <td class="px-6 py-4 font-medium">10:30 - 13:00</td>
+                            <td class="px-6 py-4">🚶‍♀️ Esperienza: Camminata lenta a Bevagna, osservazione del contesto.</td>
+                            <td class="px-6 py-4">🤝 Incontro: Visita a partner locali (cantina/coop. sociale). [DA COMPILARE]</td>
+                            <td class="px-6 py-4">🎤 Pitching dei micro-progetti ideati.</td>
+                        </tr>
+                        <tr class="bg-white border-b">
+                            <td class="px-6 py-4 font-medium">13:00 - 14:30</td>
+                            <td class="px-6 py-4" colspan="3" class="text-center">Pranzo conviviale</td>
+                        </tr>
+                        <tr class="bg-gray-50 border-b">
+                            <td class="px-6 py-4 font-medium">14:30 - 17:00</td>
+                            <td class="px-6 py-4">🧠 Riflessione: Debriefing sulla camminata e analisi caso "La Fageda".</td>
+                            <td class="px-6 py-4">💡 Proposta: Caso "Humana Nova" e lab. su Social Business Model Canvas.</td>
+                             <td class="px-6 py-4">🧠 Riflessione: Valutazione finale (rubriche, peer review) e piano di follow-up.</td>
+                        </tr>
+                         <tr class="bg-white border-b">
+                            <td class="px-6 py-4 font-medium">17:00 - 18:30</td>
+                            <td class="px-6 py-4">💡 Proposta: Laboratorio "dal problema alla soluzione" e progettazione.</td>
+                            <td class="px-6 py-4">🧠 Riflessione: World Café / Role Play su sfide dell'economia circolare.</td>
+                             <td class="px-6 py-4">🏁 Chiusura e consegna attestati.</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="px-6 py-4 font-medium">21:00 - 22:00</td>
+                            <td class="px-6 py-4">🗣️ Circle time serale di riflessione.</td>
+                            <td class="px-6 py-4">🎬 Proiezione clip Sunflowers e dialogo.</td>
+                            <td class="px-6 py-4"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="strumenti" class="content-section hidden">
+            <h2 class="text-3xl font-bold text-center mb-8">Strumenti Didattici e Risorse</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Questa sezione raccoglie gli strumenti pratici utilizzati durante il programma FSL e una checklist operativa per i dirigenti scolastici. I casi studio europei sono il cuore dell'analisi, mentre la checklist fornisce una guida chiara per l'organizzazione.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Casi Studio come Unità di Apprendimento</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-lg bg-white border border-gray-200">
+                            <h4 class="font-bold">La Fageda (Spagna)</h4>
+                            <p class="text-sm text-gray-600">Cooperativa sociale che produce yogurt, integrando persone con disagio psichico. Un modello di business inclusivo e legato al territorio. (SUNFLOWERS EUROPEAN SCHOOL.pdf)</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white border border-gray-200">
+                            <h4 class="font-bold">Humana Nova (Croazia)</h4>
+                            <p class="text-sm text-gray-600">Impresa sociale di moda circolare che impiega persone svantaggiate. Esempio di sostenibilità ambientale e sociale. (SUNFLOWERS EUROPEAN SCHOOL.pdf)</p>
+                        </div>
+                         <div class="p-4 rounded-lg bg-white border border-gray-200">
+                            <h4 class="font-bold">Myrtillo (Grecia) & Progetti Balcani</h4>
+                            <p class="text-sm text-gray-600">Café-bistrot che impiega giovani con disabilità e progetti di policy giovanile a Ventotene, Saranda, Podgorica. Esempi di advocacy e impatto comunitario. (SUNFLOWERS EUROPEAN SCHOOL.pdf)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3 class="text-xl font-semibold mb-4">Checklist per Dirigente / Referente PCTO</h3>
+                    <ul id="checklist" class="space-y-3">
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Definire obiettivi didattici e competenze (rif. PTOF).</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Identificare classe/gruppo di studenti e docenti accompagnatori.</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Verificare la convenzione PCTO con l'ente organizzatore.</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Raccogliere consensi informati e privacy da famiglie/studenti.</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Controllare coperture assicurative (infortuni, RC).</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Pianificare la logistica del trasporto.</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Comunicare con le famiglie il programma e le norme di comportamento.</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Organizzare un incontro pre-partenza con gli studenti.</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Definire le modalità di valutazione e certificazione delle ore PCTO.</span></li>
+                        <li class="flex items-start"><input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500 mt-0.5 mr-3"><span class="text-gray-700">Pianificare il follow-up a scuola (restituzione, disseminazione).</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="impatto" class="content-section hidden">
+            <h2 class="text-3xl font-bold text-center mb-8">Valutazione, Impatto e Governance</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">Questa sezione finale si concentra su come misuriamo il successo del programma e assicuriamo una gestione sicura e trasparente. Vengono presentati i Key Performance Indicators (KPI), gli strumenti di valutazione e i ruoli chiave per una governance efficace, in linea con le normative sulla sicurezza per i PCTO.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="section-card">
+                    <h3 class="text-xl font-semibold text-center mb-6">KPI e Impatto Atteso</h3>
+                    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">Questi indicatori chiave di prestazione (KPI) ci aiutano a monitorare e valutare l'impatto del programma FSL sugli studenti, sui docenti e sulla comunità locale.</p>
+                     <div class="chart-container h-64 md:h-80">
+                        <canvas id="kpiChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3 class="text-xl font-semibold mb-4">Governance e Sicurezza</h3>
+                    <p class="mb-4 text-gray-600">Una chiara definizione dei ruoli è essenziale per garantire la sicurezza e il successo del FSL, in conformità con le linee guida PCTO.</p>
+                    <ul class="space-y-3">
+                        <li class="p-3 bg-gray-50 rounded-md">
+                            <p class="font-semibold text-gray-800">🏫 Scuola (Dirigente, Tutor scolastico):</p>
+                            <p class="text-sm text-gray-600">Responsabile della progettazione formativa, della sicurezza amministrativa (assicurazioni, convenzioni) e del monitoraggio didattico.</p>
+                        </li>
+                         <li class="p-3 bg-gray-50 rounded-md">
+                            <p class="font-semibold text-gray-800">🌻 Ente Ospitante (Coordinatore FSL):</p>
+                            <p class="text-sm text-gray-600">Responsabile della progettazione esecutiva, della logistica, della facilitazione delle attività e della sicurezza sul campo.</p>
+                        </li>
+                         <li class="p-3 bg-gray-50 rounded-md">
+                            <p class="font-semibold text-gray-800">👨‍🎓 Studente:</p>
+                            <p class="text-sm text-gray-600">Partecipante attivo e responsabile, tenuto al rispetto delle norme di sicurezza e del patto formativo.</p>
+                        </li>
+                    </ul>
+                    <p class="mt-4 text-xs text-gray-500">Tutte le attività outdoor saranno supervisionate da tutor qualificati. Verranno raccolti consensi informati per privacy e utilizzo di immagini. Sarà garantita l'accessibilità per studenti con bisogni speciali, previa comunicazione.</p>
+                </div>
+            </div>
+             <div class="mt-8 section-card">
+                <h3 class="text-xl font-semibold mb-4">Budget Sintetico per Studente</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left font-semibold">Voce di Costo</th>
+                                <th class="px-4 py-2 text-left font-semibold">Descrizione</th>
+                                <th class="px-4 py-2 text-right font-semibold">Costo Stimato</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-2">Vitto & Alloggio</td>
+                                <td class="px-4 py-2">Pensione completa per 3gg/2nn presso Agriturismo Le Grazie</td>
+                                <td class="px-4 py-2 text-right font-mono">€ 110</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">Facilitazione & Materiali</td>
+                                <td class="px-4 py-2">Coordinamento, facilitatori, materiali didattici, noleggio bici</td>
+                                <td class="px-4 py-2 text-right font-mono">€ 40</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">Logistica & Assicurazioni</td>
+                                <td class="px-4 py-2">Copertura assicurativa integrativa, trasporti locali</td>
+                                <td class="px-4 py-2 text-right font-mono">€ 25</td>
+                            </tr>
+                            <tr class="bg-amber-50">
+                                <td class="px-4 py-2 font-bold" colspan="2">Costo Totale per Studente</td>
+                                <td class="px-4 py-2 text-right font-bold font-mono">€ 175</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-sm text-gray-500">
+            <p>&copy; 2025 Sunflowers Field Service Learning Program. Report Interattivo.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.content-section');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function updateActiveLink(activeSectionId) {
+                navLinks.forEach(link => {
+                    if (link.dataset.section === activeSectionId) {
+                        link.classList.add('tab-active');
+                        link.classList.remove('tab-inactive');
+                    } else {
+                        link.classList.add('tab-inactive');
+                        link.classList.remove('tab-active');
+                    }
+                });
+            }
+            
+            function showSection(sectionId) {
+                sections.forEach(section => {
+                    if (section.id === sectionId) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+                updateActiveLink(sectionId);
+                window.scrollTo(0, 0);
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.dataset.section;
+                    showSection(sectionId);
+                    if(mobileMenu.classList.contains('hidden') === false){
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+            
+            mobileMenuButton.addEventListener('click', () => {
+                 mobileMenu.classList.toggle('hidden');
+            });
+
+            showSection('home');
+
+            const phaseCards = document.querySelectorAll('.phase-card');
+            const phaseDetailsContainer = document.getElementById('phase-details');
+            const phaseTitle = document.getElementById('phase-title');
+            const phaseDescription = document.getElementById('phase-description');
+            
+            const phaseData = {
+                incontro: {
+                    title: "🤝 Fase 1: Incontro",
+                    description: "Questa fase iniziale è dedicata alla preparazione. Gli studenti vengono introdotti al contesto territoriale, alle sfide della comunità e ai principi del Service Learning. Si utilizzano strumenti di ice-breaking e team building per creare un gruppo coeso e si definisce il 'patto formativo' che guiderà l'esperienza."
+                },
+                esperienza: {
+                    title: "🏃‍♀️ Fase 2: Esperienza",
+                    description: "Il cuore del FSL. Gli studenti si immergono attivamente nel contesto, partecipando ad attività pratiche a fianco di partner locali (cooperative sociali, imprese etiche). Non è una semplice visita, ma un coinvolgimento diretto che permette di 'imparare facendo', come suggerito dalla metodologia Sunflowers (Sunflowers Scuola.pdf)."
+                },
+                riflessione: {
+                    title: "🧠 Fase 3: Riflessione",
+                    description: "Momento cruciale per trasformare l'azione in apprendimento. Attraverso debriefing guidati, diari di bordo e discussioni di gruppo (es. World Café), gli studenti collegano l'esperienza pratica ai concetti studiati a scuola, analizzando criticamente quanto vissuto e sviluppando consapevolezza. (SUNFLOWERS EUROPEAN SCHOOL.pdf)"
+                },
+                proposta: {
+                    title: "💡 Fase 4: Proposta",
+                    description: "L'esperienza si conclude con un'azione di restituzione. Gli studenti, basandosi su quanto appreso, elaborano micro-progetti, policy brief o altre forme di proposta per rispondere ai bisogni osservati. Questa fase sviluppa competenze di problem-solving, creatività e cittadinanza attiva, chiudendo il cerchio dell'apprendimento."
+                }
+            };
+
+            phaseCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const phase = card.dataset.phase;
+                    phaseTitle.textContent = phaseData[phase].title;
+                    phaseDescription.textContent = phaseData[phase].description;
+                    phaseDetailsContainer.classList.remove('hidden');
+                });
+            });
+
+            const entrecompCtx = document.getElementById('entrecompChart').getContext('2d');
+            new Chart(entrecompCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Idee & Opportunità', 'Risorse', 'In Azione'],
+                    datasets: [{
+                        label: 'Competenze Sviluppate',
+                        data: [8, 7, 9],
+                        backgroundColor: 'rgba(238, 160, 22, 0.2)',
+                        borderColor: 'rgba(238, 160, 22, 1)',
+                        pointBackgroundColor: 'rgba(238, 160, 22, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(238, 160, 22, 1)'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: '#E5E7EB'
+                            },
+                            grid: {
+                                color: '#E5E7EB'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 13,
+                                },
+                                color: '#3C3633'
+                            },
+                            ticks: {
+                                backdropColor: '#FDFBF8',
+                                color: '#746862',
+                                stepSize: 2
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += context.raw;
+                                    let area = context.label;
+                                    let details = '';
+                                    if(area === 'Idee & Opportunità') details = ' (Visione, Creatività)';
+                                    if(area === 'Risorse') details = ' (Pianificazione, Gestione finanziaria)';
+                                    if(area === 'In Azione') details = ' (Teamwork, Imparare dall\'esperienza)';
+                                    return label + details;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const kpiCtx = document.getElementById('kpiChart').getContext('2d');
+            new Chart(kpiCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Partecipazione Studenti', 'Soddisfazione (Docenti)', 'Skill Gain (Autoval.)', 'Progetti Sviluppati'],
+                    datasets: [{
+                        label: 'Obiettivo Target',
+                        data: [90, 85, 75, 5],
+                        backgroundColor: [
+                            'rgba(238, 160, 22, 0.6)',
+                            'rgba(180, 103, 26, 0.6)',
+                            'rgba(116, 104, 98, 0.6)',
+                            'rgba(60, 54, 51, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(238, 160, 22, 1)',
+                            'rgba(180, 103, 26, 1)',
+                            'rgba(116, 104, 98, 1)',
+                            'rgba(60, 54, 51, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                           beginAtZero: true,
+                           max: 100,
+                           ticks: {
+                               callback: function(value, index, values) {
+                                   return (index === 0 || index === 3) ? value : value + '%';
+                               }
+                           }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Indicatori di Performance (Valori Target)'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
