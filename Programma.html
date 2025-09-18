@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programma FSL - 3 Giorni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .day-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .day-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .day-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .activity-item {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .activity-item:hover {
+            transform: translateX(8px);
+            border-left-color: #fbbf24;
+            background-color: #fef3c7;
+        }
+        
+        .time-badge {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .activity-icon {
+            font-size: 1.5rem;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b-4 border-indigo-500">
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">Formazione Scuola Lavoro</h1>
+                <p class="text-xl text-gray-600 mb-4">Programma Formativo - 3 Giorni</p>
+                <div class="flex justify-center items-center space-x-4 text-sm text-gray-500">
+                    <span class="flex items-center">
+                        <span class="w-3 h-3 bg-green-400 rounded-full mr-2 pulse-animation"></span>
+                        Europa dal Basso & Territorio
+                    </span>
+                    <span class="flex items-center">
+                        <span class="w-3 h-3 bg-pink-400 rounded-full mr-2 pulse-animation"></span>
+                        Economia Sociale & Circolarità
+                    </span>
+                    <span class="flex items-center">
+                        <span class="w-3 h-3 bg-blue-400 rounded-full mr-2 pulse-animation"></span>
+                        Policy & Impatto
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-8">
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Giorno 1 -->
+            <div class="day-card rounded-2xl shadow-2xl overflow-hidden floating-animation">
+                <div class="p-6 text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-bold">Giorno 1</h2>
+                        <span class="text-4xl">🌍</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-6 opacity-90">Europa dal Basso & Territorio</h3>
+                </div>
+                
+                <div class="bg-white p-6 space-y-4">
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day1-1')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">09:00 - 10:30</span>
+                            <span class="activity-icon">🤝</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Incontro</h4>
+                        <p class="text-sm text-gray-600">Accoglienza, ice-breaking e introduzione al FSL</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day1-2')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">10:30 - 13:00</span>
+                            <span class="activity-icon">🚶‍♀️</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Esperienza</h4>
+                        <p class="text-sm text-gray-600">Camminata lenta a Bevagna, osservazione del contesto</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">13:00 - 14:30</span>
+                            <span class="activity-icon">🍽️</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Pranzo conviviale</h4>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day1-3')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">14:30 - 17:00</span>
+                            <span class="activity-icon">🧠</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Riflessione</h4>
+                        <p class="text-sm text-gray-600">Debriefing sulla camminata e analisi caso "La Fageda"</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day1-4')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">17:00 - 18:30</span>
+                            <span class="activity-icon">💡</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Proposta</h4>
+                        <p class="text-sm text-gray-600">Laboratorio "dal problema alla soluzione" e progettazione</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day1-5')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">21:00 - 22:00</span>
+                            <span class="activity-icon">🗣️</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Circle time serale</h4>
+                        <p class="text-sm text-gray-600">Riflessione di gruppo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giorno 2 -->
+            <div class="day-card rounded-2xl shadow-2xl overflow-hidden floating-animation" style="animation-delay: 0.5s;">
+                <div class="p-6 text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-bold">Giorno 2</h2>
+                        <span class="text-4xl">♻️</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-6 opacity-90">Economia Sociale & Circolarità</h3>
+                </div>
+                
+                <div class="bg-white p-6 space-y-4">
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day2-1')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">09:00 - 10:30</span>
+                            <span class="activity-icon">🚲</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Esperienza</h4>
+                        <p class="text-sm text-gray-600">Biciclettata simbolica sulla ciclabile Assisi-Spoleto</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day2-2')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">10:30 - 13:00</span>
+                            <span class="activity-icon">🤝</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Incontro</h4>
+                        <p class="text-sm text-gray-600">Visita a partner locali (cantina/coop. sociale)</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">13:00 - 14:30</span>
+                            <span class="activity-icon">🍽️</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Pranzo conviviale</h4>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day2-3')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">14:30 - 17:00</span>
+                            <span class="activity-icon">💡</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Proposta</h4>
+                        <p class="text-sm text-gray-600">Caso "Humana Nova" e lab. su Social Business Model Canvas</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day2-4')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">17:00 - 18:30</span>
+                            <span class="activity-icon">🧠</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Riflessione</h4>
+                        <p class="text-sm text-gray-600">World Café / Role Play su sfide dell'economia circolare</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day2-5')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">21:00 - 22:00</span>
+                            <span class="activity-icon">🎬</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Proiezione</h4>
+                        <p class="text-sm text-gray-600">Clip Sunflowers e dialogo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giorno 3 -->
+            <div class="day-card rounded-2xl shadow-2xl overflow-hidden floating-animation" style="animation-delay: 1s;">
+                <div class="p-6 text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-bold">Giorno 3</h2>
+                        <span class="text-4xl">🎯</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-6 opacity-90">Policy & Impatto</h3>
+                </div>
+                
+                <div class="bg-white p-6 space-y-4">
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day3-1')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">09:00 - 10:30</span>
+                            <span class="activity-icon">💡</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Proposta</h4>
+                        <p class="text-sm text-gray-600">Laboratorio di scrittura Policy Brief / Manifesto</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day3-2')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">10:30 - 13:00</span>
+                            <span class="activity-icon">🎤</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Pitching</h4>
+                        <p class="text-sm text-gray-600">Presentazione dei micro-progetti ideati</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">13:00 - 14:30</span>
+                            <span class="activity-icon">🍽️</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Pranzo conviviale</h4>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day3-3')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">14:30 - 17:00</span>
+                            <span class="activity-icon">🧠</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Riflessione</h4>
+                        <p class="text-sm text-gray-600">Valutazione finale e piano di follow-up</p>
+                    </div>
+                    
+                    <div class="activity-item p-4 rounded-lg cursor-pointer" onclick="showDetails('day3-4')">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="time-badge px-3 py-1 rounded-full text-sm">17:00 - 18:30</span>
+                            <span class="activity-icon">🏁</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Chiusura</h4>
+                        <p class="text-sm text-gray-600">Consegna attestati e saluti finali</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Activity Details -->
+    <div id="activityModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" onclick="closeModal()">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-800"></h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <div id="modalContent" class="text-gray-600 leading-relaxed"></div>
+            <div class="mt-6 text-center">
+                <button onclick="closeModal()" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300">
+                    Chiudi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-lg font-semibold mb-2">Formazione Scuola Lavoro</p>
+            <p class="text-gray-400">Un percorso di crescita per l'integrazione tra formazione e mondo del lavoro</p>
+        </div>
+    </footer>
+
+    <script>
+        const activityDetails = {
+            'day1-1': {
+                title: 'Accoglienza e Ice-breaking',
+                content: 'Momento di benvenuto per creare un ambiente accogliente e favorire la conoscenza reciproca tra i partecipanti. Introduzione agli obiettivi e alla metodologia della Formazione Scuola Lavoro.'
+            },
+            'day1-2': {
+                title: 'Camminata Lenta a Bevagna',
+                content: 'Esperienza immersiva nel territorio attraverso una camminata consapevole. Osservazione diretta del contesto locale, delle dinamiche sociali e delle potenzialità del territorio.'
+            },
+            'day1-3': {
+                title: 'Debriefing e Caso La Fageda',
+                content: 'Riflessione condivisa sull\'esperienza della camminata. Analisi del caso studio "La Fageda" come esempio di innovazione sociale e inclusione lavorativa.'
+            },
+            'day1-4': {
+                title: 'Dal Problema alla Soluzione',
+                content: 'Laboratorio pratico per sviluppare competenze di problem-solving sociale. Metodologie di progettazione partecipata e co-design per l\'innovazione sociale.'
+            },
+            'day1-5': {
+                title: 'Circle Time Serale',
+                content: 'Momento di condivisione e riflessione collettiva sulla giornata. Spazio di ascolto e dialogo per elaborare le esperienze vissute.'
+            },
+            'day2-1': {
+                title: 'Biciclettata Simbolica',
+                content: 'Esperienza di mobilità sostenibile sulla ciclabile Assisi-Spoleto. Riflessione sui temi della sostenibilità ambientale e della mobilità dolce.'
+            },
+            'day2-2': {
+                title: 'Visita Partner Locali',
+                content: 'Incontro diretto con realtà del territorio: cantina sociale e cooperativa sociale. Conoscenza di modelli concreti di economia sociale e solidale.'
+            },
+            'day2-3': {
+                title: 'Caso Humana Nova',
+                content: 'Analisi del caso studio "Humana Nova" e laboratorio pratico sul Social Business Model Canvas. Strumenti per progettare modelli di business sostenibili.'
+            },
+            'day2-4': {
+                title: 'World Café Economia Circolare',
+                content: 'Metodologia World Café e role play per esplorare le sfide dell\'economia circolare. Confronto su soluzioni innovative e sostenibili.'
+            },
+            'day2-5': {
+                title: 'Proiezione Sunflowers',
+                content: 'Visione di clip dal documentario "Sunflowers" seguita da dialogo e riflessione sui temi dell\'inclusione sociale e del lavoro dignitoso.'
+            },
+            'day3-1': {
+                title: 'Scrittura Policy Brief',
+                content: 'Laboratorio di scrittura collaborativa per la redazione di Policy Brief o Manifesto. Sviluppo di proposte concrete per il cambiamento sociale.'
+            },
+            'day3-2': {
+                title: 'Pitching Micro-progetti',
+                content: 'Presentazione pubblica dei micro-progetti ideati durante il percorso. Momento di condivisione e feedback costruttivo tra partecipanti.'
+            },
+            'day3-3': {
+                title: 'Valutazione e Follow-up',
+                content: 'Valutazione finale del percorso attraverso rubriche e peer review. Definizione di un piano di follow-up per dare continuità alle iniziative.'
+            },
+            'day3-4': {
+                title: 'Chiusura e Attestati',
+                content: 'Momento conclusivo del percorso con consegna degli attestati di partecipazione. Saluti finali e impegni per il futuro.'
+            }
+        };
+
+        function showDetails(activityId) {
+            const modal = document.getElementById('activityModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const activity = activityDetails[activityId];
+            if (activity) {
+                title.textContent = activity.title;
+                content.textContent = activity.content;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('activityModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Add keyboard support for modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98129a9377c2b83b',t:'MTc1ODIxNjk2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
