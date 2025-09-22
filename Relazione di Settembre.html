@@ -1,0 +1,845 @@
+<!-- UI CdA generata da Gemini su base: Relazione Strategica Post Sunflowers – Settembre 2025 -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relazione Strategica Post-Sunflowers | Utopia 2000</title>
+    <style>
+        /* --- NOTE: Reset & Stili di Base --- */
+        :root {
+            --color-primary: #0d47a1; /* Blu Scuro */
+            --color-secondary: #1976d2; /* Blu Medio */
+            --color-accent: #ffc107; /* Giallo Girasole */
+            --color-background: #f4f6f8;
+            --color-text: #212121;
+            --color-text-light: #616161;
+            --color-card-bg: #ffffff;
+            --color-border: #e0e0e0;
+            --color-success: #4caf50;
+            --color-warning: #fb8c00;
+            --color-inprogress: #2196f3;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --border-radius: 8px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            margin: 0;
+            padding-top: 60px; /* Spazio per la navbar */
+            line-height: 1.6;
+        }
+
+        /* --- NOTE: Struttura e Navigazione --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-card-bg);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 4px;
+            background-color: var(--color-border);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background-color: var(--color-accent);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            height: 56px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-primary);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover, nav a:focus {
+            background-color: var(--color-background);
+            outline: 2px solid var(--color-accent);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .slide {
+            background: var(--color-card-bg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            scroll-margin-top: 80px; /* Offset per l'ancora */
+        }
+        
+        h1, h2, h3 {
+            color: var(--color-primary);
+            margin-top: 0;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 1.8rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.3rem; color: var(--color-secondary); }
+
+        /* --- NOTE: Componenti UI --- */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .btn:hover, .btn:focus { background-color: #0b3d8a; outline: 2px solid var(--color-accent); }
+
+        .btn-secondary { background-color: var(--color-text-light); }
+        .btn-secondary:hover, .btn-secondary:focus { background-color: #555; }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .tag-territorio-umbria { background-color: #e8f5e9; color: #2e7d32; }
+        .tag-territorio-lazio { background-color: #e3f2fd; color: #1565c0; }
+        .tag-territorio-estero { background-color: #fff3e0; color: #ef6c00; }
+        .tag-tema-scuole { background-color: #fce4ec; color: #c2185b; }
+        .tag-tema-patrimonio { background-color: #ede7f6; color: #512da8; }
+        .tag-tema-digitalizzazione { background-color: #e0f7fa; color: #00838f; }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
+        .badge-fatto { background-color: var(--color-success); }
+        .badge-incorso { background-color: var(--color-inprogress); }
+        .badge-next { background-color: var(--color-warning); }
+        
+        .callout {
+            background-color: #fffde7;
+            border-left: 5px solid var(--color-accent);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        .callout h3 { color: #f57f17; margin-bottom: 0.5rem;}
+        .callout ul { padding-left: 20px; margin: 0; }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--color-text-light);
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: var(--color-text);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+
+        /* --- NOTE: Stili Specifici delle Sezioni --- */
+
+        /* Cover */
+        #cover { text-align: center; background: var(--color-primary); color: white; }
+        #cover h1, #cover h2 { color: white; }
+        #cover h2 { border: none; font-style: italic; font-weight: 300; }
+        
+        /* Executive View */
+        #executive-view ul { list-style: none; padding: 0; }
+        #executive-view li {
+            background: var(--color-background);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            border-left: 5px solid var(--color-secondary);
+        }
+        
+        /* Interlocuzioni */
+        .filters { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 10px; }
+        .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+        .timeline-card {
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .timeline-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+        .timeline-card h3 { margin-bottom: 0.5rem; }
+        .timeline-card .meta { color: var(--color-text-light); margin-bottom: 1rem; font-style: italic; }
+        .timeline-card .esito { font-weight: 500; background: #e8f5e9; padding: 10px; border-radius: 4px; margin-top: 1rem; }
+
+        /* Azioni Avviate */
+        .actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .action-card {
+            border: 1px solid var(--color-border);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            display: flex; flex-direction: column;
+        }
+        .action-card h3 { display: flex; justify-content: space-between; align-items: center; }
+        .action-card .owner { font-style: italic; color: var(--color-text-light); margin-top: auto; padding-top: 1rem; }
+        
+        /* Analisi Strategica (SWOC) */
+        .swoc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .swoc-card { padding: 1rem; border-radius: var(--border-radius); }
+        .swoc-card h3 { color: white; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255,255,255,0.5); }
+        .swoc-card ul { padding-left: 20px; margin: 0; color: white; }
+        .swoc-s { background-color: #2e7d32; }
+        .swoc-w { background-color: #c62828; }
+        .swoc-o { background-color: #0277bd; }
+        .swoc-c { background-color: #ef6c00; }
+        
+        /* Valutazione Sintetica */
+        .scoreboard { list-style: none; padding: 0; }
+        .score-item { display: flex; align-items: center; margin-bottom: 1rem; gap: 1rem; flex-wrap: wrap; }
+        .score-label { flex-basis: 300px; font-weight: 500; }
+        .score-bar-container { flex: 1; min-width: 200px; height: 25px; background-color: var(--color-background); border-radius: var(--border-radius); overflow: hidden;}
+        .score-bar {
+            height: 100%;
+            background-color: var(--color-secondary);
+            display: flex; align-items: center; justify-content: flex-end;
+            color: white;
+            font-weight: 700;
+            padding-right: 10px;
+            white-space: nowrap;
+            transition: width 1s ease-in-out;
+        }
+        
+        /* Priorità (Kanban) */
+        .kanban-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .kanban-column { background-color: var(--color-background); padding: 1rem; border-radius: var(--border-radius); }
+        .kanban-column h3 { text-align: center; margin-bottom: 1rem; }
+        .kanban-card {
+            background-color: var(--color-card-bg);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+        }
+        .kanban-card .owner { font-weight: 500; color: var(--color-primary); }
+        .kanban-card .deadline { font-style: italic; color: var(--color-text-light); font-size: 0.9rem; }
+        
+        /* Roadmap */
+        .roadmap-table { width: 100%; border-collapse: collapse; }
+        .roadmap-table th, .roadmap-table td { padding: 12px; text-align: left; border: 1px solid var(--color-border); }
+        .roadmap-table th { background-color: var(--color-primary); color: white; }
+        .roadmap-table .task-bar { height: 10px; background-color: var(--color-accent); border-radius: 5px; }
+
+        /* Rischi */
+        .risks-table { width: 100%; border-collapse: collapse; }
+        .risks-table th, .risks-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--color-border); }
+        .risks-table th { background-color: var(--color-background); }
+        .risks-table .impact-high { color: #c62828; font-weight: 700; }
+        .risks-table .impact-medium { color: #ef6c00; font-weight: 700; }
+        .risks-table .impact-low { color: #558b2f; font-weight: 700; }
+
+        /* --- NOTE: Stili per la Stampa --- */
+        @media print {
+            body { padding-top: 0; }
+            header, .filters, .btn, .print-hidden { display: none !important; }
+            main { padding: 0; max-width: 100%; }
+            .slide {
+                box-shadow: none;
+                border: 1px solid var(--color-border);
+                padding: 1cm;
+                margin-bottom: 1.5cm;
+                page-break-inside: avoid;
+            }
+            h1, h2, h3 { color: #000 !important; }
+            h2 { border-color: #000; }
+            .swoc-card, .swoc-card ul, .swoc-card h3 { color: #000 !important; }
+            .swoc-s { background-color: #e8f5e9 !important; border: 1px solid #a5d6a7; }
+            .swoc-w { background-color: #ffcdd2 !important; border: 1px solid #ef9a9a; }
+            .swoc-o { background-color: #e3f2fd !important; border: 1px solid #90caf9; }
+            .swoc-c { background-color: #fff3e0 !important; border: 1px solid #ffcc80; }
+            .score-bar { background-color: #ccc !important; color: #000 !important; }
+            a { text-decoration: none; color: inherit; }
+
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+            
+            .page-footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 0.8em;
+                color: #666;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <nav role="navigation" aria-label="Indice della relazione">
+            <ul>
+                <li><a href="#cover">Cover</a></li>
+                <li><a href="#executive-view">Executive View</a></li>
+                <li><a href="#interlocuzioni">Interlocuzioni</a></li>
+                <li><a href="#azioni">Azioni Avviate</a></li>
+                <li><a href="#analisi-strategica">Analisi Strategica</a></li>
+                <li><a href="#valutazione">Valutazione</a></li>
+                <li><a href="#priorita">Priorità</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#rischi">Rischi</a></li>
+                <li><a href="#appendice">Appendice</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- NOTE: Slide 1: Cover -->
+        <section id="cover" class="slide" role="banner">
+            <h1>Relazione Strategica Post-Sunflowers</h1>
+            <p>Cooperativa Sociale Utopia 2000 | Data: Settembre 2025</p>
+            <h2>"Dal tour al metodo organizzativo"</h2>
+        </section>
+
+        <!-- NOTE: Slide 2: Executive Board View -->
+        <section id="executive-view" class="slide" aria-labelledby="exec-title">
+            <h2 id="exec-title">Executive Board View: Cosa conta ora</h2>
+            <ul>
+                <li><strong>PASSAGGIO GENERAZIONALE</strong>: Avviato un percorso strutturato di affiancamento per i nuovi coordinatori (Martina Ciotti, Giuditta Gattamelata), assicurando continuità e innovazione.</li>
+                <li><strong>ESPANSIONE STRATEGICA</strong>: Raddoppio della capacità di accoglienza a Roccagorga (fino a 20 utenti) con organico invariato, trasformando la struttura in Comunità Alloggio.</li>
+                <li><strong>CONSOLIDAMENTO PATRIMONIALE</strong>: Riscatto anticipato degli appartamenti a Gualdo e avvio del rent-to-buy per 350mq aggiuntivi da dedicare a formazione e servizi (Sunflowers School).</li>
+                <li><strong>RETI EUROPEE ATTIVE</strong>: Consolidate le partnership strategiche in Grecia, San Marino e Portogallo, trasformandole in cantieri operativi per progetti futuri e scambi.</li>
+                <li><strong>ACCELERAZIONE SU SCUOLE & GIOVANI</strong>: Partnership operativa con EGInA e YouMobility per lanciare FSL/PCTO e hosting Erasmus+, capitalizzando l'esperienza del tour.</li>
+                <li><strong>VALORIZZAZIONE CULTURALE</strong>: Sviluppo degli output del tour (docufilm, libro, convegno) come strumenti di advocacy, reputazione e sostenibilità economica.</li>
+            </ul>
+             <div class="callout">
+                <h3>Perché conta</h3>
+                <ul>
+                    <li>Fornisce al CdA una sintesi decisionale immediata.</li>
+                    <li>Evidenzia le 6 leve strategiche che guidano le priorità operative.</li>
+                    <li>Traccia la rotta: da progetto narrativo a un solido modello organizzativo.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- NOTE: Slide 3: Mappa Interlocuzioni -->
+        <section id="interlocuzioni" class="slide" aria-labelledby="inter-title">
+            <h2 id="inter-title">Mappa delle Interlocuzioni</h2>
+            <div class="filters print-hidden">
+                <button class="btn btn-secondary filter-btn" data-filter="all">Tutti</button>
+                <button class="btn btn-secondary filter-btn" data-filter="interno">Interni</button>
+                <button class="btn btn-secondary filter-btn" data-filter="esterno">Esterni</button>
+                <button class="btn btn-secondary filter-btn" data-filter="lazio">Lazio</button>
+                <button class="btn btn-secondary filter-btn" data-filter="umbria">Umbria</button>
+                <button class="btn btn-secondary filter-btn" data-filter="estero">Estero</button>
+            </div>
+            <div class="timeline" id="timeline-container">
+                <!-- Interlocuzioni interne -->
+                <div class="timeline-card" data-type="interno" data-territorio="lazio umbria">
+                    <h3>Full immersion con Paolo Repetto a Bevagna</h3>
+                    <div class="meta">Fine agosto / inizio settembre | Con Paolo (CDA), Jlenia, Angelica</div>
+                    <p>Definito nuovo assetto Lazio (Roccagorga), ruolo di Paolo come referente, affiancamento a Martina Ciotti, e linea di "governance diffusa".</p>
+                    <div class="esito">Esito: Roadmap chiara per il Lazio e regia condivisa del passaggio generazionale.</div>
+                    <div class="tags"><span class="tag tag-territorio-lazio">Lazio</span><span class="tag tag-territorio-umbria">Umbria</span></div>
+                </div>
+                 <div class="timeline-card" data-type="interno" data-territorio="lazio">
+                    <h3>Riunione equipe Futura - Roccagorga</h3>
+                    <div class="meta">1 Settembre | Con Jlenia e Paolo</div>
+                    <p>Presentazione nuovo corso: Lazio attenzionato, Irene Zara alla Formazione, ricerca giovane coordinatrice (Martina).</p>
+                    <div class="esito">Esito: Clima partecipe ed entusiasta.</div>
+                    <div class="tags"><span class="tag tag-territorio-lazio">Lazio</span></div>
+                </div>
+                <div class="timeline-card" data-type="interno" data-territorio="lazio">
+                    <h3>Proposta formale a Martina Ciotti (II)</h3>
+                    <div class="meta">10 Settembre | Con Paolo & Jlenia</div>
+                    <p>Offerto percorso verso il coordinamento con valutazione progressiva e target gennaio 2026.</p>
+                    <div class="esito">Esito: Adesione entusiasta; focus su leadership sana.</div>
+                    <div class="tags"><span class="tag tag-territorio-lazio">Lazio</span></div>
+                </div>
+
+                <!-- Interlocuzioni esterne -->
+                <div class="timeline-card" data-type="esterno" data-territorio="estero">
+                    <h3>Giulia Soresi - La Raiz Impact Lab</h3>
+                    <div class="meta">Inizio Settembre | Spagna</div>
+                    <p>Accordo per full immersion (8-10 ottobre) a Conil de la Frontera per lavorare su valutazione d'impatto e pipeline progettuale.</p>
+                    <div class="esito">Esito: Definito il cantiere "impatto" con partner di livello europeo.</div>
+                    <div class="tags"><span class="tag tag-territorio-estero">Estero</span></div>
+                </div>
+                <div class="timeline-card" data-type="esterno" data-territorio="umbria">
+                    <h3>Sindaca di Bevagna - Annarita Falsacappa</h3>
+                    <div class="meta">Inizio Settembre | Umbria</div>
+                    <p>Piena disponibilità del Comune a sostenere iniziative, entusiasmo per la Sunflowers School, contatti con Regione e Comune di Perugia.</p>
+                    <div class="esito">Esito: Alleanza territoriale strategica.</div>
+                    <div class="tags"><span class="tag tag-territorio-umbria">Umbria</span></div>
+                </div>
+                <div class="timeline-card" data-type="esterno" data-territorio="estero">
+                    <h3>Paolo Rondelli - San Marino</h3>
+                    <div class="meta">12 Settembre | San Marino</div>
+                    <p>Incontro con Ministro Belluzzi e tavolo con Servizi Sociali. San Marino offre spazi di sperimentazione per modelli innovativi (Borgo Solidale).</p>
+                    <div class="esito">Esito: Cantiere istituzionale ad alto potenziale.</div>
+                    <div class="tags"><span class="tag tag-territorio-estero">Estero</span></div>
+                </div>
+                <div class="timeline-card" data-type="esterno" data-territorio="umbria">
+                    <h3>YouMobility & EGInA</h3>
+                    <div class="meta">17-19 Settembre | Umbria</div>
+                    <p>Contatto per FSL/PCTO, hosting Erasmus+, progettazione europea. Incontro operativo fissato per il 25 settembre.</p>
+                    <div class="esito">Esito: Acceleratore per scuole ed Europa a calendario strettissimo.</div>
+                    <div class="tags"><span class="tag tag-territorio-umbria">Umbria</span><span class="tag tag-tema-scuole">Scuole</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTE: Slide 4: Azioni Già Avviate -->
+        <section id="azioni" class="slide" aria-labelledby="azioni-title">
+            <h2 id="azioni-title">Azioni Già Avviate</h2>
+            <div class="actions-grid">
+                <div class="action-card">
+                    <h3>Formazione Interna <span class="badge badge-incorso">In Corso</span></h3>
+                    <p>Ciclo con Antonio Marcucci su violenza di genere e riforma Cartabia, a partire dal 1° ottobre. Co-facilitazione di Irene Zara. Output: protocolli, KPI, patto d'equipe.</p>
+                    <div class="owner">Owner: Irene Zara</div>
+                </div>
+                <div class="action-card">
+                    <h3>Espansione Roccagorga <span class="badge badge-incorso">In Corso</span></h3>
+                    <p>Scelta della nuova sede per il passaggio a Comunità Alloggio (fino a 20 utenti), per raddoppiare il fatturato a organico invariato.</p>
+                    <div class="owner">Owner: Paolo Repetto, Angelica</div>
+                </div>
+                <div class="action-card">
+                    <h3>Patrimonio Gualdo <span class="badge badge-fatto">Fatto</span></h3>
+                    <p>Avviato il riscatto anticipato degli appartamenti e definito il nuovo rent-to-buy per 350mq aggiuntivi per attività formative.</p>
+                    <div class="owner">Owner: CDA / Amministrazione</div>
+                </div>
+                <div class="action-card">
+                    <h3>Piano Digitalizzazione <span class="badge badge-next">Next</span></h3>
+                    <p>Mappatura dei fabbisogni per gestionali, intranet, protocolli, firme digitali e reportistica KPI.</p>
+                    <div class="owner">Owner: [DA COMPILARE]</div>
+                </div>
+                <div class="action-card">
+                    <h3>Scuole e Giovani <span class="badge badge-incorso">In Corso</span></h3>
+                    <p>Definizione pacchetti FSL/PCTO, campi scuola e hosting Erasmus+ in partnership con EGInA/YouMobility.</p>
+                    <div class="owner">Owner: [DA COMPILARE], Flora (YouMobility)</div>
+                </div>
+                <div class="action-card">
+                    <h3>Produzione Culturale <span class="badge badge-next">Next</span></h3>
+                    <p>Scouting per distribuzione docufilm, ricerca editori per libro "La Signora di Virpazar", organizzazione convegno di dicembre.</p>
+                    <div class="owner">Owner: [DA COMPILARE]</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- NOTE: Slide 5: Analisi Strategica -->
+        <section id="analisi-strategica" class="slide" aria-labelledby="analisi-title">
+            <h2 id="analisi-title">Analisi Strategica (SWOC)</h2>
+            <div class="swoc-grid">
+                <div class="swoc-card swoc-s">
+                    <h3>Strengths (Punti di Forza)</h3>
+                    <ul>
+                        <li>Coerenza con il metodo Sunflowers</li>
+                        <li>Passaggio generazionale assistito</li>
+                        <li>Patrimonializzazione e stabilità</li>
+                        <li>Diplomazia sociale europea</li>
+                        <li>Cultura come leva di advocacy</li>
+                    </ul>
+                </div>
+                <div class="swoc-card swoc-w">
+                    <h3>Weaknesses (Criticità)</h3>
+                    <ul>
+                        <li>Calendario stretto per le scuole</li>
+                        <li>Agriturismo: variabile incerta</li>
+                        <li>Rischio overload su figure chiave</li>
+                        <li>[DA COMPILARE]</li>
+                    </ul>
+                </div>
+                <div class="swoc-card swoc-o">
+                    <h3>Opportunities (Opportunità)</h3>
+                    <ul>
+                        <li>EGINA + YouMobility come acceleratore</li>
+                        <li>Roccagorga: raddoppio fatturato</li>
+                        <li>Convegno di dicembre (vetrina nazionale)</li>
+                        <li>Evento in Grecia (moltiplicatore europeo)</li>
+                        <li>Rete Perugia su genitorialità</li>
+                    </ul>
+                </div>
+                <div class="swoc-card swoc-c">
+                    <h3>Challenges (Sfide Esterne)</h3>
+                    <ul>
+                        <li>Complessità burocratica (nuovi accreditamenti)</li>
+                        <li>Sostenibilità economica dei progetti culturali</li>
+                        <li>Competizione nel settore Erasmus+</li>
+                        <li>[DA COMPILARE]</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTE: Slide 6: Valutazione Sintetica -->
+        <section id="valutazione" class="slide" aria-labelledby="val-title">
+            <h2 id="val-title">Valutazione Sintetica</h2>
+            <ul class="scoreboard">
+                <li class="score-item">
+                    <span class="score-label">Coerenza con principi Sunflowers</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width: 90%;">9.0 / 10</div></div>
+                </li>
+                <li class="score-item">
+                    <span class="score-label">Radicamento territoriale</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width: 80%;">8.0 / 10</div></div>
+                </li>
+                <li class="score-item">
+                    <span class="score-label">Reti e relazioni internazionali</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width: 80%;">8.0 / 10</div></div>
+                </li>
+                <li class="score-item">
+                    <span class="score-label">Innovazione e sperimentazione</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width: 70%;">7.0 / 10</div></div>
+                </li>
+                <li class="score-item">
+                    <span class="score-label">Governance interna (passaggi/ruoli)</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width: 75%;">7.5 / 10</div></div>
+                </li>
+                 <li class="score-item">
+                    <span class="score-label">Comunicazione e marketing</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width: 60%;">6.0 / 10</div></div>
+                </li>
+                <li class="score-item">
+                    <span class="score-label">Rischio complessivo (basso è meglio)</span>
+                    <div class="score-bar-container"><div class="score-bar" style="width: 50%; background-color: var(--color-success)">5.0 / 10</div></div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- NOTE: Slide 7: Priorità 10-12 settimane -->
+        <section id="priorita" class="slide" aria-labelledby="priorita-title">
+            <h2 id="priorita-title">Priorità 10-12 Settimane</h2>
+            <div class="kanban-board">
+                <div class="kanban-column">
+                    <h3>To-Do</h3>
+                    <div class="kanban-card">
+                        <strong>Digitalizzazione</strong>
+                        <p>Completare mappatura e selezionare stack tecnologico (gestionale, intranet, KPI).</p>
+                        <div class="owner">Owner: [DA COMPILARE]</div>
+                        <div class="deadline">Scadenza: fine novembre</div>
+                    </div>
+                    <div class="kanban-card">
+                        <strong>Convegno Dicembre</strong>
+                        <p>Definire programma, ospiti, partner e piano di comunicazione.</p>
+                        <div class="owner">Owner: [DA COMPILARE]</div>
+                        <div class="deadline">Scadenza: metà ottobre</div>
+                    </div>
+                     <div class="kanban-card">
+                        <strong>Produzione Culturale</strong>
+                        <p>Avviare scouting per distribuzione docufilm e ricerca editori per libro.</p>
+                        <div class="owner">Owner: [DA COMPILARE]</div>
+                        <div class="deadline">Scadenza: continuo</div>
+                    </div>
+                </div>
+                <div class="kanban-column">
+                    <h3>Doing</h3>
+                    <div class="kanban-card">
+                        <strong>FSL/PCTO & Erasmus</strong>
+                        <p>Chiudere pacchetti, calendario e comunicazione per le scuole.</p>
+                        <div class="owner">Owner: Team Scuole</div>
+                        <div class="deadline">Scadenza: 30 Settembre</div>
+                    </div>
+                    <div class="kanban-card">
+                        <strong>Roccagorga Nuova Sede</strong>
+                        <p>Scegliere immobile e avviare iter per Comunità Alloggio.</p>
+                        <div class="owner">Owner: Paolo R., Angelica</div>
+                        <div class="deadline">Scadenza: fine ottobre</div>
+                    </div>
+                    <div class="kanban-card">
+                        <strong>Agriturismo "Le Grazie"</strong>
+                        <p>Finalizzare il rent-to-buy o attivare il piano B (ricerca nuova struttura).</p>
+                        <div class="owner">Owner: CDA, Avv. Pensi</div>
+                        <div class="deadline">Scadenza: metà novembre</div>
+                    </div>
+                </div>
+                <div class="kanban-column">
+                    <h3>Done</h3>
+                    <div class="kanban-card">
+                        <strong>Partnership EGInA</strong>
+                        <p>Incontro operativo svolto (25/09) e definita collaborazione per hosting e progettazione.</p>
+                        <div class="owner">Owner: Team Scuole</div>
+                        <div class="deadline">Completato: 25 Settembre</div>
+                    </div>
+                    <div class="kanban-card">
+                        <strong>Assetto Governance</strong>
+                        <p>Definiti i ruoli chiave e avviati i percorsi di affiancamento per i nuovi coordinatori.</p>
+                        <div class="owner">Owner: CDA</div>
+                        <div class="deadline">Completato: inizio settembre</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTE: Slide 8: Roadmap 2025-26 -->
+        <section id="roadmap" class="slide" aria-labelledby="roadmap-title">
+            <h2 id="roadmap-title">Roadmap 2025-2026</h2>
+            <p>Una visione di massima delle fasi chiave, basata sulle priorità strategiche emerse.</p>
+            <table class="roadmap-table">
+                <thead>
+                    <tr>
+                        <th>Attività Strategica</th>
+                        <th>Q4 2025 (Prep)</th>
+                        <th>Q1 2026 (Delivery)</th>
+                        <th>Q2 2026 (Follow-up)</th>
+                        <th>Q3-Q4 2026 (Disseminazione)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Consolidamento Operativo</strong><br><small>Governance, Digitalizzazione, Sedi</small></td>
+                        <td style="background: #e3f2fd;">Finalizzazione</td>
+                        <td style="background: #f1f8e9;">A regime</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Programmi Scuole & Giovani</strong><br><small>FSL, PCTO, Erasmus+ Hosting</small></td>
+                        <td style="background: #e3f2fd;">Avvio Programmazione</td>
+                        <td style="background: #f1f8e9;">Erogazione</td>
+                        <td style="background: #f1f8e9;">Erogazione / Report</td>
+                        <td style="background: #fff9c4;">Pianificazione a.s. succ.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sviluppo Europeo</strong><br><small>Progetti Grecia, San Marino</small></td>
+                        <td style="background: #e3f2fd;">Progettazione</td>
+                        <td style="background: #f1f8e9;">Evento Kalamata (Feb)</td>
+                        <td style="background: #f1f8e9;">Follow-up</td>
+                        <td style="background: #fff9c4;">Progettazione nuove call</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Produzione Culturale</strong><br><small>Docufilm, Libro, Convegni</small></td>
+                        <td style="background: #e3f2fd;">Convegno Dicembre</td>
+                        <td style="background: #f1f8e9;">Distribuzione / Lancio</td>
+                        <td style="background: #f1f8e9;">Presentazioni</td>
+                        <td style="background: #fff9c4;">Valutazione impatto</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- NOTE: Slide 9: Rischi e Mitigazioni -->
+        <section id="rischi" class="slide" aria-labelledby="risks-title">
+            <h2 id="risks-title">Rischi & Mitigazioni</h2>
+            <table class="risks-table">
+                <thead>
+                    <tr>
+                        <th>Rischio</th>
+                        <th>Impatto</th>
+                        <th>Probabilità</th>
+                        <th>Contromisure</th>
+                        <th>Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Incertezza Agriturismo</strong><br><small>Mancata chiusura del rent-to-buy.</small></td>
+                        <td class="impact-high">ALTO</td>
+                        <td class="impact-medium">MEDIA</td>
+                        <td>Attivazione immediata del "Piano B": ricerca di una struttura alternativa idonea nell'area Bevagna/Assisi.</td>
+                        <td>CDA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overload Figure Chiave</strong><br><small>Eccessivo carico operativo durante il passaggio di consegne.</small></td>
+                        <td class="impact-medium">MEDIO</td>
+                        <td class="impact-medium">MEDIA</td>
+                        <td>Accelerare la digitalizzazione dei processi, calibrare i passaggi di responsabilità, definire chiaramente i perimetri di delega.</td>
+                        <td>CDA / Jlenia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mancato rispetto scadenze Scuole</strong><br><small>Perdere la finestra temporale per FSL/PCTO/Erasmus.</small></td>
+                        <td class="impact-high">ALTO</td>
+                        <td class="impact-low">BASSA</td>
+                        <td>Partnership con EGInA come acceleratore, team dedicato, incontri a cadenza serrata.</td>
+                        <td>Team Scuole</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sostenibilità Finanziaria Culturale</strong><br><small>Output (docu/libro) non generano il ritorno atteso.</small></td>
+                        <td class="impact-medium">MEDIO</td>
+                        <td class="impact-medium">MEDIA</td>
+                        <td>Diversificare i canali (festival, distribuzione, educational), legare le presentazioni a campagne di fundraising, cercare sponsor.</td>
+                        <td>[DA COMPILARE]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- NOTE: Slide 10: Appendice -->
+        <section id="appendice" class="slide" aria-labelledby="appendice-title">
+            <h2 id="appendice-title">Appendice e Azioni per il CdA</h2>
+            <p>Di seguito un riepilogo delle decisioni chiave e dei mandati richiesti al Consiglio di Amministrazione.</p>
+            <div id="decisioni-cda" style="border: 1px solid var(--color-border); padding: 1rem; margin-bottom: 1.5rem; border-radius: var(--border-radius); background-color: var(--color-background)">
+                <h3>Decisioni e Mandati Richiesti:</h3>
+                <ul>
+                    <li><strong>Mandato Formale:</strong> Ratificare il percorso di coordinamento per Martina Ciotti e Giuditta Gattamelata.</li>
+                    <li><strong>Delibera Finanziaria:</strong> Approvare il budget per il rent-to-buy della nuova sede di Roccagorga e degli spazi aggiuntivi a Gualdo.</li>
+                    <li><strong>Validazione Strategica:</strong> Confermare la priorità sulla partnership con EGInA e allocare le risorse necessarie per i programmi scuole.</li>
+                    <li><strong>Delega Operativa:</strong> Assegnare la responsabilità per il piano di digitalizzazione e la produzione culturale.</li>
+                </ul>
+            </div>
+            <button id="copy-decisions" class="btn">Copia Decisioni</button>
+            <button id="export-pdf" class="btn btn-secondary print-hidden">Esporta in PDF</button>
+            <span id="copy-feedback" style="margin-left: 10px; color: var(--color-success); font-weight: 500; opacity: 0; transition: opacity 0.5s;">Copiato!</span>
+        </section>
+
+    </main>
+    
+    <div class="page-footer" style="display: none;">Relazione Strategica Post-Sunflowers - Utopia 2000 - Settembre 2025</div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- NOTE: Logica per la barra di progresso ---
+        const progressBar = document.getElementById('progressBar');
+        const updateProgressBar = () => {
+            const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPosition = window.scrollY;
+            const progress = (scrollPosition / scrollTotal) * 100;
+            progressBar.style.width = `${progress}%`;
+        };
+        window.addEventListener('scroll', updateProgressBar);
+        updateProgressBar(); // Esegui al caricamento
+
+        // --- NOTE: Logica per i filtri delle Interlocuzioni ---
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const timelineCards = document.querySelectorAll('.timeline-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                
+                timelineCards.forEach(card => {
+                    const type = card.getAttribute('data-type');
+                    const territorio = card.getAttribute('data-territorio');
+
+                    if (filter === 'all' || type === filter || (territorio && territorio.includes(filter))) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- NOTE: Logica per il pulsante di esportazione PDF ---
+        const exportPdfBtn = document.getElementById('export-pdf');
+        exportPdfBtn.addEventListener('click', () => {
+            window.print();
+        });
+
+        // --- NOTE: Logica per il pulsante Copia Decisioni ---
+        const copyDecisionsBtn = document.getElementById('copy-decisions');
+        const copyFeedback = document.getElementById('copy-feedback');
+        copyDecisionsBtn.addEventListener('click', () => {
+            const decisioniContainer = document.getElementById('decisioni-cda');
+            let textToCopy = '';
+            
+            // Estrae il testo in modo formattato
+            const title = decisioniContainer.querySelector('h3').innerText;
+            const listItems = decisioniContainer.querySelectorAll('li');
+            
+            textToCopy += title + '\n\n';
+            listItems.forEach(li => {
+                textToCopy += '- ' + li.innerText + '\n';
+            });
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                copyFeedback.style.opacity = '1';
+                setTimeout(() => {
+                    copyFeedback.style.opacity = '0';
+                }, 2000);
+            }).catch(err => {
+                console.error('Errore nella copia del testo: ', err);
+                // Fallback per browser non sicuri
+                const textArea = document.createElement("textarea");
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    copyFeedback.style.opacity = '1';
+                    setTimeout(() => { copyFeedback.style.opacity = '0'; }, 2000);
+                } catch (err) {
+                    console.error('Fallback: impossibile copiare', err);
+                }
+                document.body.removeChild(textArea);
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>
