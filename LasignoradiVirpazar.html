@@ -30,7 +30,6 @@
         h4 { font-size: 1.1rem; color: var(--color-neutral-dark); text-transform: uppercase; letter-spacing: 0.5px; }
         p, li { max-width: 68ch; }
         .logline { font-size: 1.25rem; font-style: italic; color: var(--color-neutral-dark); margin: var(--spacing-unit) 0; }
-        .placeholder { color: #c0392b; font-weight: 500; background-color: #ecf0f1; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
         .subtitle { color: #34495e; font-weight: 500; font-size: 1.1rem; }
         nav { position: sticky; top: 0; width: 100%; background-color: rgba(248, 249, 250, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-neutral-mid); z-index: 1000; }
         .nav-content { max-width: 820px; margin: 0 auto; padding: 0 var(--spacing-unit); overflow-x: auto; scrollbar-width: thin; }
@@ -47,15 +46,15 @@
         .btn-secondary:hover { background-color: var(--color-neutral-light); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .btn:focus-visible { outline: 3px solid var(--color-accent-dark); outline-offset: 2px; }
         .grid { display: grid; gap: calc(var(--spacing-unit) * 3); margin-top: calc(var(--spacing-unit) * 4); }
-        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
         .grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
         .card { background-color: #fff; border: 1px solid var(--color-neutral-mid); border-radius: 8px; padding: calc(var(--spacing-unit) * 3); display: flex; flex-direction: column; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .card h3 { margin-top: 0; font-size: 1.25rem; }
         .callout { border-left: 4px solid var(--color-accent); padding: var(--spacing-unit) calc(var(--spacing-unit) * 3); margin-top: calc(var(--spacing-unit) * 4); background-color: #fff; border-radius: 0 8px 8px 0; }
         .callout .callout-title { font-weight: 700; color: var(--color-text); display: block; margin-bottom: var(--spacing-unit); }
-        table { width: 100%; border-collapse: collapse; margin-top: calc(var(--spacing-unit) * 3); font-size: 0.95rem; }
-        th, td { text-align: left; padding: var(--spacing-unit) * 1.5; border-bottom: 1px solid var(--color-neutral-mid); }
-        th { background-color: var(--color-neutral-light); font-weight: 600; }
+        .synopsis-block h3 { margin-bottom: 0; }
+        .synopsis-block h4 { margin-top: 0; font-style: italic; color: var(--color-neutral-dark); }
+        .slots-list { list-style: none; padding: 0; text-align: center; }
+        .slots-list li { margin-bottom: var(--spacing-unit); }
         @media print {
             @page { size: A4; margin: 2cm; }
             body { font-size: 11pt; color: #000; background-color: #fff; }
@@ -67,7 +66,7 @@
             h2 { font-size: 20pt; border-bottom: 2px solid #000; }
             h3 { font-size: 15pt; }
             .card, table, .callout { page-break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
-            .grid-2, .grid-3 { grid-template-columns: 1fr 1fr; }
+            .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
             .placeholder { background-color: #eee; border: 1px dotted #999; }
             a { color: #000; text-decoration: none; }
             .page-number::after { content: "Pagina " counter(page); position: fixed; bottom: 1cm; right: 2cm; font-size: 9pt; color: #666; }
@@ -77,7 +76,6 @@
 </head>
 <body>
     <div class="page-number"></div>
-
     <nav>
         <div class="nav-content">
             <ul class="toc">
@@ -85,12 +83,9 @@
                 <li><a href="#autore">Autore</a></li>
                 <li><a href="#libro">Libro</a></li>
                 <li><a href="#ecosistema">Ecosistema</a></li>
-                <li><a href="#potenziale">Potenziale</a></li>
                 <li><a href="#scenari">Scenari</a></li>
                 <li><a href="#go-to-market">Go-to-Market</a></li>
                 <li><a href="#comparables">Comparables</a></li>
-                <li><a href="#kpi">KPI</a></li>
-                <li><a href="#rischi">Rischi</a></li>
                 <li><a href="#contatti">Contatti</a></li>
             </ul>
         </div>
@@ -100,9 +95,9 @@
     <main>
         <section id="hero" style="text-align: center; border-top: none; padding-top: 0;">
             <h1>La Signora di Virpazar</h1>
-            <p class="subtitle">Un viaggio nell'Europa dell'economia sociale, dove l'utopia è già al lavoro.</p>
+            <p class="subtitle">Un viaggio in bicicletta nell'Europa che resiste, tra economia sociale e diritti civili.</p>
             <p class="logline">
-                Un'anziana donna in un villaggio montenegrino è la scintilla per narrare un'Europa che già esiste ma non viene raccontata. Un viaggio di 6.000 km nel cuore dell'economia sociale del continente, dove passione umana e progettazione riducono le diseguaglianze e costruiscono un futuro solidale.
+                Un'anziana donna in un villaggio montenegrino è la scintilla per narrare un'Europa che già esiste ma non viene raccontata. Un viaggio di 5.000 km in bicicletta, dove la lentezza diventa un metodo per scoprire chi, ogni giorno, costruisce un futuro solidale.
             </p>
             <div class="cta-buttons" style="justify-content: center;">
                 <a href="#contatti" class="btn btn-primary">Richiedi i primi capitoli</a>
@@ -114,87 +109,63 @@
             <h2>Autore</h2>
             <h3>Massimiliano Porcelli</h3>
             <p>
-                Progettista sociale e scrittore, opera da **trent'anni** nel mondo dell'economia sociale. È Presidente di **Utopia 2000, una cooperativa sociale con 26 anni di storia**, con cui promuove iniziative di innovazione e sviluppo di comunità. Il suo lavoro si concentra sulla creazione di reti che intrecciano educazione, diritti e lavoro, cercando di dare voce e strumenti a chi vive ai margini. Questa esperienza è la materia prima della sua scrittura. È ideatore del progetto Sunflowers e ha già pubblicato <em>La mia Utopia</em> (Nuove edizioni Aldine).
+                Progettista sociale e scrittore, opera da trent'anni nel mondo dell'economia sociale. È Presidente di Utopia 2000, una cooperativa sociale con 26 anni di storia, con cui promuove iniziative di innovazione e sviluppo di comunità. Il suo lavoro si concentra sulla creazione di reti che intrecciano educazione, diritti e lavoro. Questa esperienza è la materia prima della sua scrittura, che nasce dalla strada e dagli incontri. È ideatore del progetto Sunflowers e ha già pubblicato <em>La mia Utopia</em> (Nuove edizioni Aldine).
             </p>
         </section>
 
         <section id="libro">
             <h2>Il Libro</h2>
-            <h4>Che cos'è: il manifesto narrativo dell'Economia Sociale Europea</h4>
-            <ul>
-                <li><strong>Non è la biografia di un'unica persona.</strong> "La Signora di Virpazar" è il pretesto simbolico, l'incontro che avvia il racconto.</li>
-                <li><strong>È un romanzo-reportage che mappa l'Europa che funziona.</strong> Dal Montenegro, il libro torna indietro per narrare l'intero Sunflowers European Tour: 6.000 km, 10 Paesi, alla scoperta di chi costruisce un'identità europea basata su inclusione e solidarietà.</li>
-            </ul>
-            
-            <h4>3 Punti di forza (USP)</h4>
+             <h4>3 Punti di forza (USP)</h4>
             <ol>
-                <li><strong>Voce ibrida e credibile:</strong> Unisce l'accuratezza del reportage sul campo alla libertà del romanzo per esplorare le motivazioni profonde di chi opera nell'economia sociale.</li>
-                <li><strong>Un'Europa che già esiste, ma non viene narrata:</strong> Racconta il continente attraverso la sua economia sociale. È la narrazione di un'Europa che usa la progettazione come strumento per ridurre diseguaglianze e conflitti.</li>
-                <li><strong>Dall'incontro alla visione:</strong> Il viaggio costruisce una visione per un'identità europea futura, fondata sul lavoro quotidiano, sulla dignità e sulla passione civile.</li>
+                <li><strong>Il metodo della bicicletta:</strong> Il viaggio interamente in bici non è un vezzo, ma una scelta narrativa. La lentezza è un metodo di osservazione, la sostenibilità un valore, la fatica una metafora del lavoro quotidiano delle comunità incontrate.</li>
+                <li><strong>Diritti sociali e civili uniti:</strong> Il libro intreccia storie di economia sociale (lavoro, comunità) e battaglie per i diritti civili (genitorialità omosessuale), proponendo una visione politica unificante e attuale.</li>
+                <li><strong>Una narrazione non lineare:</strong> La struttura a cerchi concentrici, che mescola paesaggi, riflessioni, memoria e presente, offre un'esperienza di lettura immersiva e profonda, simile a un diario di viaggio corale.</li>
             </ol>
             
-            <h4>Sinossi</h4>
-            <p>L'incontro a Virpazar (Montenegro) con un'anziana donna, simbolo di resilienza, diventa il punto di partenza per una domanda più ampia: esiste un'Europa solidale e innovatrice, lontana dalle crisi e dalle burocrazie? Per rispondere, l'autore riavvolge il nastro e ci porta lungo i 6.000 km del Sunflowers European Tour. Tappa dopo tappa, il viaggio si trasforma in un'indagine sul campo dell'economia sociale. Dai giovani della **"Escolinha de Rugby da Galiza" in Portogallo**, che usano lo sport come potentissimo strumento di inclusione, agli attivisti per i diritti umani nei Balcani, il libro intreccia volti, dialoghi e paesaggi, componendo la mappa di un'utopia possibile: un continente che, lontano dai riflettori, sta già usando la passione umana e la progettazione per costruire un'identità solidale.</p>
-
-            <h4>Metadati</h4>
-            <p>
-                <strong>Lunghezza prevista:</strong> 280.000 caratteri (circa)<br>
-                <strong>Stato manoscritto:</strong> Primi capitoli, sinossi e press kit disponibili<br>
-                <strong>Diritti disponibili:</strong> Tutti
-            </p>
+            <div class="synopsis-block">
+                <h3>La Signora di Virpazar</h3>
+                <h4>di Massimiliano Porcelli</h4>
+                <p>Un viaggio in bicicletta lungo cinquemila chilometri, da Cabo da Roca, il punto più occidentale d’Europa, fino ad Atene, culla della civiltà europea. Cinquanta giorni di strada, fatica e incontri. Un gruppo eterogeneo che si trasforma ogni sera in comunità attorno a un tavolo da campeggio. Il racconto di un tour — il Sunflowers European Tour — che non è cronaca sportiva né autocelebrazione, ma esplorazione di un’Europa viva, fragile e contraddittoria.</p>
+                <p>Ogni tappa porta con sé persone, progetti, esperienze di economia sociale, comunità che resistono allo spopolamento, battaglie per i diritti civili, storie di accoglienza e resilienza. Dalla cucina di Lubinka, anziana sola di Virpazar che distilla Rakija e occhi buoni, fino al palco del Círculo de Bellas Artes di Madrid, dove Irene, psicologa e compagna di viaggio, difende con rigore e passione la genitorialità omosessuale davanti a una platea gremita.</p>
+                <p>La narrazione non segue un ordine strettamente cronologico: procede a cerchi concentrici, intrecciando paesaggi e riflessioni, memoria e presente, pedalate silenziose e momenti di intensa condivisione. È un diario di viaggio e al tempo stesso un manifesto politico e civile: i diritti non si dividono, sociali e civili camminano insieme. La bici diventa metafora di lentezza, osservazione e ascolto: un modo diverso di guardare all’Europa, non dall’alto delle istituzioni ma dal basso delle persone.</p>
+                <p>La Signora di Virpazar è il racconto di un continente in trasformazione, fatto di confini invisibili, di comunità che ricostruiscono legami, di sguardi che insegnano a riconoscere l’altro. Un libro asciutto e intenso, che alterna cronaca, introspezione e riflessione collettiva, e che restituisce l’anima del viaggio: tentare di guardare senza possedere, e lasciarsi guardare senza timore.</p>
+            </div>
         </section>
         
         <section id="ecosistema">
             <h2>Ecosistema Sunflowers</h2>
-            <p>Il libro è il pilastro narrativo di un progetto più vasto, già operativo e validato: <strong>Sunflowers</strong>. Il progetto poggia su basi solide, avendo già ricevuto il **supporto e il patrocinio di importanti realtà istituzionali durante il tour, tra cui diverse Ambasciate Italiane all'estero e il Ministero dello Sport**, che ne hanno riconosciuto il valore culturale e sociale.</p>
-            <h4>Mappa degli spin-off</h4>
-            <div class="grid grid-3">
-                <div class="card"><h3>Docufilm (Apr 2026)</h3><p>Doc internazionale in montaggio, regia di Renato Chiocca. Segue "Tutto quello che sarà" (GirasoliTour 2021).</p></div>
-                <div class="card"><h3>School / FSL</h3><p>Sunflowers European School con percorsi FSL (Field-Supported Learning) e PCTO per scuole e università.</p></div>
-                <div class="card"><h3>Turismo Sociale</h3><p>Ospitalità e workshop presso l'Agriturismo Etico Le Grazie (Bevagna, Umbria), un hub fisico del progetto.</p></div>
-                <div class="card"><h3>Produzioni Culturali</h3><p>Oltre al libro e al docufilm, il progetto genera mostre fotografiche ed eventi tematici.</p></div>
-                <div class="card"><h3>Consulenza</h3><p>Servizi a enti del Terzo Settore su progettazione europea, innovazione e sviluppo di comunità.</p></div>
-                <div class="card"><h3>Valutazione d'Impatto</h3><p>Metodologia "Sunflowers Effect" per misurare l'impatto sociale di progetti complessi.</p></div>
+            <p>Il libro è il pilastro narrativo di un progetto più vasto, già operativo e validato: <strong>Sunflowers</strong>. Il progetto poggia su basi solide, avendo già ricevuto il supporto e il patrocinio di importanti realtà istituzionali durante il tour, tra cui diverse Ambasciate Italiane all'estero e il Ministero dello Sport.</p>
+             <div class="callout">
+                <p><span class="callout-title">Perché conta:</span> L'ecosistema crea molteplici punti di accesso al libro, raggiungendo pubblici diversi (studenti, cinefili, viaggiatori), e fornisce una piattaforma credibile per la promozione, con partner e canali già attivi, trasformando un'uscita editoriale in un progetto culturale a lungo termine.</p>
             </div>
-            <div class="callout">
-                <p><span class="callout-title">Perché conta:</span></p>
-                <ul>
-                    <li>L'ecosistema crea molteplici punti di accesso al libro, raggiungendo pubblici diversi (studenti, cinefili, viaggiatori, operatori sociali).</li>
-                    <li>Fornisce una piattaforma concreta e credibile per la promozione, con partner e canali già attivi.</li>
-                    <li>Trasforma un'uscita editoriale in un progetto culturale a lungo termine.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="potenziale">
-            <h2>Potenzialità Europea</h2>
-            <p>Attraversando 10 Paesi e dialogando con realtà locali, il libro è intrinsecamente europeo. I temi dell'economia sociale, della cittadinanza attiva e dello sviluppo sostenibile sono centrali nel dibattito continentale.</p>
-            <ul>
-                <li><strong>Traduzioni:</strong> La narrazione si presta a un forte interesse nei mercati di lingua tedesca, francese, spagnola e nell'area balcanica.</li>
-                <li><strong>Reti culturali e accademiche:</strong> Il progetto è ideale per circuiti di festival, istituti di cultura, università e scuole, dove può essere presentato insieme al docufilm e a moduli formativi.</li>
-                <li><strong>Diritti esteri:</strong> Contatti preliminari da avviare.</li>
-            </ul>
         </section>
 
         <section id="scenari">
-            <h2>Due Scenari di Lancio</h2>
-            <div class="grid grid-2">
+            <h2>Tre Scenari di Lancio</h2>
+            <p><strong>Nota importante:</strong> La produzione del libro e quella del docufilm sono distinte e autonome. Le strategie di lancio coordinate rappresentano un'opportunità di marketing virtuoso e congiunto, non un vincolo produttivo per l'editore.</p>
+            <div class="grid grid-3">
                 <div class="card">
-                    <h3>Scenario A: Solo Libro</h3>
-                    <p>Lancio editoriale tradizionale, focalizzato sul valore intrinseco del testo.</p>
+                    <h3>A: Solo Libro</h3>
+                    <p>Lancio editoriale classico, focalizzato sul valore intrinseco del testo.</p>
                     <ul>
-                        <li><strong>Pro:</strong> Tempi di pubblicazione più rapidi, investimento concentrato sulla promozione classica.</li>
-                        <li><strong>Attenzioni:</strong> Sfrutta solo parzialmente il potenziale cross-mediale del progetto.</li>
+                        <li><strong>Pro:</strong> Tempi rapidi, investimento concentrato sulla promozione tradizionale.</li>
                         <li><strong>Finestra:</strong> 6-9 mesi.</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h3>Scenario B: Libro + Docufilm</h3>
-                    <p>Lancio coordinato libro-film per un impatto sinergico e una maggiore eco mediatica.</p>
+                    <h3>B: Lancio Sinergico</h3>
+                    <p>Uscita coordinata del libro con il docufilm (previsto per Aprile 2026).</p>
                     <ul>
-                        <li><strong>Pro:</strong> Massima visibilità, cross-promotion, coinvolgimento di community diverse, coda lunga EDU/community.</li>
-                        <li><strong>Attenzioni:</strong> Richiede un coordinamento editoriale-produttivo più stretto.</li>
-                        <li><strong>Finestra:</strong> 12-18 mesi (allineata all'uscita del docufilm ad aprile 2026).</li>
+                        <li><strong>Pro:</strong> Massima visibilità mediatica, cross-promotion, impatto culturale amplificato.</li>
+                        <li><strong>Finestra:</strong> 12-18 mesi.</li>
+                    </ul>
+                </div>
+                 <div class="card">
+                    <h3>C: Lancio Frazionato</h3>
+                    <p>Uscita del libro ora, con un secondo rilancio in occasione dell'uscita del docufilm.</p>
+                    <ul>
+                        <li><strong>Pro:</strong> Capitalizza subito l'interesse, crea una "seconda onda" di vendite e visibilità, massimizza la coda lunga.</li>
+                        <li><strong>Finestra:</strong> 6-9 mesi + rilancio al 18°.</li>
                     </ul>
                 </div>
             </div>
@@ -202,94 +173,43 @@
 
         <section id="go-to-market">
             <h2>Go-to-Market (90/180 giorni)</h2>
-            <h4>Timeline suggerita</h4>
-            <table>
+             <table>
                 <thead><tr><th>Fase</th><th>Timing</th><th>Attività chiave</th></tr></thead>
                 <tbody>
-                    <tr><td><strong>Pre-lancio</strong></td><td>-90 giorni</td><td>Cover reveal, attivazione preorder, invio bozze a stampa/influencer, diffusione teaser clip del docufilm.</td></tr>
-                    <tr><td><strong>Lancio</strong></td><td>Settimana 1</td><td>Uscita libro/ebook, evento di lancio ibrido con proiezione anteprima clip, media push coordinato.</td></tr>
-                    <tr><td><strong>Post-lancio</strong></td><td>+180 giorni</td><td>Tour in librerie, festival, scuole (FSL). Presentazioni congiunte libro+autore+regista. Workshop tematici.</td></tr>
+                    <tr><td><strong>Pre-lancio</strong></td><td>-90 giorni</td><td>Cover reveal, preorder, invio bozze a stampa/blogger, diffusione teaser clip.</td></tr>
+                    <tr><td><strong>Lancio</strong></td><td>Settimana 1</td><td>Uscita libro/ebook, evento di lancio ibrido, media push.</td></tr>
+                    <tr><td><strong>Post-lancio</strong></td><td>+180 giorni</td><td>Tour in librerie, festival, scuole. Presentazioni tematiche (diritti, economia sociale).</td></tr>
                 </tbody>
             </table>
-            <h4>Materiali per librerie</h4>
-            <p>Reading guide con spunti di discussione, Q&A autore, segnalibri con mappa del viaggio, QR code per accedere a contenuti extra (clip, foto).</p>
         </section>
 
         <section id="comparables">
             <h2>Comparables & Catalog-fit</h2>
             <div class="grid grid-3">
-                <div class="card"><h3>Paolo Rumiz</h3><p>Per il viaggio come strumento di conoscenza e la riscoperta di un'Europa di confine.</p></div>
-                <div class="card"><h3>Olivier Guez</h3><p>Per la capacità di intrecciare storia, reportage e analisi culturale in una narrazione avvincente.</p></div>
-                <div class="card"><h3>Svetlana Aleksievič</h3><p>Per il metodo basato sulla raccolta di voci e la costruzione di un affresco corale su un tema specifico.</p></div>
-            </div>
-            <h4>Elemento differenziante</h4>
-            <p>A differenza dei comparables, <em>La Signora di Virpazar</em> non è solo un'opera conclusa, ma il punto di ingresso a un <strong>ecosistema vivente e multi-piattaforma</strong>. La sua forza risiede nella sinergia nativa tra testo, audiovisivo e azione sociale, offrendo al lettore la possibilità non solo di leggere una storia, ma di partecipare a un progetto. </p>
-        </section>
-
-        <section id="kpi">
-            <h2>KPI & Segnali Precoci</h2>
-            <p>Indicatori per misurare l'interesse e il potenziale del progetto prima e dopo il lancio.</p>
-            <table>
-                <thead><tr><th>Indicatore</th><th>Obiettivo prudenziale (primi 6 mesi)</th></tr></thead>
-                <tbody>
-                    <tr><td>Numero preorder</td><td>300+</td></tr>
-                    <tr><td>Richieste lettura da stampa/influencer</td><td>50+</td></tr>
-                    <tr><td>Adesioni a eventi di presentazione</td><td>500+ (totale)</td></tr>
-                    <tr><td>Adozioni/richieste per corsi EDU/FSL</td><td>5+ istituti</td></tr>
-                    <tr><td>Manifestazioni di interesse diritti esteri</td><td>2+ contatti qualificati</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="rischi">
-            <h2>Rischi & Accortezze</h2>
-             <table>
-                <thead><tr><th>Rischio</th><th>Mitigazione e accortezza</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>Saturazione scaffale</strong> (viaggi, Europa)</td><td>Posizionamento chiaro su "Economia Sociale Europea" e leva sulla unicità dell'ecosistema cross-mediale.</td></tr>
-                    <tr><td><strong>Complessità del racconto</strong> (multi-paese)</td><td>La struttura narrativa, ancorata a storie e incontri personali, mantiene il racconto umano e accessibile.</td></tr>
-                    <tr><td><strong>Tempi del docufilm</strong> (previsto Aprile 2026)</td><td>Il libro è pienamente autonomo. Il lancio può avvenire prima (Scenario A), usando il film come potente leva di rilancio.</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="one-pager">
-            <h2>One-Pager di Progetto</h2>
-            <div class="card">
-                <h3>La Signora di Virpazar</h3>
-                <p><strong>Logline:</strong> Un incontro in Montenegro è la scintilla per narrare un viaggio di 6.000 km attraverso l'Europa dell'economia sociale: un continente che già esiste ma non viene raccontato, dove passione e progettazione costruiscono un futuro solidale.</p>
-                <h4>5 Punti di Forza (USP)</h4>
-                <ol>
-                    <li><strong>Tema cardine:</strong> L'economia sociale come strumento per una nuova identità europea.</li>
-                    <li><strong>Voce ibrida</strong> tra romanzo e reportage da un'esperienza trentennale.</li>
-                    <li><strong>Credibilità:</strong> Progetto con validazione istituzionale (Ambasciate, Ministeri).</li>
-                    <li><strong>Sinergia nativa</strong> con docufilm internazionale (apr 2026).</li>
-                    <li><strong>Ecosistema reale</strong> (scuola, turismo, consulenza) che ne amplifica l'impatto.</li>
-                </ol>
-                <div class="grid grid-2">
-                    <div><h4>Scenario A: Solo Libro</h4><p style="font-size:0.9rem;">Uscita rapida e mirata sul lettore forte.</p></div>
-                    <div><h4>Scenario B: Libro + Docufilm</h4><p style="font-size:0.9rem;">Lancio sinergico per massimo impatto e coda lunga.</p></div>
-                </div>
-                <h4>Timeline essenziale</h4>
-                <p style="font-size:0.9rem;"><strong>Mese 1-3:</strong> Pre-lancio. <strong>Mese 4:</strong> Uscita. <strong>Mese 5-9:</strong> Tour e attivazione community/EDU.</p>
-                <h4>Contatti</h4>
-                <p style="font-size:0.9rem;">Massimiliano Porcelli<br><strong>massimilianoporcelli@utopia2000.com · 393 9545850</strong></p>
+                <div class="card"><h3>Paolo Rumiz</h3><p>Per il viaggio lento come strumento di conoscenza.</p></div>
+                <div class="card"><h3>Eraldo Affinati</h3><p>Per la sensibilità verso le comunità e l'impegno civile.</p></div>
+                <div class="card"><h3>Nicolas Bouvier</h3><p>Per la poetica del viaggio come esperienza trasformativa.</p></div>
             </div>
         </section>
-
+        
         <section id="contatti" style="text-align: center;">
-            <h2>Pronti a narrare questa Europa?</h2>
+            <h2>Pronti a pedalare insieme?</h2>
             <p>Sarei felice di condividere i materiali disponibili e approfondire la visione del progetto.</p>
             <div class="cta-buttons" style="justify-content: center;">
                 <a href="mailto:comunicazione@utopia2000.com?subject=Richiesta capitoli - La Signora di Virpazar" class="btn btn-primary">Richiedi capitoli / sinossi</a>
                 <a href="mailto:massimilianoporcelli@utopia2000.com?subject=Richiesta call - La Signora di Virpazar" class="btn btn-secondary">Prenota una call (20')</a>
                 <a href="javascript:window.print()" class="btn btn-secondary">Scarica Pitch (PDF/Stampa)</a>
             </div>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">
-                <strong>Slot suggeriti per una call:</strong><br>
-                <span>Lunedì 29 Settembre 2025, 15:00-17:00</span><br>
-                <span>Mercoledì 1 Ottobre 2025, 10:00-12:00</span>
+            <p style="margin-top: 2rem; font-size: 0.9rem;">
+                <strong>Slot suggeriti per una call (Ottobre 2025):</strong>
             </p>
+            <ul class="slots-list">
+                <li>Mercoledì 1 (10-12) · Venerdì 3 (15-17)</li>
+                <li>Lunedì 6 (15-17) · Mercoledì 8 (10-12)</li>
+                <li>Martedì 14 (10-12) · Giovedì 16 (15-17)</li>
+                <li>Lunedì 20 (15-17) · Mercoledì 22 (10-12)</li>
+                <li>Martedì 28 (10-12) · Giovedì 30 (15-17)</li>
+            </ul>
         </section>
     </main>
 
