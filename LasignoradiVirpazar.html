@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch: La Signora di Virpazar · Ecosistema Sunflowers</title>
+    <style>
+        /* --- RESET & SETUP --- */
+        :root {
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            --color-text: #2d3436;
+            --color-bg: #fdfdfd;
+            --color-accent: #fbc531;
+            --color-accent-dark: #e1b02a;
+            --color-neutral-light: #f1f2f6;
+            --color-neutral-mid: #dfe4ea;
+            --color-neutral-dark: #a4b0be;
+            --spacing-unit: 8px;
+            scroll-padding-top: 100px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        /* --- LAYOUT & TYPOGRAPHY --- */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 2);
+        }
+        section {
+            padding: calc(var(--spacing-unit) * 6) 0;
+            border-bottom: 1px solid var(--color-neutral-light);
+        }
+        section:last-of-type { border-bottom: none; }
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            margin-top: calc(var(--spacing-unit) * 3);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-weight: 600;
+        }
+        h1 { font-size: 2.8rem; letter-spacing: -1px; }
+        h2 { font-size: 2rem; border-bottom: 2px solid var(--color-accent); padding-bottom: var(--spacing-unit); display: inline-block; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.1rem; color: #576574; }
+        p, li { max-width: 65ch; }
+        a { color: var(--color-accent-dark); text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+        .logline { font-size: 1.2rem; font-style: italic; color: #576574; margin-top: var(--spacing-unit); }
+        .placeholder { color: #c23616; font-weight: 500; background-color: #f1f2f6; padding: 2px 4px; border-radius: 4px; }
+
+        /* --- UI COMPONENTS --- */
+        /* Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: rgba(253, 253, 253, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-neutral-mid);
+            z-index: 100;
+        }
+        .nav-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 var(--spacing-unit);
+            overflow-x: auto;
+        }
+        .toc {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .toc a {
+            display: block;
+            padding: calc(var(--spacing-unit) * 2) var(--spacing-unit);
+            color: var(--color-text);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .toc a:hover {
+            color: var(--color-accent-dark);
+            text-decoration: none;
+        }
+        .toc a.active {
+            color: var(--color-accent-dark);
+            font-weight: 700;
+            border-bottom-color: var(--color-accent);
+        }
+        .progress-bar {
+            height: 4px;
+            background-color: var(--color-accent);
+            width: 0;
+            position: absolute;
+            bottom: -1px; left: 0;
+        }
+        /* Buttons */
+        .cta-buttons { display: flex; gap: var(--spacing-unit); margin-top: calc(var(--spacing-unit) * 3); flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn-primary { background-color: var(--color-accent); color: var(--color-text); }
+        .btn-primary:hover { background-color: var(--color-accent-dark); transform: translateY(-2px); }
+        .btn-secondary { background-color: var(--color-neutral-light); color: var(--color-text); }
+        .btn-secondary:hover { background-color: var(--color-neutral-mid); transform: translateY(-2px); }
+        .btn:focus-visible { outline: 2px solid var(--color-accent-dark); outline-offset: 2px; }
+        
+        /* Cards & Grids */
+        .grid { display: grid; gap: calc(var(--spacing-unit) * 3); margin-top: calc(var(--spacing-unit) * 3); }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .card {
+            background-color: var(--color-bg);
+            border: 1px solid var(--color-neutral-mid);
+            border-radius: 8px;
+            padding: calc(var(--spacing-unit) * 3);
+            display: flex;
+            flex-direction: column;
+        }
+        .card h3 { margin-top: 0; }
+        
+        /* Callout */
+        .callout {
+            border-left: 4px solid var(--color-accent);
+            padding: var(--spacing-unit) calc(var(--spacing-unit) * 3);
+            margin-top: calc(var(--spacing-unit) * 4);
+            background-color: var(--color-neutral-light);
+            border-radius: 0 8px 8px 0;
+        }
+        .callout p:last-child { margin-bottom: 0; }
+        .callout-title { font-weight: 700; color: var(--color-text); }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: calc(var(--spacing-unit) * 3);
+            font-size: 0.9rem;
+        }
+        th, td {
+            text-align: left;
+            padding: var(--spacing-unit);
+            border-bottom: 1px solid var(--color-neutral-mid);
+        }
+        th { background-color: var(--color-neutral-light); font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 2cm;
+            }
+            body {
+                font-size: 11pt;
+                color: #000;
+                background-color: #fff;
+            }
+            nav, .cta-buttons { display: none !important; }
+            main {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            section {
+                padding: 1.5cm 0;
+                border-bottom: 1px solid #ccc;
+                page-break-before: always;
+            }
+            section:first-of-type { page-break-before: auto; }
+            h1 { font-size: 24pt; }
+            h2 { font-size: 18pt; border-bottom: 2px solid #000; }
+            h3 { font-size: 14pt; }
+            .card {
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+            .grid-2, .grid-3 { grid-template-columns: 1fr 1fr; }
+            table, .callout { page-break-inside: avoid; }
+            .placeholder { background-color: #eee; border: 1px solid #ccc; }
+            a { color: #000; text-decoration: none; }
+            
+            /* Add page numbers */
+            @page {
+                @bottom-right {
+                    content: "Pagina " counter(page);
+                    font-size: 9pt;
+                    color: #666;
+                }
+            }
+            body { counter-reset: page; }
+        }
+        /* One-pager specific print section */
+        #one-pager { border-top: 2px dashed #666; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-content">
+            <ul class="toc">
+                <li><a href="#hero" class="active">Cover</a></li>
+                <li><a href="#autore">Autore</a></li>
+                <li><a href="#libro">Libro</a></li>
+                <li><a href="#ecosistema">Ecosistema</a></li>
+                <li><a href="#potenziale">Potenziale</a></li>
+                <li><a href="#scenari">Scenari</a></li>
+                <li><a href="#go-to-market">Go-to-Market</a></li>
+                <li><a href="#comparables">Comparables</a></li>
+                <li><a href="#kpi">KPI</a></li>
+                <li><a href="#rischi">Rischi</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </div>
+        <div class="progress-bar"></div>
+    </nav>
+
+    <main>
+        <section id="hero" style="text-align: center; border-top: none; padding-top: 0;">
+            <h1>La Signora di Virpazar</h1>
+            <h3>Romanzo-reportage sull’Europa dal basso.</h3>
+            <p class="logline">
+                Una cooperante disillusa, un villaggio montenegrino sospeso tra passato e futuro, un’improbabile alleanza femminile. Un viaggio on the road che diventa un’indagine sulla resilienza, sul turismo che trasforma e sull’identità di un’Europa di confine, invisibile ai più.
+            </p>
+            <div class="cta-buttons" style="justify-content: center;">
+                <a href="#contatti" class="btn btn-primary">Richiedi i primi capitoli</a>
+                <a href="#contatti" class="btn btn-secondary">Prenota una call (20')</a>
+            </div>
+        </section>
+
+        <section id="autore">
+            <h2>Autore</h2>
+            <h3>Massimiliano Porcelli</h3>
+            <p>
+                Autore e progettista sociale, da oltre quindici anni si occupa di cooperazione internazionale, innovazione sociale e sviluppo di comunità. Il suo lavoro lo ha portato a vivere e operare in contesti complessi, dai Balcani al Medio Oriente, concentrandosi su progetti che intrecciano educazione, diritti umani e micro-imprenditoria. Questa esperienza sul campo è la materia prima della sua scrittura, che cerca di dare voce a storie di prossimità e cambiamento.
+            </p>
+            <p>
+                Ha pubblicato <em>La mia Utopia</em> (Nuove edizioni Aldine), un saggio-racconto che esplora le radici e le pratiche della cooperazione. È l'ideatore di <strong>Sunflowers</strong>, un progetto di ciclo-viaggio e documentazione attraverso l'Europa sociale che costituisce la cornice narrativa ed esperienziale di questo nuovo libro.
+            </p>
+        </section>
+
+        <section id="libro">
+            <h2>Il Libro</h2>
+            <h4>Pitch</h4>
+            <ul>
+                <li><strong>Una voce ibrida:</strong> unisce la tensione narrativa del romanzo all'accuratezza del reportage sul campo, documentando un'Europa reale, lontana dagli stereotipi.</li>
+                <li><strong>Geografia come personaggio:</strong> il lago di Scutari e i Balcani non sono solo uno sfondo, ma protagonisti che modellano destini, economie e conflitti latenti.</li>
+                <li><strong>Ecosistema narrativo:</strong> il libro è il pilastro di un progetto cross-mediale (docufilm, percorsi formativi) che ne amplifica l'impatto e la durata nel tempo.</li>
+            </ul>
+            <h4>Sinossi</h4>
+            <p>
+                Elena, una project manager italiana stanca dei rituali della cooperazione internazionale, decide di prendersi una pausa a Virpazar, un piccolo borgo sul versante montenegrino del Lago di Scutari. Lì incontra Anja, "la Signora di Virpazar", un'anziana vedova che gestisce una locanda e custodisce le storie non scritte della regione. Inizialmente distanti, le due donne stringono un'alleanza inaspettata quando un progetto turistico aggressivo minaccia di stravolgere l'equilibrio della comunità locale. Attraverso l'ascolto delle storie di Anja e l'incontro con una rete di donne, agricoltori e attivisti, Elena riscopre un modo diverso di "fare sviluppo": non calato dall'alto, ma radicato nella lentezza, nella memoria e nella difesa di un patrimonio umano e ambientale.
+            </p>
+            <h4>Posizionamento e metadati</h4>
+            <p>
+                <strong>Genere:</strong> Romanzo-reportage, non-fiction narrativa, letteratura di viaggio.<br>
+                <strong>Lunghezza prevista:</strong> <span class="placeholder">[DA COMPILARE]</span> (circa 250.000 caratteri).<br>
+                <strong>Stato manoscritto:</strong> Completo, in fase di auto-revisione finale.<br>
+                <strong>Diritti disponibili:</strong> World, tutti i diritti (libro, film, traduzione).
+            </p>
+        </section>
+        
+        <section id="ecosistema">
+            <h2>L'Ecosistema Sunflowers</h2>
+            <p>
+                <em>La Signora di Virpazar</em> non è un progetto isolato. Nasce e si sviluppa all'interno di <strong>Sunflowers</strong>, un'iniziativa più ampia che esplora l'Europa sociale attraverso il viaggio lento (in bicicletta), l'ascolto e la documentazione. Il libro è il frutto maturo di questo metodo basato su prossimità e connessioni reali.
+            </p>
+            <h4>Mappa degli spin-off (generati e potenziali)</h4>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>Docufilm Sunflowers</h3>
+                    <p>Un primo docufilm sul tour europeo è in post-produzione. Il libro apre la strada a un secondo capitolo audiovisivo focalizzato sulla storia di Virpazar e i temi del turismo responsabile.</p>
+                </div>
+                <div class="card">
+                    <h3>Sunflowers European School / FSL</h3>
+                    <p>Laboratori di scrittura di reportage (FSL - Field Supported Learning) e moduli educativi per scuole e università sui temi del libro: cittadinanza europea, sviluppo sostenibile, Balcani.</p>
+                </div>
+                <div class="card">
+                    <h3>Turismo Sociale @ Le Grazie</h3>
+                    <p>Un progetto pilota a Bevagna (Umbria) basato sullo stesso modello di ospitalità e turismo di comunità raccontato nel libro, creando un ponte fisico tra le due realtà.</p>
+                </div>
+                <div class="card">
+                    <h3>Consulenza e Valutazione</h3>
+                    <p>Servizi per enti del Terzo Settore e Pubbliche Amministrazioni. Il "Sunflowers Effect" come metodo per la valutazione d'impatto sociale di progetti di cooperazione e sviluppo locale.</p>
+                </div>
+            </div>
+            <div class="callout">
+                <p><span class="callout-title">Perché conta:</span> L'ecosistema crea un valore che va oltre la pagina scritta. Genera community, opportunità formative e una "coda lunga" di interesse, trasformando i lettori in partecipanti attivi.</p>
+            </div>
+        </section>
+
+        <section id="potenziale">
+            <h2>Potenzialità Europea</h2>
+            <p>
+                Il romanzo è intrinsecamente europeo. Attraversa 10 Paesi, con un focus narrativo sui <strong>Balcani Occidentali</strong> (Montenegro, Albania, Bosnia) e un arco che collega il <strong>Mediterraneo</strong> all'Europa continentale, fino ad Atene. I temi trattati – identità, frontiere, sviluppo sostenibile, memoria storica – sono universali e di grande attualità per un pubblico internazionale.
+            </p>
+            <ul>
+                <li><strong>Apertura a traduzioni:</strong> La narrazione è ideale per il mercato tedesco, francese, olandese e per l'area balcanica.</li>
+                <li><strong>Circuiti culturali:</strong> Si presta a presentazioni in festival letterari, istituti di cultura, università e centri studi sui Balcani.</li>
+                <li><strong>Diritti esteri:</strong> <span class="placeholder">[DA COMPILARE]</span> (Es. Contatti preliminari avviati con scout in Germania).</li>
+            </ul>
+        </section>
+
+        <section id="scenari">
+            <h2>Due Scenari di Lancio</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>Scenario A: Solo Libro</h3>
+                    <p>Lancio tradizionale focalizzato sul mercato editoriale.</p>
+                    <ul>
+                        <li><strong>Pro:</strong> Tempi rapidi, investimento contenuto, focus sul target dei lettori forti.</li>
+                        <li><strong>Contro:</strong> Rischio di minor visibilità mediatica e impatto più limitato nel tempo.</li>
+                        <li><strong>Finestra:</strong> 6-9 mesi dalla firma.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Scenario B: Libro + Docufilm + Tour</h3>
+                    <p>Lancio sinergico che sfrutta l'intero ecosistema.</p>
+                    <ul>
+                        <li><strong>Pro:</strong> Massima esposizione mediatica, cross-promotion, coinvolgimento di community diverse (lettori, cinefili, studenti, viaggiatori).</li>
+                        <li><strong>Contro:</strong> Richiede coordinamento e un investimento maggiore (anche tramite partnership).</li>
+                        <li><strong>Finestra:</strong> 12-18 mesi per allineare le uscite.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="callout">
+                <p><span class="callout-title">Perché conta:</span> Lo Scenario B, pur più complesso, trasforma un'uscita editoriale in un evento culturale con un impatto duraturo. La strategia è già impostata per attrarre partner per il co-finanziamento delle attività collaterali.</p>
+            </div>
+        </section>
+
+        <section id="go-to-market">
+            <h2>Go-to-Market (90/180 giorni)</h2>
+            <h4>Timeline suggerita</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fase</th>
+                        <th>Timing</th>
+                        <th>Attività chiave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pre-lancio</strong></td>
+                        <td>-90 giorni</td>
+                        <td>Cover reveal, attivazione preorder, invio copie stampa/blogger, teaser clip dal docufilm.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lancio</strong></td>
+                        <td>Settimana 1</td>
+                        <td>Uscita libro/ebook, media push coordinato, evento di lancio ibrido (fisico + streaming).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Post-lancio</strong></td>
+                        <td>+180 giorni</td>
+                        <td>Tour in librerie, festival, scuole (FSL). Proiezioni del docufilm con dibattito. Attivazione community.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Materiali minimi per le librerie</h4>
+            <p>Guida alla lettura con spunti di discussione, Q&A con l'autore, segnalibri con mappa del viaggio, clip teaser (QR code).</p>
+        </section>
+
+        <section id="comparables">
+            <h2>Comparables & Catalog-fit</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>Paolo Rumiz</h3>
+                    <p>Per il viaggio lento come strumento di conoscenza e la riscoperta di un'Europa "minore".</p>
+                </div>
+                <div class="card">
+                    <h3>Robert D. Kaplan</h3>
+                    <p>Per l'analisi geopolitica dei Balcani narrata attraverso l'esperienza diretta.</p>
+                </div>
+                <div class="card">
+                    <h3>Eraldo Affinati</h3>
+                    <p>Per la sensibilità verso le comunità e l'educazione come forma di impegno civile.</p>
+                </div>
+            </div>
+            <h4>Elemento differenziante</h4>
+            <p>A differenza dei comparables, <em>La Signora di Virpazar</em> integra una <strong>voce narrativa femminile forte</strong>, una <strong>geografia vissuta sul campo</strong> con metodo etnografico e una <strong>sinergia nativa con l'audiovisivo e il mondo educational</strong>. Non è solo un libro *su* un progetto, ma *parte* di un ecosistema vivente.</p>
+        </section>
+
+        <section id="kpi">
+            <h2>KPI & Segnali Precoci</h2>
+            <p>Indicatori per misurare l'interesse e il potenziale del progetto prima e dopo il lancio.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indicatore</th>
+                        <th>Obiettivo prudenziale (primi 6 mesi)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Numero preorder</td>
+                        <td><span class="placeholder">[DA COMPILARE]</span></td>
+                    </tr>
+                    <tr>
+                        <td>Richieste lettura da stampa/influencer</td>
+                        <td><span class="placeholder">[DA COMPILARE]</span></td>
+                    </tr>
+                    <tr>
+                        <td>Adesioni eventi di presentazione</td>
+                        <td><span class="placeholder">[DA COMPILARE]</span></td>
+                    </tr>
+                    <tr>
+                        <td>Adozioni per corsi EDU/FSL</td>
+                        <td><span class="placeholder">[DA COMPILARE]</span></td>
+                    </tr>
+                    <tr>
+                        <td>Manifestazioni di interesse diritti esteri</td>
+                        <td><span class="placeholder">[DA COMPILARE]</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="rischi">
+            <h2>Rischi & Accortezze</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rischio</th>
+                        <th>Mitigazione e accortezza</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Saturazione scaffale</strong> (viaggi, Balcani)</td>
+                        <td>Puntare sul posizionamento ibrido (romanzo-reportage) e sulla forza dell'ecosistema cross-mediale che lo rende un progetto unico.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sensibilità dei temi</strong> (conflitti post-jugoslavi, sviluppo)</td>
+                        <td>L'approccio non è prescrittivo ma narrativo e basato sull'ascolto. La scrittura è attenta a evitare semplificazioni e stereotipi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sincronizzazione con il docufilm</strong></td>
+                        <td>Il libro ha una sua piena autonomia. Il docufilm è un amplificatore, non una condizione necessaria per il successo del libro (vedi Scenario A).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="one-pager">
+            <h2>One-Pager di Progetto</h2>
+            <p>Estratto sintetico per una visione d'insieme.</p>
+            <div class="card">
+                <h3>La Signora di Virpazar</h3>
+                <p><strong>Logline:</strong> Una cooperante disillusa e un’anziana vedova montenegrina stringono un’alleanza per salvare la loro comunità da uno sviluppo turistico speculativo, riscoprendo il valore della memoria e di un’Europa di prossimità.</p>
+                
+                <h4>5 Punti di Forza (USP)</h4>
+                <ol>
+                    <li><strong>Voce ibrida</strong> che unisce narrativa e reportage.</li>
+                    <li><strong>Protagonismo dei luoghi</strong> e delle geografie di confine.</li>
+                    <li><strong>Ecosistema cross-mediale</strong> (libro, docu, formazione, turismo).</li>
+                    <li><strong>Forte potenziale europeo</strong> per traduzioni e circuiti culturali.</li>
+                    <li><strong>Progetto "vivo"</strong>, con una community reale e attiva.</li>
+                </ol>
+
+                <div class="grid grid-2">
+                    <div>
+                        <h4>Scenario A: Solo Libro</h4>
+                        <p style="font-size:0.9rem;">Uscita rapida e mirata sul lettore forte.</p>
+                    </div>
+                    <div>
+                        <h4>Scenario B: Libro + Ecosistema</h4>
+                        <p style="font-size:0.9rem;">Lancio sinergico per massimo impatto e coda lunga.</p>
+                    </div>
+                </div>
+
+                <h4>Timeline essenziale</h4>
+                <p style="font-size:0.9rem;"><strong>Mese 1-3:</strong> Pre-lancio (cover, preorder). <strong>Mese 4:</strong> Uscita. <strong>Mese 5-9:</strong> Tour e attivazione community/EDU.</p>
+
+                <h4>Contatti</h4>
+                <p style="font-size:0.9rem;">Massimiliano Porcelli<br><span class="placeholder">[Email]</span> · <span class="placeholder">[Telefono]</span></p>
+            </div>
+        </section>
+
+        <section id="contatti" style="text-align: center;">
+            <h2>Pronti a esplorare questo mondo?</h2>
+            <p>Sarei felice di condividere i primi capitoli del manoscritto o di approfondire il progetto in una breve chiacchierata.</p>
+            <div class="cta-buttons" style="justify-content: center;">
+                <a href="mailto:[DA COMPILARE]?subject=Richiesta capitoli - La Signora di Virpazar" class="btn btn-primary">Richiedi i primi capitoli</a>
+                <a href="mailto:[DA COMPILARE]?subject=Richiesta call - La Signora di Virpazar" class="btn btn-secondary">Prenota una call (20')</a>
+                <a href="javascript:window.print()" class="btn btn-secondary">Scarica One-Pager/Pitch (Stampa)</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                <strong>Slot disponibili per una call:</strong><br>
+                <span class="placeholder">[Es: Giovedì 2 Ottobre, 10:00-12:00]</span><br>
+                <span class="placeholder">[Es: Martedì 7 Ottobre, 15:00-17:00]</span>
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav .toc a');
+            const progressBar = document.querySelector('.progress-bar');
+            const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+            // Smooth scroll for nav links
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: motionQuery.matches ? 'auto' : 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Intersection Observer for active nav link
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').includes(entry.target.id));
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Progress bar on scroll
+            function updateProgressBar() {
+                const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+                const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+                progressBar.style.width = `${scrollPercent}%`;
+            }
+            window.addEventListener('scroll', updateProgressBar);
+        });
+    </script>
+</body>
+</html>
