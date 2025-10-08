@@ -1,0 +1,1011 @@
+<!-- Infografica Assemblea Soci — Carta Strategica & Codice Etico (fonti PDF) -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utopia 2000 | Assemblea Soci 2025: Carta Strategica & Codice Etico</title>
+    <style>
+        :root {
+            --color-primary: #2c5282; /* Blu profondo */
+            --color-secondary: #f6ad55; /* Giallo girasole */
+            --color-background: #f7fafc;
+            --color-text: #2d3748;
+            --color-heading: #1a202c;
+            --color-surface: #ffffff;
+            --color-border: #e2e8f0;
+            --color-primary-light: #4c7aaf;
+            --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-family-serif: "Georgia", Cambria, "Times New Roman", Times, serif;
+        }
+
+        .dark-mode {
+            --color-primary: #63b3ed;
+            --color-secondary: #f6ad55;
+            --color-background: #1a202c;
+            --color-text: #cbd5e0;
+            --color-heading: #edf2f7;
+            --color-surface: #2d3748;
+            --color-border: #4a5568;
+            --color-primary-light: #4299e1;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family-sans);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-primary: #63b3ed;
+                --color-secondary: #f6ad55;
+                --color-background: #1a202c;
+                --color-text: #cbd5e0;
+                --color-heading: #edf2f7;
+                --color-surface: #2d3748;
+                --color-border: #4a5568;
+                --color-primary-light: #4299e1;
+            }
+        }
+        
+        main {
+            padding-top: 120px; /* Space for sticky nav */
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-family-serif);
+            color: var(--color-heading);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; border-bottom: 2px solid var(--color-secondary); padding-bottom: 0.5rem; margin-top: 2.5rem; }
+        h3 { font-size: 1.5rem; margin-top: 1.5rem; }
+
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+            margin: 0.25rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-light);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-secondary);
+            color: var(--color-heading);
+        }
+         .btn-secondary:hover {
+            background-color: #fbd38d;
+            transform: translateY(-1px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        /* Navbar & Progress Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-surface);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 0.5rem 1rem;
+        }
+        
+        .navbar-content {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .navbar-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--color-heading);
+        }
+
+        .navbar-toc {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .navbar-toc a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar-toc a:hover, .navbar-toc a.active {
+            color: var(--color-primary);
+        }
+
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background-color: var(--color-secondary);
+            width: 0%;
+            z-index: 1001;
+            transition: width 0.1s;
+        }
+        
+        .filters-container {
+            background-color: var(--color-surface);
+            padding: 0.5rem 1rem;
+            width: 100%;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .filters-content {
+             max-width: 960px;
+             margin: 0 auto;
+             display: flex;
+             gap: 1rem;
+             align-items: center;
+             flex-wrap: wrap;
+        }
+
+        .search-box input {
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            min-width: 250px;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.2);
+        }
+
+        .filter-group span {
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 2px;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            color: white;
+        }
+        #hero h1 { color: white; }
+        #hero .payoff {
+            font-size: 1.5rem;
+            font-family: var(--font-family-serif);
+            margin-top: -1rem;
+            margin-bottom: 2rem;
+            color: #e2e8f0;
+        }
+
+        /* Generic utilities */
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .bullet-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        .bullet-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 0.2em 0.6em;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 2px;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .tag-doc-carta { background-color: #e6fffa; color: #234e52; }
+        .tag-doc-codice { background-color: #fffaf0; color: #744210; }
+        .tag-territorio { background-color: #f0fff4; color: #276749; }
+        .tag-europa { background-color: #ebf8ff; color: #2c5282; }
+
+        /* Accordion */
+        .accordion-item {
+            border-bottom: 1px solid var(--color-border);
+        }
+        .accordion-header {
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(45deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 1rem;
+        }
+        .accordion-content .inner {
+            padding: 1rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Grid layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .icon-block { text-align: center; }
+        .icon-block svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+        th {
+            background-color: var(--color-surface);
+            font-weight: bold;
+        }
+
+        /* Callout */
+        .callout {
+            border-left: 4px solid var(--color-secondary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: var(--color-surface);
+        }
+
+        .callout-box {
+            border: 1px solid var(--color-border);
+            border-top: 4px solid var(--color-primary);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            background-color: var(--color-surface);
+        }
+        .callout-box h4 { margin-top: 0; }
+        
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .checklist li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--color-primary);
+            border-radius: 3px;
+        }
+        .checklist li.checked::after {
+            content: '✔';
+            position: absolute;
+            left: 4px;
+            top: 3px;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+        }
+
+        /* Print styles */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+            body {
+                background-color: white;
+                color: black;
+                font-size: 10pt;
+                --color-primary: #000000;
+                --color-secondary: #cccccc;
+                --color-text: #000000;
+                --color-heading: #000000;
+                --color-surface: #ffffff;
+                --color-border: #dddddd;
+            }
+            .navbar, .hero-buttons, .vote-buttons, .filters-container {
+                display: none !important;
+            }
+            main {
+                padding-top: 0;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            .card, .callout-box {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+            h2 {
+                border-bottom-color: #ccc;
+                margin-top: 2rem;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+            table {
+                page-break-inside: auto;
+            }
+            tr {
+                page-break-inside: avoid;
+            }
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+            .page-counter::after {
+                content: "Pagina " counter(page);
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                font-size: 9pt;
+            }
+            body {
+                counter-reset: page;
+            }
+            section {
+                page-break-before: auto;
+            }
+        }
+        .page-counter { display: none; }
+        @media print { .page-counter { display: block; }}
+        
+        /* Accessibility */
+        :focus-visible {
+            outline: 3px solid var(--color-secondary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <nav class="navbar" aria-label="Navigazione principale">
+        <div class="navbar-content">
+            <span class="navbar-title">Utopia 2000 | Assemblea Soci</span>
+            <ul class="navbar-toc" id="toc">
+                <li><a href="#identita">Identità</a></li>
+                <li><a href="#governance">Governance</a></li>
+                <li><a href="#etica">Etica</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#decisioni">Decisioni</a></li>
+            </ul>
+        </div>
+        <div class="filters-container">
+            <div class="filters-content">
+                <div class="search-box">
+                    <input type="search" id="search-input" placeholder="Cerca nei documenti..." aria-label="Cerca nei contenuti">
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn" data-filter="all">Tutti</button>
+                    <button class="filter-btn" data-filter="carta">Carta Strategica</button>
+                    <button class="filter-btn" data-filter="codice">Codice Etico</button>
+                    <button class="filter-btn" data-filter="territorio">Territorio</button>
+                    <button class="filter-btn" data-filter="europa">Europa</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        
+        <header id="hero" class="content-item" data-tags="carta,codice">
+            <div class="container">
+                <h1>Carta Strategica & Codice Etico</h1>
+                <p class="payoff">Dalla strada all'orizzonte</p>
+                <p>Assemblea dei Soci | 8 Ottobre 2025</p>
+                <div class="hero-buttons" style="margin-top: 2rem;">
+                    <a href="#" class="btn btn-secondary">Scarica PDF Carta Strategica</a>
+                    <a href="#" class="btn btn-secondary">Scarica PDF Codice Etico</a>
+                    <button onclick="window.print()" class="btn btn-outline">Stampa A4</button>
+                </div>
+            </div>
+        </header>
+
+        <section id="snapshot" class="container content-item" data-tags="carta,codice">
+            <h2>Executive Snapshot</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Vision & Governance (Carta)</h3>
+                    <ul class="bullet-list">
+                        <li><b>Governance Diffusa:</b> superare il modello centralizzato per distribuire potere decisionale e responsabilità.</li>
+                        <li><b>Vocazione Europea:</b> consolidare la rete "Sunflowers" per diventare un attore riconosciuto a livello UE.</li>
+                        <li><b>Empowerment Interno:</b> formare una nuova generazione di leader e valorizzare i talenti nei territori.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Principi & Leadership (Codice)</h3>
+                    <ul class="bullet-list">
+                        <li><b>Leadership di Custodia:</b> chi è "a capo" ha il dovere di servire, custodire e valorizzare le persone.</li>
+                        <li><b>Trasparenza e Responsabilità:</b> agire con correttezza e chiarezza in ogni processo decisionale e relazionale.</li>
+                        <li><b>Dignità della Persona:</b> promuovere ambienti di lavoro e relazione fondati su rispetto, ascolto e accoglienza.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Decisioni per l'Assemblea</h3>
+                    <ul class="bullet-list">
+                        <li><b>Approvazione Carta Strategica:</b> validare la nuova visione e il modello organizzativo post-Sunflowers.</li>
+                        <li><b>Approvazione Codice Etico:</b> adottare i principi e i comportamenti come riferimento per tutta la cooperativa.</li>
+                        <li><b>Mandato al CDA:</b> conferire al Consiglio di Amministrazione il mandato per l'attuazione delle delibere.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="identita" class="container content-item" data-tags="carta,territorio,europa">
+            <h2>Identità & Visione (dalla Carta Strategica)</h2>
+            <div class="card">
+                <h3>Una Cooperativa Umanistica</h3>
+                <p>Utopia 2000 si configura come una cooperativa radicata nei territori ma con una chiara vocazione europea, capace di agire in rete come attore riconosciuto dell'economia sociale e della cittadinanza attiva.</p>
+                <div class="grid-3" style="margin-top: 1.5rem;">
+                    <div>
+                        <h4>4 Radici</h4>
+                        <span class="tag tag-territorio">Sociale</span>
+                        <span class="tag tag-territorio">Educativa</span>
+                        <span class="tag tag-territorio">Agricola</span>
+                        <span class="tag tag-territorio">Culturale</span>
+                    </div>
+                    <div>
+                        <h4>3 Orizzonti</h4>
+                        <span class="tag tag-territorio filterable" data-filter="territorio">Territorio</span>
+                        <span class="tag tag-territorio">Comunità</span>
+                        <span class="tag tag-europa filterable" data-filter="europa">Europa</span>
+                    </div>
+                </div>
+            </div>
+            <div class="callout-box">
+                <h4>Perché conta</h4>
+                <ul class="bullet-list">
+                    <li>Definisce chi siamo e dove vogliamo andare.</li>
+                    <li>Collega il lavoro quotidiano a una visione più ampia.</li>
+                    <li>Orienta le future scelte strategiche e progettuali.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="metodo" class="container content-item" data-tags="carta">
+            <h2>Il Metodo Sunflowers (dalla Carta Strategica)</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Lentezza</h3>
+                    <p>Come metodo e valore per comprendere la complessità e costruire relazioni autentiche.
+                    <br><em>Esempio operativo: riunioni con tempo dedicato all'ascolto, non solo all'ordine del giorno.</em></p>
+                </div>
+                <div class="card">
+                    <h3>Ascolto</h3>
+                    <p>Per riconoscere i bisogni reali e le potenzialità inespresse delle persone e delle comunità.
+                    <br><em>Esempio operativo: sessioni di co-progettazione con utenti e stakeholder prima di avviare un nuovo servizio.</em></p>
+                </div>
+                <div class="card">
+                    <h3>Riconoscimento</h3>
+                    <p>Per valorizzare ogni contributo e costruire fiducia, base della nostra governance diffusa.
+                    <br><em>Esempio operativo: feedback strutturati e momenti di valorizzazione pubblica dei successi dei team.</em></p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="principi-fondanti" class="container content-item" data-tags="carta,governance,europa">
+            <h2>21 Principi Fondanti (dalla Carta Strategica)</h2>
+            <div class="card">
+                 <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">Viaggio & Azione</div>
+                        <div class="accordion-content">
+                            <div class="inner">
+                                <span>Lentezza come metodo</span>
+                                <span>Uso della bicicletta</span>
+                                <span>Adattabilità creativa</span>
+                                <span>Resilienza</span>
+                                <span>Movimento continuo</span>
+                                <span>Simbolicità dei luoghi</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="accordion-item">
+                        <div class="accordion-header">Sguardo & Libertà</div>
+                        <div class="accordion-content">
+                            <div class="inner">
+                                <span>Lo sguardo che riconosce</span>
+                                <span>Dignità della complessità</span>
+                                <span>Leggerezza relazionale</span>
+                                <span>Libertà negli occhi</span>
+                                <span>Integrazione diritti</span>
+                                <span>Dialogo e comunità</span>
+                                <span>Trasversalità dei saperi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">Governance & Leadership</div>
+                        <div class="accordion-content">
+                            <div class="inner">
+                                <span>Politica come cura</span>
+                                <span>Costruire l'Europa dal basso</span>
+                                <span>Riconoscere le reti</span>
+                                <span>Proiezione europea</span>
+                                <span>Governance diffusa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <blockquote class="callout">
+                "Non importa se siamo in anticipo o in ritardo, l'importante è essere sempre in movimento."
+                <cite>– Principio Fondante #20</cite>
+            </blockquote>
+        </section>
+
+        <section id="governance" class="container content-item" data-tags="carta,governance,territorio,europa">
+            <h2>Governance Diffusa & Riorganizzazione (dalla Carta Strategica)</h2>
+            <p>Superare l'eccessiva concentrazione decisionale per un modello a responsabilità distribuita, più agile e inclusivo.</p>
+            <div class="card">
+                <h3>Chi fa cosa nel nuovo modello</h3>
+                <ul>
+                    <li><strong>CDA:</strong> Regia strategica, relazioni istituzionali, supervisione.</li>
+                    <li><strong>Segreteria Generale:</strong> Coordinamento interno e raccordo operativo.</li>
+                    <li><strong>Comunicazione:</strong> Pianificazione narrativa e media relations.</li>
+                    <li><strong>Coordinamenti (Umbria/Lazio):</strong> Gestione operativa quotidiana.</li>
+                    <li><strong>Team Progetti Europei:</strong> Sviluppo bandi e reti transnazionali.</li>
+                    <li><strong>Rete Giovani Leader:</strong> Formazione e affiancamento di profili emergenti.</li>
+                </ul>
+            </div>
+             <div class="card">
+                <h3>Opzioni Organizzative (da discutere)</h3>
+                <p><strong>Opzione A:</strong> Nomina di responsabili regionali fissi per Umbria e Lazio.</p>
+                <p><strong>Opzione B:</strong> Team territoriali con un referente a rotazione semestrale.</p>
+            </div>
+             <div class="callout-box">
+                <h4>Perché conta</h4>
+                <ul class="bullet-list">
+                    <li>Aumenta l'efficienza e riduce il sovraccarico delle figure senior.</li>
+                    <li>Responsabilizza e fa crescere professionalmente le persone nei territori.</li>
+                    <li>Rende la cooperativa più resiliente e capace di adattarsi ai cambiamenti.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="spinoff" class="container content-item" data-tags="carta,europa,cultura">
+            <h2>Spin-off & Mappe Operative (dalla Carta Strategica)</h2>
+            <div class="grid-3">
+                <div class="card"><strong>Produzioni culturali:</strong> Docufilm, libro, podcast per trasformare il patrimonio narrativo in advocacy.</div>
+                <div class="card"><strong>European Hub/School:</strong> Scuola permanente sull'economia sociale con programmi Erasmus+.</div>
+                <div class="card"><strong>Progetti Europei:</strong> Accreditamento Erasmus+, Servizio Civile UE, partnership stabili.</div>
+                <div class="card"><strong>Turismo sociale:</strong> Pacchetti cicloturistici etici e ospitalità solidale.</div>
+                <div class="card"><strong>Servizi/Consulenze:</strong> Supporto a enti e territori per valorizzare il know-how.</div>
+                <div class="card"><strong>Valutazione "Sunflowers Effect":</strong> Monitoraggio annuale dell'impatto sociale per garantire trasparenza.</div>
+                 <div class="card"><strong>European Village:</strong> Festival itinerante dell'economia sociale europea.</div>
+                <div class="card"><strong>Live Story:</strong> Format narrativo dal vivo per scuole e convegni.</div>
+            </div>
+        </section>
+
+        <section id="etica" class="container content-item" data-tags="codice,governance">
+            <h2>Principi Etici Fondamentali (dal Codice Etico)</h2>
+            <div class="grid-3">
+                <div class="card icon-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75s.168-.75.375-.75.375.336.375.75zm.75 4.5a.75.75 0 01-1.5 0v-2.25a.75.75 0 011.5 0v2.25z" /></svg>
+                    <h3>Dignità</h3>
+                    <p>Rispetto, ascolto e accoglienza delle differenze. No a ogni forma di discriminazione.</p>
+                </div>
+                 <div class="card icon-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639l4.43-7.108a8.962 8.962 0 0113.07 0l4.43 7.108a1.012 1.012 0 010 .639l-4.43 7.108a8.962 8.962 0 01-13.07 0L2.036 12.322z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    <h3>Trasparenza</h3>
+                    <p>Chiarezza nelle decisioni, nella comunicazione e nella gestione delle risorse.</p>
+                </div>
+                <div class="card icon-block">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m-3.75-6v6m-3.75-6v6M3 14.25v-2.625a3.375 3.375 0 013.375-3.375h1.5A1.125 1.125 0 009 7.125v-1.5A3.375 3.375 0 0112.375 3.75h1.5m-9.75 9v6" /></svg>
+                    <h3>Correttezza</h3>
+                    <p>Rapporti fondati su fiducia, collaborazione e integrità morale. No conflitti di interesse.</p>
+                </div>
+                <div class="card icon-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                    <h3>Riservatezza</h3>
+                    <p>Massima cura nel trattamento di dati personali e informazioni sensibili.</p>
+                </div>
+                <div class="card icon-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.25 10.25v6.875a2.25 2.25 0 01-2.25 2.25H5a2.25 2.25 0 01-2.25-2.25V6.875" /><path stroke-linecap="round" stroke-linejoin="round" d="M21.25 10.25a2.25 2.25 0 00-2.25-2.25H5a2.25 2.25 0 00-2.25 2.25m18.5 0v-2.625c0-.621-.504-1.125-1.125-1.125H4.125c-.621 0-1.125.504-1.125 1.125v2.625" /><path stroke-linecap="round" stroke-linejoin="round" d="M21.25 10.25a2.25 2.25 0 00-2.25-2.25H5a2.25 2.25 0 00-2.25 2.25m18.5 0v-2.625c0-.621-.504-1.125-1.125-1.125H4.125c-.621 0-1.125.504-1.125 1.125v2.625m16.5-6.125v-2.25A2.25 2.25 0 0018.5 1.5h-13A2.25 2.25 0 003.25 3.75v2.25" /></svg>
+                    <h3>Sostenibilità</h3>
+                    <p>Cura del bene comune, riduzione dell'impatto ambientale e pratiche sostenibili.</p>
+                </div>
+                <div class="card icon-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311a15.045 15.045 0 01-7.5 0C4.508 19.64 3 17.422 3 15V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v8.25c0 2.422-1.508 4.64-3.75 5.04z" /></svg>
+                    <h3>Innovazione</h3>
+                    <p>Formazione continua, crescita personale e ricerca di nuove soluzioni sociali.</p>
+                </div>
+            </div>
+            <blockquote class="callout">
+                "Io non sono il Capo. Io sto a capo."
+                <cite>– Principio della Leadership di Custodia e Servizio</cite>
+            </blockquote>
+        </section>
+
+        <section id="comportamenti" class="container content-item" data-tags="codice">
+            <h2>Comportamenti Attesi & Applicazione (dal Codice Etico)</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Checklist Comportamenti</h3>
+                    <ul class="checklist" id="checklist-comportamenti">
+                        <li>Operare con onestà, rispetto e collaborazione.</li>
+                        <li>Custodire il buon nome della cooperativa.</li>
+                        <li>Evitare comportamenti dannosi per persone o istituzioni.</li>
+                        <li>Contribuire al benessere del clima organizzativo.</li>
+                        <li>Promuovere la cultura della cooperazione.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Applicazione e Monitoraggio</h3>
+                    <p>Il Codice Etico è vincolante per tutti.</p>
+                    <p><strong>Segnalazioni:</strong> Eventuali violazioni possono essere segnalate con riservatezza alla Presidenza o al CDA.</p>
+                    <p><strong>Monitoraggio:</strong> L'attuazione del codice sarà monitorata annualmente attraverso il Bilancio Sociale e di Impatto.</p>
+                </div>
+                <div class="card">
+                    <h3>Dashboard Valutazione</h3>
+                    <p>[DA COMPILARE]</p>
+                    <!-- Esempio di mini-dashboard -->
+                    <div>Strategica: 8/10</div>
+                    <div>Etica: 9/10</div>
+                    <div>Relazionale: 7/10</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="container content-item" data-tags="carta,governance,europa,territorio">
+            <h2>Roadmap Temporale (dalla Carta Strategica)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Periodo</th>
+                        <th>Obiettivi Chiave & Milestone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Breve (0-6 mesi)</strong></td>
+                        <td>Ridefinire deleghe operative. Avviare formazione giovani leader. Avvio piano digitalizzazione.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medio (6-18 mesi)</strong></td>
+                        <td>Strutturare team territoriali autonomi. Lanciare 2 progetti europei. Creare il Forum Annuale Utopia 2000.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lungo (18+ mesi)</strong></td>
+                        <td>Rete europea stabile. Formalizzare la governance diffusa. Integrare formazione e digitalizzazione nel sistema.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="callout-box">
+                <h4>Checklist Stampa: prossime scadenze e azioni</h4>
+                <ul class="bullet-list">
+                    <li><strong>Cosa cambia da domani:</strong> Inizia il processo di ridefinizione delle deleghe e la pianificazione della formazione.</li>
+                    <li><strong>Chi fa cosa:</strong> Il CDA ha il mandato di avviare il piano; i futuri coordinatori territoriali saranno coinvolti.</li>
+                    <li><strong>Prossime scadenze:</strong> Definizione del calendario formativo (entro 3 mesi), primo CDA itinerante (entro 2 mesi).</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="confronto" class="container content-item" data-tags="carta,codice,governance">
+            <h2>Confronto "Carta Strategica vs Codice Etico"</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tema</th>
+                        <th>Cosa dice la Carta (la Visione)</th>
+                        <th>Cosa prescrive il Codice (la Pratica)</th>
+                        <th>Indicatori/KPI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Leadership</strong></td>
+                        <td>Promuove la crescita di nuove leadership interne e l'empowerment.</td>
+                        <td>Definisce un modello di "Leadership di Custodia e Servizio" basato su coerenza, ascolto ed esempio.</td>
+                        <td>Numero di giovani leader formati e con deleghe attive. [DA COMPILARE]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Governance</strong></td>
+                        <td>Propone una "Governance Diffusa" con coordinamenti territoriali e team autonomi.</td>
+                        <td>Richiede trasparenza, correttezza e responsabilità in ogni decisione e relazione.</td>
+                        <td>Numero di decisioni prese a livello territoriale. [DA COMPILARE]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relazioni</strong></td>
+                        <td>Mira a costruire una rete europea stabile e comunità di pratica.</td>
+                        <td>Impone rapporti basati su rispetto, fiducia e collaborazione. Vieta ogni forma di discriminazione.</td>
+                        <td>Survey sul clima organizzativo. Numero di partnership attive. [DA COMPILARE]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="decisioni" class="container content-item" data-tags="carta,codice,governance">
+            <h2>Decisioni Richieste all'Assemblea</h2>
+            <div class="card">
+                <p>Si chiede ai Soci di deliberare sui seguenti punti:</p>
+                <ol>
+                    <li><strong>Approvazione della Carta Strategica – Post Sunflowers</strong> come documento di indirizzo per la visione e l'organizzazione della Cooperativa.</li>
+                    <li><strong>Approvazione del Codice Etico</strong> come riferimento morale e comportamentale per tutti i soci e collaboratori.</li>
+                    <li><strong>Conferimento del mandato al Consiglio di Amministrazione</strong> per l'attuazione delle strategie e dei principi approvati, inclusa la definizione operativa della governance diffusa.</li>
+                </ol>
+                <div class="vote-buttons" style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-primary">Approva i Documenti e il Mandato</button>
+                    <button class="btn btn-outline">Rimanda con note [DA COMPILARE]</button>
+                </div>
+            </div>
+        </section>
+        
+        <footer id="appendice" class="container content-item" data-tags="carta,codice">
+            <h2>Appendice</h2>
+            <div class="card">
+                <p>
+                    <strong>UTOPIA 2000 Società Cooperativa Sociale</strong><br>
+                    Sede Legale: Via Madonna delle Grazie 20, 06031 Bevagna (PG)<br>
+                    CF/P.IVA: 01945050597<br>
+                    Email: <a href="mailto:segreteria@utopia2000.net">segreteria@utopia2000.net</a><br>
+                    PEC: <a href="mailto:utopia2000.onlus@legalmail.it">utopia2000.onlus@legalmail.it</a><br>
+                    Sito web: <a href="http://www.utopia2000.com" target="_blank" rel="noopener noreferrer">www.utopia2000.com</a>
+                </p>
+                <p>Riferimenti legali: [DA COMPILARE]</p>
+            </div>
+        </footer>
+        <div class="page-counter"></div>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- PROGRESS BAR & NAVBAR ACTIVE LINK ---
+            const progressBar = document.getElementById('progress-bar');
+            const mainContent = document.getElementById('main-content');
+            const sections = document.querySelectorAll('main section');
+            const tocLinks = document.querySelectorAll('#toc a');
+
+            function updateProgressBarAndNav() {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const fullHeight = document.documentElement.scrollHeight;
+
+                const progress = (scrollPosition / (fullHeight - windowHeight)) * 100;
+                progressBar.style.width = progress + '%';
+                
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150; // offset for navbar
+                    if (scrollPosition >= sectionTop) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateProgressBarAndNav);
+            
+            // --- SMOOTH SCROLL ---
+            tocLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // --- ACCORDION ---
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                header.addEventListener('click', () => {
+                    const content = item.querySelector('.accordion-content');
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        content.style.maxHeight = '0';
+                    } else {
+                        // Optional: close other accordions
+                        // accordionItems.forEach(other => {
+                        //     other.classList.remove('active');
+                        //     other.querySelector('.accordion-content').style.maxHeight = '0';
+                        // });
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+
+            // --- CHECKLIST ---
+            const checklistItems = document.querySelectorAll('#checklist-comportamenti li');
+            checklistItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.classList.toggle('checked');
+                });
+            });
+            
+            // --- LIVE SEARCH & FILTERING ---
+            const searchInput = document.getElementById('search-input');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const contentItems = document.querySelectorAll('.content-item');
+            let activeFilter = 'all';
+
+            function filterContent() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+
+                contentItems.forEach(item => {
+                    const itemText = item.textContent.toLowerCase();
+                    const itemTags = item.dataset.tags ? item.dataset.tags.split(',') : [];
+
+                    const searchMatch = searchTerm === '' || itemText.includes(searchTerm);
+                    const filterMatch = activeFilter === 'all' || itemTags.includes(activeFilter);
+                    
+                    if (searchMatch && filterMatch) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            searchInput.addEventListener('input', filterContent);
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    activeFilter = button.dataset.filter;
+                    filterContent();
+                });
+            });
+            
+            // Set initial active filter button
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+            
+            // Also filter on filterable tags inside content
+            document.querySelectorAll('.filterable').forEach(tag => {
+                tag.addEventListener('click', (e) => {
+                   e.preventDefault();
+                   const filter = tag.dataset.filter;
+                   document.querySelector(`.filter-btn[data-filter="${filter}"]`).click();
+                   window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
