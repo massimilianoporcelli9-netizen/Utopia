@@ -1,917 +1,654 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Via dei Girasoli - Proposta di Partnership</title>
+    <title>Lista della Spesa - Circolo dei Cinque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Integrale: Stili, Layout, Dark Mode, Stampa */
-
-        /* 1. VARIABILI E IMPOSTAZIONI GLOBALI */
         :root {
-            --yellow: #FFC700;
-            --dark-gray: #1a202c;
-            --mid-gray: #4a5568;
-            --light-gray: #a0aec0;
-            --bg-light: #f7fafc;
-            --bg-dark: #171923;
-            --text-light: #1a202c;
-            --text-dark: #e2e8f0;
-            --card-bg-light: #ffffff;
-            --card-bg-dark: #2d3748;
-            --border-light: #e2e8f0;
-            --border-dark: #4a5568;
-            --accent-color: var(--yellow);
-            
-            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            --font-serif: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-            --text-base-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-            --text-lg-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.3rem);
-            --text-xl-size: clamp(1.25rem, 1.125rem + 0.625vw, 1.875rem);
-            --text-xxl-size: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
-            --text-xxxl-size: clamp(2.5rem, 1.75rem + 3.75vw, 4.5rem);
+            --bg: #f5f7fb;
+            --card: #ffffff;
+            --text: #1f2933;
+            --muted: #708296;
+            --primary: #ff7b54;
+            --primary-dark: #e5653f;
+            --accent: #4dabf7;
+            --radius: 18px;
+            --shadow: 0 18px 45px rgba(31, 41, 51, 0.08);
+            font-size: 16px;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-light: var(--bg-dark);
-                --text-light: var(--text-dark);
-                --card-bg-light: var(--card-bg-dark);
-                --border-light: var(--border-dark);
-            }
-        }
-
-        /* 2. RESET E STILI DI BASE */
-        *, *::before, *::after { box-sizing: border-box; }
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: var(--font-sans);
-            font-size: var(--text-base-size);
-            line-height: 1.65;
-            background-color: var(--bg-light);
-            color: var(--text-light);
-            -webkit-font-smoothing: antialiased;
-            scroll-behavior: smooth;
-        }
-        main { display: block; }
-        h1, h2, h3, h4, h5 { margin: 0; font-weight: 700; line-height: 1.2; }
-        h1 { font-family: var(--font-serif); font-size: var(--text-xxxl-size); letter-spacing: -0.05em; }
-        h2 { font-size: var(--text-xxl-size); margin-bottom: 2rem; }
-        h3 { font-size: var(--text-xl-size); margin-bottom: 1rem; }
-        p, ul, ol, table { margin: 0 0 1.5rem 0; }
-        a { color: var(--accent-color); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        ul, ol { padding-left: 1.25rem; }
-        ::selection { background-color: var(--accent-color); color: var(--dark-gray); }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+            padding: 0;
         }
 
-        /* 3. LAYOUT PRINCIPALE */
-        .presentation-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-        }
-        .main-content {
-            padding: 4rem;
-            max-width: 90ch;
-            margin: 0 auto;
-        }
-        .main-content > section {
+        body {
+            font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, rgba(255, 123, 84, 0.12), rgba(77, 171, 247, 0.1) 45%, var(--bg));
+            color: var(--text);
             min-height: 100vh;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 4rem;
-            margin-bottom: 4rem;
-        }
-        .main-content > section:last-of-type { border-bottom: none; }
-
-        @media (max-width: 1024px) {
-            .presentation-container { grid-template-columns: 1fr; }
-            .main-content { padding: 2rem; }
-            .main-content > section { min-height: auto; }
-        }
-        
-        /* 4. COMPONENTI UI */
-
-        /* --- Navbar e Progress Bar --- */
-        .sidebar-nav {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            background-color: var(--card-bg-light);
-            border-right: 1px solid var(--border-light);
-            padding: 2rem;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
-        }
-        .sidebar-nav .film-title {
-            font-size: var(--text-lg-size);
-            font-family: var(--font-sans);
-            margin-bottom: 0.25rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-        }
-        .sidebar-nav .production-credit {
-            font-size: 0.9em;
-            color: var(--mid-gray);
-            margin-bottom: 1.5rem;
-        }
-        .progress-bar-container {
-            width: 100%;
-            height: 8px;
-            background-color: var(--border-light);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: auto;
-        }
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background-color: var(--accent-color);
-            transition: width 0.1s linear;
-        }
-        .toc-list { list-style: none; padding: 0; margin: 0; }
-        .toc-list a {
-            display: block;
-            padding: 0.5rem;
-            border-radius: 4px;
-            color: var(--text-light);
-            font-weight: 500;
-            transition: background-color 0.2s, color 0.2s;
-        }
-        .toc-list a.active, .toc-list a:hover {
-            background-color: var(--accent-color);
-            color: var(--dark-gray);
-            text-decoration: none;
         }
 
-        @media (max-width: 1024px) {
-            .sidebar-nav { position: relative; height: auto; border-bottom: 1px solid var(--border-light); border-right: none; }
-            .progress-bar-container { display: none; }
-        }
-
-        /* --- Filtro Audience --- */
-        .audience-filter {
-            background-color: var(--card-bg-light);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 2rem 0;
-        }
-        .audience-filter legend { font-weight: bold; padding: 0 0.5rem; }
-        .audience-filter-controls {
+        header {
+            max-width: 1100px;
+            margin: 3rem auto 1.5rem;
+            padding: 2.5rem 3rem;
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: var(--shadow);
             display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .audience-filter-controls button {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            background: transparent;
-            color: var(--text-light);
-            cursor: pointer;
-            font-weight: 500;
-        }
-        .audience-filter-controls button.active,
-        .audience-filter-controls button:hover {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            color: var(--dark-gray);
-        }
-        
-        /* Logica di visibilità per il filtro */
-        [data-audience] { 
-            transition: opacity 0.3s, max-height 0.5s, margin 0.5s, padding 0.5s;
-            overflow: hidden;
-            opacity: 1; max-height: 1000px;
-        }
-        body.filter-active [data-audience] {
-            opacity: 0.4;
-        }
-        body.aud-distributori [data-audience*="distributori"],
-        body.aud-scuole [data-audience*="scuole"],
-        body.aud-ong [data-audience*="ong"] {
-            opacity: 1;
-            outline: 2px solid var(--accent-color);
-            outline-offset: 4px;
-            border-radius: 4px;
-        }
-        
-        /* --- Altri Componenti --- */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            flex-direction: column;
             gap: 1.5rem;
-            margin: 2rem 0;
         }
-        .kpi-card {
-            background-color: var(--card-bg-light);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .kpi-card .value {
-            font-size: var(--text-xxl-size);
+
+        header h1 {
+            font-size: clamp(2rem, 1.2rem + 2vw, 2.75rem);
             font-weight: 700;
-            color: var(--accent-color);
-        }
-        .kpi-card .label { font-weight: 600; }
-
-        .benchmark-grid {
-            display: grid;
-            gap: 1.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-        .benchmark-card {
-            background-color: var(--card-bg-light);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-        .benchmark-card h4 { font-size: var(--text-lg-size); }
-        .benchmark-card .lesson {
-            background-color: var(--bg-light);
-            padding: 0.75rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9em;
-        }
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-light);
-        }
-        th { font-weight: 700; background-color: var(--bg-light); }
-        caption {
-            font-size: 0.9em;
-            caption-side: bottom;
-            text-align: right;
-            color: var(--mid-gray);
-            padding: 0.5rem 0;
+            color: var(--primary-dark);
         }
 
-        .swot-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        header p {
+            font-size: 1.05rem;
+            color: var(--muted);
+            line-height: 1.6;
         }
-        .swot-item { padding: 1rem; border-radius: 4px; }
-        .swot-item h4 { margin-bottom: 0.5rem; }
-        .swot-item ul { margin-bottom: 0; }
-        .swot-strengths { background-color: #e6fffa; color: #234e52; }
-        .swot-weaknesses { background-color: #fff5f5; color: #742a2a; }
-        .swot-opportunities { background-color: #ebf8ff; color: #2c5282; }
-        .swot-threats { background-color: #fffaf0; color: #7b341e; }
 
-        .pull-quote {
-            border-left: 4px solid var(--accent-color);
-            padding-left: 1.5rem;
-            font-family: var(--font-serif);
-            font-size: var(--text-xl-size);
-            font-style: italic;
-            margin: 2rem auto;
-            max-width: 75ch;
-        }
-        .pull-quote footer {
-            font-family: var(--font-sans);
-            font-size: var(--text-base-size);
-            font-style: normal;
-            margin-top: 1rem;
-            text-align: right;
-        }
-        
-        .gantt-chart {
+        main {
+            flex: 1;
+            width: min(1100px, 92vw);
+            margin: 0 auto 4rem;
             display: grid;
-            grid-template-columns: 100px repeat(4, 1fr);
-            gap: 0.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
-        .gantt-header {
-            grid-column: 2 / -1;
-            display: grid;
-            grid-template-columns: subgrid;
-            text-align: center;
-            font-weight: bold;
-        }
-        .gantt-label { text-align: right; font-weight: bold; }
-        .gantt-bar {
-            background-color: var(--accent-color);
-            color: var(--dark-gray);
-            border-radius: 4px;
-            padding: 0.5rem;
-            font-size: 0.8em;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .gantt-q1 { grid-column: 2; } .gantt-q2 { grid-column: 3; } .gantt-q3 { grid-column: 4; } .gantt-q4 { grid-column: 5; }
-        .gantt-span-2 { grid-column: span 2; } .gantt-span-3 { grid-column: span 3; }
 
-        .why-it-matters-box {
-            border: 1px solid var(--accent-color);
-            background-color: var(--bg-light);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 3rem;
+        section {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
         }
-        .why-it-matters-box h4 {
-            font-size: var(--text-lg-size);
-            color: var(--accent-color);
+
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
+            gap: 0.6rem;
         }
-        .why-it-matters-box ul { padding-left: 1rem; margin-bottom: 0; }
-        .why-it-matters-box li::marker { content: '✓ '; color: var(--accent-color); }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 0.25em 0.6em;
-            font-size: 0.75em;
-            font-weight: 700;
-            line-height: 1;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25rem;
-        }
-        .status-pronto { background-color: #c6f6d5; color: #22543d; }
-        .status-lavorazione { background-color: #faf089; color: #744210; }
-        .status-da-compilare { background-color: #fed7d7; color: #742a2a; }
 
-        .nav-buttons {
+        h2 span {
+            font-size: 1.8rem;
+        }
+
+        .friend-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .friend-card {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(255, 123, 84, 0.08), rgba(77, 171, 247, 0.08));
+            border-radius: 16px;
+        }
+
+        .friend-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 123, 84, 0.25);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .friend-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .friend-info p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .friend-info a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .list-form {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(112, 130, 150, 0.25);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 123, 84, 0.15);
+        }
+
+        button {
+            border: none;
+            padding: 0.75rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            box-shadow: 0 12px 25px rgba(229, 101, 63, 0.25);
+        }
+
+        .primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 35px rgba(229, 101, 63, 0.25);
+        }
+
+        .items-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .item-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 16px;
+            background: rgba(112, 130, 150, 0.08);
+        }
+
+        .item-details h3 {
+            font-size: 1.1rem;
+        }
+
+        .item-meta {
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .tag {
+            padding: 0.1rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(77, 171, 247, 0.12);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .ghost {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid rgba(112, 130, 150, 0.25);
+        }
+
+        .ghost:hover {
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .ghost.completed {
+            border-color: rgba(42, 157, 143, 0.45);
+            color: #2a9d8f;
+            background: rgba(42, 157, 143, 0.1);
+        }
+
+        .notes-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .note-card {
+            padding: 1rem;
+            border-radius: 16px;
+            background: rgba(255, 123, 84, 0.12);
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .note-meta {
+            font-size: 0.85rem;
+            color: var(--muted);
             display: flex;
             justify-content: space-between;
-            margin-top: 2rem;
-        }
-        .nav-buttons button {
-            background: transparent;
-            border: 1px solid var(--border-light);
-            color: var(--text-light);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .nav-buttons button:hover { background-color: var(--bg-light); }
-
-        /* 5. STILI DI STAMPA */
-        @media print {
-            @page {
-                size: A4 portrait;
-                margin: 2cm;
-            }
-            body {
-                background-color: #fff;
-                color: #000;
-                font-size: 10pt;
-            }
-            .presentation-container {
-                display: block;
-            }
-            .sidebar-nav, .nav-buttons {
-                display: none;
-            }
-            .main-content {
-                padding: 0;
-                max-width: 100%;
-            }
-            .main-content > section {
-                min-height: auto;
-                page-break-after: always;
-                border: none;
-                padding-bottom: 1rem;
-                margin-bottom: 1rem;
-            }
-            a { color: #000; text-decoration: none; }
-            .pull-quote, .why-it-matters-box { border-color: #ccc; }
-            h1, h2, h3 { color: #000; }
-            table { font-size: 8pt; }
-            .swot-item, .kpi-card, .benchmark-card {
-                border: 1px solid #ccc;
-                background-color: #f9f9f9 !important;
-                color: #000 !important;
-            }
         }
 
+        .empty-state {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--muted);
+            border: 2px dashed rgba(112, 130, 150, 0.25);
+            border-radius: 16px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                margin: 2rem auto 1rem;
+                padding: 2rem;
+            }
+
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
-<body class="aud-tutti">
-    
-    <div class="presentation-container">
-        
-        <nav class="sidebar-nav" aria-label="Indice dei contenuti">
-            <h2 class="film-title">La Via dei Girasoli</h2>
-            <p class="production-credit">Una produzione Utopia 2000</p>
-            <ul class="toc-list" id="toc">
-                <li><a href="#cover" class="active">Cover</a></li>
-                <li><a href="#scenario">Scenario</a></li>
-                <li><a href="#film">Il Film</a></li>
-                <li><a href="#audience">Audience & Valore</a></li>
-                <li><a href="#benchmark">Benchmark</a></li>
-                <li><a href="#strategia">Strategia</a></li>
-                <li><a href="#proposta">Proposta</a></li>
-                <li><a href="#appendici">Appendici</a></li>
-            </ul>
-            <div class="progress-bar-container" aria-hidden="true">
-                <div id="progressBar" class="progress-bar"></div>
+<body>
+    <header>
+        <h1>Circolo dei Cinque - Lista della Spesa</h1>
+        <p>
+            Una piccola app pensata per Sofia, Marco, Giulia, Davide e Sara: cinque amici inseparabili che vogliono restare in contatto
+            mentre organizzano la loro spesa settimanale. Condividete gli ingredienti per le cene insieme, assegnate i compiti e
+            lasciatevi qualche messaggio affettuoso lungo la strada.
+        </p>
+    </header>
+
+    <main>
+        <section aria-labelledby="friend-circle">
+            <h2 id="friend-circle"><span>👫</span>Il nostro circolo</h2>
+            <div class="friend-list">
+                <article class="friend-card">
+                    <div class="friend-avatar" aria-hidden="true">S</div>
+                    <div class="friend-info">
+                        <h3>Sofia</h3>
+                        <p>La creativa del gruppo, sempre pronta a inventare nuove ricette.</p>
+                        <a href="mailto:sofia@amicicinque.it">sofia@amicicinque.it</a>
+                    </div>
+                </article>
+                <article class="friend-card">
+                    <div class="friend-avatar" aria-hidden="true">M</div>
+                    <div class="friend-info">
+                        <h3>Marco</h3>
+                        <p>Stratega delle offerte e maestro del risparmio.</p>
+                        <a href="mailto:marco@amicicinque.it">marco@amicicinque.it</a>
+                    </div>
+                </article>
+                <article class="friend-card">
+                    <div class="friend-avatar" aria-hidden="true">G</div>
+                    <div class="friend-info">
+                        <h3>Giulia</h3>
+                        <p>Cuore organizzativo, tiene tutto sotto controllo.</p>
+                        <a href="mailto:giulia@amicicinque.it">giulia@amicicinque.it</a>
+                    </div>
+                </article>
+                <article class="friend-card">
+                    <div class="friend-avatar" aria-hidden="true">D</div>
+                    <div class="friend-info">
+                        <h3>Davide</h3>
+                        <p>Esperto di cucina veloce e sano.</p>
+                        <a href="mailto:davide@amicicinque.it">davide@amicicinque.it</a>
+                    </div>
+                </article>
+                <article class="friend-card">
+                    <div class="friend-avatar" aria-hidden="true">S</div>
+                    <div class="friend-info">
+                        <h3>Sara</h3>
+                        <p>Amante dei dolci, porta sempre il dessert perfetto.</p>
+                        <a href="mailto:sara@amicicinque.it">sara@amicicinque.it</a>
+                    </div>
+                </article>
             </div>
-        </nav>
+        </section>
 
-        <main id="main-content" role="main">
-            
-            <!-- NOTE: Slide di apertura. Deve colpire subito con la scala del progetto. -->
-            <section id="cover" aria-labelledby="cover-title">
-                <h1 id="cover-title">La Via dei Girasoli</h1>
-                <p class="subtitle" style="font-size: var(--text-xl-size); color: var(--mid-gray);">Il film che racconta il progetto "Sunflowers European Tour".</p>
-                
-                <div class="kpi-grid">
-                    <div class="kpi-card">
-                        <div class="value">6.000+</div>
-                        <div class="label">Km in bicicletta</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="value">10</div>
-                        <div class="label">Paesi attraversati</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="value">100+</div>
-                        <div class="label">Storie di economia sociale</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="value">50+</div>
-                        <div class="label">Reti attivabili</div>
-                    </div>
+        <section aria-labelledby="shopping-list">
+            <h2 id="shopping-list"><span>🛒</span>Lista condivisa</h2>
+            <form class="list-form" id="item-form">
+                <div>
+                    <label for="item-name">Cosa serve?</label>
+                    <input type="text" id="item-name" name="item" placeholder="Es. pasta integrale" required>
                 </div>
-                
-                <p>Questa presentazione delinea la strategia di distribuzione per un docufilm unico, che racconta l'impresa del <strong>Sunflowers European Tour</strong>: un viaggio in bicicletta che documenta e connette le realtà di economia sociale, cooperazione e innovazione civica dal basso. Un racconto di speranza, dignità e costruzione europea necessario oggi più che mai.</p>
-
-                <div class="why-it-matters-box">
-                    <h4>Perché conta</h4>
-                    <ul>
-                        <li><strong>Contenuto Unico:</strong> Un format originale (viaggio in bici) per un tema di forte attualità (economia sociale).</li>
-                        <li><strong>Audience Pronta:</strong> Il progetto nasce con una rete di contatti pre-esistente nel terzo settore e nel mondo educational.</li>
-                        <li><strong>Valore a Lungo Termine:</strong> Oltre il film, un ecosistema di contenuti (libro, moduli didattici, eventi) che garantisce longevità.</li>
-                    </ul>
+                <div>
+                    <label for="item-quantity">Quantità</label>
+                    <input type="text" id="item-quantity" name="quantity" placeholder="Es. 2 pacchi" required>
                 </div>
-            </section>
-
-            <!-- NOTE: Contestualizzare il progetto nel mercato attuale, mostrando di aver fatto i compiti. -->
-            <section id="scenario" aria-labelledby="scenario-title">
-                <h2 id="scenario-title">Perché Adesso: lo Scenario Europeo (2022-2026)</h2>
-                <p>Il mercato dei documentari è in fermento. La domanda per storie autentiche e d'impatto è in crescita, ma richiede strategie di distribuzione ibride e mirate per emergere.</p>
-                <h3>Trend Chiave nella Distribuzione di Documentari</h3>
-                <table>
-                    <caption id="trend-table-caption">Analisi dei trend di mercato e loro implicazioni strategiche.</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Trend di Mercato</th>
-                            <th scope="col">Implicazione per il Film</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Premiere festival-driven:</strong> I festival (IDFA, CPH:DOX, Sheffield) restano il trampolino di lancio essenziale per la credibilità e le vendite.</td>
-                            <td>Una strategia di premiere mirata su festival A-list è il primo passo fondamentale per posizionare il film.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Ibridazione sala-evento:</strong> Le proiezioni uniche con Q&A, dibattiti e partner territoriali generano buzz e massimizzano l'impatto.</td>
-                            <td>Il film si presta perfettamente a un tour di "event cinema", coinvolgendo le reti locali per creare eventi partecipati e sold-out.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Finestre TV/OTT flessibili:</strong> Le piattaforme cercano contenuti unici con un pubblico definito. La flessibilità nelle finestre è cruciale.</td>
-                            <td>L'assetto europeo e i temi sociali rendono il film appetibile per broadcaster pubblici (ARTE, RAI, etc.) e piattaforme tematiche.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Domanda Educational e Community:</strong> Scuole, università e ONG cercano contenuti di qualità per stimolare il dibattito. Il licensing educativo è un mercato in crescita.</td>
-                            <td>Il film può diventare uno strumento didattico a lungo termine, con kit dedicati e licenze ad hoc.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Rischi e Mitigazioni</h3>
-                <p>Siamo consapevoli delle sfide. La nostra strategia è pensata per anticiparle.</p>
-                <ul>
-                    <li><strong>Rischio:</strong> Saturazione dei mercati (festival, OTT).<br><strong>Mitigazione:</strong> Posizionamento unico (viaggio in bici + economia sociale) e focus su nicchie di pubblico appassionate (cicloturismo, terzo settore).</li>
-                    <li><strong>Rischio:</strong> Costi di P&A (Prints & Advertising).<br><strong>Mitigazione:</strong> Attivazione di reti esistenti per un marketing organico e "community-first", riducendo la dipendenza da investimenti pubblicitari massivi.</li>
-                    <li><strong>Rischio:</strong> Scarsa "discoverability" sulle piattaforme.<br><strong>Mitigazione:</strong> Creazione di eventi e partnership che portino il pubblico a cercare attivamente il film, invece di aspettare che lo trovi per caso.</li>
-                </ul>
-
-                <div class="why-it-matters-box">
-                    <h4>Perché conta</h4>
-                    <ul>
-                        <li><strong>Consapevolezza:</strong> Dimostra una comprensione profonda delle dinamiche attuali del mercato.</li>
-                        <li><strong>Approccio Strategico:</strong> La strategia non è casuale, ma basata su dati e trend concreti.</li>
-                        <li><strong>Gestione del Rischio:</strong> Il progetto è ambizioso ma con i piedi per terra, con un piano per affrontare le sfide.</li>
-                    </ul>
+                <div>
+                    <label for="item-owner">Chi se ne occupa?</label>
+                    <select id="item-owner" name="owner" required>
+                        <option value="">Scegli un amico</option>
+                        <option value="Sofia">Sofia</option>
+                        <option value="Marco">Marco</option>
+                        <option value="Giulia">Giulia</option>
+                        <option value="Davide">Davide</option>
+                        <option value="Sara">Sara</option>
+                    </select>
                 </div>
-            </section>
+                <button type="submit" class="primary">Aggiungi alla lista</button>
+            </form>
+            <div id="items-container" class="items-list" role="list"></div>
+            <p id="items-empty" class="empty-state" hidden>La lista è vuota: chi lancia la prima idea?</p>
+        </section>
 
-            <!-- NOTE: Presentare il cuore del progetto: il film. Tono di voce, unicità, messaggio. -->
-            <section id="film" aria-labelledby="film-title">
-                <h2 id="film-title">Il Film: Un Mosaico di Speranza Europea</h2>
-                <p><strong>La Via dei Girasoli</strong> non è solo un documentario, ma un'azione di storytelling che unisce territori e persone. Un viaggio fisico e metaforico per riscoprire un'Europa solidale e innovatrice, raccontata con dignità e prossimità.</p>
-
-                <div class="pull-quote">
-                    <p>Un'Europa che non finisce sui giornali, fatta di persone che, anziché lamentarsi, costruiscono alternative. Questo è il cuore del nostro viaggio.</p>
-                    <footer>— Renato Chiocca, Regista</footer>
+        <section aria-labelledby="notes-board">
+            <h2 id="notes-board"><span>💬</span>Bacheca messaggi</h2>
+            <form class="list-form" id="note-form">
+                <div>
+                    <label for="note-author">Chi scrive?</label>
+                    <select id="note-author" required>
+                        <option value="">Scegli un amico</option>
+                        <option value="Sofia">Sofia</option>
+                        <option value="Marco">Marco</option>
+                        <option value="Giulia">Giulia</option>
+                        <option value="Davide">Davide</option>
+                        <option value="Sara">Sara</option>
+                    </select>
                 </div>
-
-                <h3>Mappa degli Unique Selling Points (USP)</h3>
-                <ul>
-                    <li><strong>Format Avventuroso:</strong> 6.000 km in bici sono un gancio narrativo potente e memorabile, che attira un pubblico più ampio rispetto al classico documentario sociale.</li>
-                    <li><strong>Narrazione Costruttiva:</strong> In un'epoca di polarizzazione, il film adotta un "tone of hope", mostrando soluzioni e celebrando la resilienza.</li>
-                    <li><strong>Portata Pan-Europea:</strong> Le storie raccolte in 10 Paesi creano un mosaico rappresentativo, rendendo il film rilevante per un mercato internazionale.</li>
-                    <li><strong>Continuità Editoriale:</strong> Il progetto prosegue il percorso di "Tutto quello che sarà", capitalizzando su una credibilità autoriale e un'audience già consolidata.</li>
-                </ul>
-                
-                <h3>Analisi SWOT</h3>
-                <div class="swot-grid">
-                    <div class="swot-item swot-strengths">
-                        <h4>Punti di Forza</h4>
-                        <ul>
-                            <li>Concept originale e forte</li>
-                            <li>Tema rilevante e positivo</li>
-                            <li>Rete di contatti consolidata</li>
-                            <li>Asset multimediali (libro, eventi)</li>
-                        </ul>
-                    </div>
-                    <div class="swot-item swot-weaknesses">
-                        <h4>Punti di Debolezza</h4>
-                        <ul>
-                            <li>Nessun "grande nome" nel cast</li>
-                            <li>Argomento di nicchia</li>
-                            <li>Dipendenza da fondi soft-money</li>
-                        </ul>
-                    </div>
-                    <div class="swot-item swot-opportunities">
-                        <h4>Opportunità</h4>
-                        <ul>
-                            <li>Domanda crescente per "impact cinema"</li>
-                            <li>Partnership con brand (ciclo, outdoor)</li>
-                            <li>Potenziale per licenze educational</li>
-                            <li>Coerenza con agende UE (Green Deal, Social Cohesion)</li>
-                        </ul>
-                    </div>
-                    <div class="swot-item swot-threats">
-                        <h4>Minacce</h4>
-                        <ul>
-                            <li>Mercato distributivo affollato</li>
-                            <li>Fatica del pubblico su temi sociali</li>
-                            <li>Complessità burocratiche EU</li>
-                        </ul>
-                    </div>
+                <div>
+                    <label for="note-message">Messaggio</label>
+                    <textarea id="note-message" rows="3" placeholder="Scrivi un promemoria, una dedica o un'idea per la prossima cena" required></textarea>
                 </div>
-
-                <div class="why-it-matters-box">
-                    <h4>Perché conta</h4>
-                    <ul>
-                        <li><strong>Identità Chiara:</strong> Il film ha un posizionamento forte e distintivo che lo fa emergere.</li>
-                        <li><strong>Messaggio Necessario:</strong> Risponde a un bisogno diffuso di storie positive e costruttive.</li>
-                        <li><strong>Analisi Onesta:</strong> L'analisi SWOT dimostra una visione realistica e una pianificazione matura.</li>
-                    </ul>
-                </div>
-            </section>
-            
-            <!-- NOTE: Qui l'interattività è fondamentale. Il filtro deve far sentire ogni partner "visto". -->
-            <section id="audience" aria-labelledby="audience-title">
-                <h2 id="audience-title">Audience e Valore per Segmento</h2>
-                <p>Il film parla a diverse community. La nostra strategia prevede messaggi e formati specifici per massimizzare il coinvolgimento di ogni segmento di pubblico.</p>
-                
-                <fieldset class="audience-filter">
-                    <legend>Filtra i contenuti per il tuo settore:</legend>
-                    <div class="audience-filter-controls" id="audienceFilterControls">
-                        <button type="button" class="active" data-filter="tutti">Mostra Tutti</button>
-                        <button type="button" data-filter="distributori">Distributori</button>
-                        <button type="button" data-filter="scuole">Scuole / Università</button>
-                        <button type="button" data-filter="ong">ONG / Terzo Settore</button>
-                    </div>
-                </fieldset>
-                
-                <table>
-                    <caption id="audience-table-caption">Segmentazione del pubblico con bisogni, messaggi e formati di distribuzione dedicati.</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Segmento di Pubblico</th>
-                            <th scope="col">Bisogno Primario</th>
-                            <th scope="col">Messaggio Chiave</th>
-                            <th scope="col">Formato / Canale</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-audience="distributori">
-                            <td><strong>Distributori (Sala, TV, OTT)</strong></td>
-                            <td>Contenuto originale, vendibile, con un pubblico identificabile.</td>
-                            <td>"Un film europeo con un format unico e un forte potenziale di impatto mediatico."</td>
-                            <td>DCP per sala, versioni broadcast, materiali di marketing completi (EPK).</td>
-                        </tr>
-                        <tr data-audience="scuole">
-                            <td><strong>Scuole e Università</strong></td>
-                            <td>Materiale didattico engageante su temi di attualità (UE, sostenibilità, cittadinanza).</td>
-                            <td>"Uno strumento per portare in classe l'Europa delle soluzioni, non solo dei problemi."</td>
-                            <td>Licenze educational, kit didattici, moduli tematici brevi, piattaforme streaming per scuole.</td>
-                        </tr>
-                        <tr data-audience="ong">
-                            <td><strong>ONG e Terzo Settore</strong></td>
-                            <td>Uno strumento per fare advocacy, community building e fundraising.</td>
-                            <td>"Il film che racconta le vostre storie e ispira all'azione."</td>
-                            <td>Community screenings, serate-evento con dibattito, versioni brevi per campagne social.</td>
-                        </tr>
-                        <tr data-audience="distributori,ong">
-                            <td><strong>Festival e Rassegne</strong></td>
-                            <td>Opere di qualità, prime mondiali/europee, autori con una visione.</td>
-                            <td>"Un viaggio cinematografico che unisce autorialità e rilevanza sociale."</td>
-                            <td>Sottomissione mirata a festival chiave per tematiche (sociali, ambiente, sport).</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="why-it-matters-box">
-                    <h4>Perché conta</h4>
-                    <ul>
-                        <li><strong>Approccio Mirato:</strong> Non si spara nel mucchio, ma si coltiva ogni audience con strumenti specifici.</li>
-                        <li><strong>Valore Multiplo:</strong> Il film non è un prodotto unico, ma una piattaforma che genera valore per diversi partner.</li>
-                        <li><strong>Sostenibilità:</strong> La diversificazione delle audience (e delle revenue streams) garantisce la sostenibilità del progetto a lungo termine.</li>
-                    </ul>
-                </div>
-            </section>
-            
-            <!-- NOTE: Dimostrare di conoscere il mercato e di aver studiato i casi di successo. -->
-            <section id="benchmark" aria-labelledby="benchmark-title">
-                <h2 id="benchmark-title">Benchmark e Lezioni Apprese</h2>
-                <p>Abbiamo analizzato documentari comparabili per temi o modello distributivo, traendo lezioni preziose per la nostra strategia.</p>
-                <div class="benchmark-grid">
-                    <div class="benchmark-card">
-                        <h4>Tomorrow (Demain, 2015)</h4>
-                        <p>Un film-mosaico su soluzioni ecologiche e sociali che ha avuto un enorme successo in Francia e nel mondo.</p>
-                        <div class="lesson" data-audience="distributori,ong"><strong>Cosa impariamo:</strong> Il pubblico è affamato di narrazioni costruttive ("solution-based storytelling"). Il successo al botteghino è possibile per un documentario se diventa un movimento.</div>
-                    </div>
-                    <div class="benchmark-card">
-                        <h4>2040 (2019)</h4>
-                        <p>Un "viaggio nel futuro" per vedere come il mondo potrebbe essere se adottassimo le migliori soluzioni già esistenti.</p>
-                        <div class="lesson" data-audience="scuole"><strong>Cosa impariamo:</strong> Un forte taglio educational e un kit didattico ben fatto possono garantire al film una vita lunghissima nelle scuole, generando revenue costanti.</div>
-                    </div>
-                    <div class="benchmark-card">
-                        <h4>The Human Scale (2012)</h4>
-                        <p>Un documentario sull'urbanistica a misura d'uomo che ha generato un dibattito globale tra architetti e policy maker.</p>
-                        <div class="lesson" data-audience="ong"><strong>Cosa impariamo:</strong> Un documentario di nicchia può avere un impatto enorme se si rivolge con precisione alla sua community di riferimento e fornisce strumenti per l'advocacy.</div>
-                    </div>
-                    <div class="benchmark-card">
-                        <h4>Wonderful Losers: A Different World (2017)</h4>
-                        <p>Racconta il mondo dei "gregari" nel ciclismo, unendo un'estetica potente a una storia umana universale.</p>
-                        <div class="lesson" data-audience="distributori"><strong>Cosa impariamo:</strong> Sfruttare la community di uno sport (il ciclismo) come gancio per raccontare storie più profonde è una strategia vincente per raggiungere un pubblico più vasto.</div>
-                    </div>
-                </div>
-                 <div class="why-it-matters-box">
-                    <h4>Perché conta</h4>
-                    <ul>
-                        <li><strong>Posizionamento Informato:</strong> Conosciamo il panorama competitivo e sappiamo dove si colloca il nostro film.</li>
-                        <li><strong>Strategia Comprovata:</strong> Il nostro approccio si basa su modelli di successo, non su scommesse al buio.</li>
-                        <li><strong>Ambizione Realistica:</strong> Puntiamo a replicare le "best practices" del settore, adattandole alla nostra scala.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- NOTE: La roadmap deve essere chiara, visiva e trasmettere un senso di pianificazione e controllo. -->
-            <section id="strategia" aria-labelledby="strategia-title">
-                <h2 id="strategia-title">Strategia di Distribuzione: una Roadmap per Finestre</h2>
-                <p>Proponiamo un percorso di uscita graduale e sinergico, dove ogni finestra di distribuzione costruisce valore per la successiva, massimizzando la visibilità e il ciclo di vita del film.</p>
-                
-                <div class="gantt-chart" aria-label="Diagramma di Gantt della roadmap di distribuzione">
-                    <div class="gantt-header">
-                        <div>Q4 2025</div> <div>Q1 2026</div> <div>Q2 2026</div> <div>Q3 2026</div>
-                    </div>
-                    <div class="gantt-label" data-audience="distributori">Circuito Festival</div>
-                    <div class="gantt-bar gantt-q1 gantt-span-2">Premiere Strategy (Festival A-List)</div>
-
-                    <div class="gantt-label" data-audience="distributori,ong">Event Cinema / Q&A</div>
-                    <div class="gantt-bar gantt-q2 gantt-span-3">Tour di proiezioni-evento</div>
-                    
-                    <div class="gantt-label" data-audience="scuole">Educational</div>
-                    <div class="gantt-bar gantt-q3 gantt-span-2">Rilascio kit e licenze</div>
-
-                    <div class="gantt-label" data-audience="distributori">TV / OTT</div>
-                    <div class="gantt-bar gantt-q4">Apertura finestra VOD/Broadcast</div>
-                </div>
-
-                <h3>Checklist Materiali di Distribuzione (P&A)</h3>
-                <ul>
-                    <li>Electronic Press Kit (EPK): <span class="status-badge status-lavorazione">In lavorazione</span></li>
-                    <li>Trailer & Teaser: <span class="status-badge status-pronto">Pronto</span></li>
-                    <li>Poster & Materiali Grafici: <span class="status-badge status-lavorazione">In lavorazione</span></li>
-                    <li>Versioni per la sala (DCP): <span class="status-badge status-da-compilare">[DA COMPILARE]</span></li>
-                    <li>Materiali per TV (M&E, CC, AD): <span class="status-badge status-da-compilare">[DA COMPILARE]</span></li>
-                    <li>Kit Didattico per Scuole: <span class="status-badge status-lavorazione">In lavorazione</span></li>
-                </ul>
-                
-                <div class="why-it-matters-box">
-                    <h4>Perché conta</h4>
-                    <ul>
-                        <li><strong>Visione Chiara:</strong> Abbiamo un piano d'azione dettagliato con tempistiche precise.</li>
-                        <li><strong>Approccio Sinergico:</strong> Ogni fase supporta la successiva, creando un momentum crescente.</li>
-                        <li><strong>Trasparenza:</strong> Mettiamo in chiaro lo stato di avanzamento dei materiali, dimostrando affidabilità.</li>
-                    </ul>
-                </div>
-            </section>
-            
-            <!-- NOTE: La call to action finale. Deve essere un riassunto convincente e diretto. -->
-            <section id="proposta" aria-labelledby="proposta-title">
-                <h2 id="proposta-title">La Nostra Proposta di Valore</h2>
-                <p>Collaborare a <strong>La Via dei Girasoli</strong> significa investire in un progetto cinematografico con un'anima, un pubblico e un potenziale che va ben oltre la singola proiezione. È un'opportunità per distribuire un film necessario, supportato da una rete solida e da un pacchetto di asset multimediali completo.</p>
-                
-                <div class="why-it-matters-box" data-audience="distributori,scuole,ong">
-                    <h4>Key Takeaways per i Partner</h4>
-                    <ul>
-                        <li><strong>Prodotto a Basso Rischio:</strong> Un film unico nel suo genere, già prodotto e con un forte potenziale di impatto mediatico e sociale.</li>
-                        <li><strong>Audience Attivabile:</strong> Non partiamo da zero. Portiamo in dote una rete di contatti e community pronte a sostenere il film.</li>
-                        <li><strong>Flessibilità Strategica:</strong> Siamo aperti a discutere modelli di partnership e finestre di distribuzione che creino valore reciproco.</li>
-                        <li><strong>Ciclo di Vita Lungo:</strong> Grazie al potenziale educational e alle partnership con il terzo settore, il film è destinato a generare interesse e revenue per anni.</li>
-                        <li><strong>Allineamento con i Valori UE:</strong> Il progetto incarna i principi di coesione sociale, sostenibilità e cittadinanza europea, aprendo a opportunità di funding e supporto istituzionale.</li>
-                    </ul>
-                </div>
-                <p style="margin-top:2rem;">Siamo pronti a discutere come possiamo intraprendere questo viaggio insieme. Contattaci per accedere al workprint e ai materiali completi.</p>
-            </section>
-
-            <!-- NOTE: Le appendici rassicurano sulla completezza della pianificazione. -->
-            <section id="appendici" aria-labelledby="appendici-title">
-                <h2 id="appendici-title">Appendici e Materiali</h2>
-                <p>Dati e dettagli a supporto della strategia.</p>
-                
-                <h3>Target Festival per Cluster</h3>
-                <ul>
-                    <li><strong>Social & Human Rights:</strong> CPH:DOX, One World, Movies that Matter</li>
-                    <li><strong>Ambiente & Sostenibilità:</strong> CinemAmbiente, FReDD</li>
-                    <li><strong>Sport & Avventura:</strong> BANFF, Kendal Mountain Film Festival</li>
-                    <li><strong>Grandi Festival Generalisti (A-List):</strong> IDFA, Sheffield Doc/Fest, Dok Leipzig</li>
-                </ul>
-
-                <h3>Risk Log Dettagliato</h3>
-                <ul>
-                    <li><strong>Diritti Musicali/Archivio:</strong> Tutti i diritti sono stati chiariti e licenziati. [Stato: OK]</li>
-                    <li><strong>Liberatorie:</strong> Raccolte per tutti i soggetti principali. Verifica in corso per le comparse. [Stato: In Lavorazione]</li>
-                    <li><strong>Privacy/Dati Sensibili:</strong> Revisione legale completata per garantire la conformità al GDPR. [Stato: OK]</li>
-                </ul>
-                
-                <h3>Rete Attivabile</h3>
-                <p>Elenco di partner pre-allertati pronti a supportare l'uscita del film: Legacoop, Rete della Mobilità Nuova (YouMobility), Istituti Italiani di Cultura in 5 Paesi europei, network universitari [DA COMPILARE CON DETTAGLI].</p>
-
-            </section>
-            
-            <div class="nav-buttons">
-                <button id="prevBtn" title="Sezione Precedente (←)">&larr; Precedente</button>
-                <button id="nextBtn" title="Sezione Successiva (→)">Successiva &rarr;</button>
-            </div>
-        </main>
-
-    </div>
+                <button type="submit" class="primary">Pubblica nota</button>
+            </form>
+            <div id="notes-container" class="notes-list"></div>
+            <p id="notes-empty" class="empty-state" hidden>Ancora nessun messaggio... lasciate un saluto!</p>
+        </section>
+    </main>
 
     <script>
-        // JS Integrale: Navigazione, Interattività, Scroll-spy
-        document.addEventListener('DOMContentLoaded', () => {
+        const STORAGE_KEYS = {
+            ITEMS: "circolo-cinque-items",
+            NOTES: "circolo-cinque-notes"
+        };
 
-            const tocLinks = document.querySelectorAll('#toc a');
-            const sections = document.querySelectorAll('.main-content > section');
-            const progressBar = document.getElementById('progressBar');
-            const audienceFilterControls = document.getElementById('audienceFilterControls');
-            const mainContent = document.getElementById('main-content');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            
-            let sectionIds = Array.from(sections).map(s => s.id);
-            let intersectionObserver;
+        const friendsColors = {
+            "Sofia": "#ffadad",
+            "Marco": "#ffd6a5",
+            "Giulia": "#fdffb6",
+            "Davide": "#caffbf",
+            "Sara": "#9bf6ff"
+        };
 
-            // 1. Progress Bar e Navigazione
-            function updateUI() {
-                const isDesktop = window.innerWidth > 1024;
-                const scrollableHeight = isDesktop ? mainContent.scrollHeight - mainContent.clientHeight : document.documentElement.scrollHeight - window.innerHeight;
-                const scrollTop = isDesktop ? mainContent.scrollTop : window.scrollY;
-                
-                if (progressBar) {
-                    const scrollPercentage = (scrollTop / scrollableHeight) * 100;
-                    progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
+        const itemForm = document.getElementById("item-form");
+        const itemsContainer = document.getElementById("items-container");
+        const itemsEmptyState = document.getElementById("items-empty");
+
+        const noteForm = document.getElementById("note-form");
+        const notesContainer = document.getElementById("notes-container");
+        const notesEmptyState = document.getElementById("notes-empty");
+
+        const createId = () => {
+            if (window.crypto?.randomUUID) {
+                return window.crypto.randomUUID();
+            }
+            return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        };
+
+        const state = {
+            items: [],
+            notes: []
+        };
+
+        const loadState = () => {
+            const savedItems = localStorage.getItem(STORAGE_KEYS.ITEMS);
+            const savedNotes = localStorage.getItem(STORAGE_KEYS.NOTES);
+
+            if (savedItems) {
+                try {
+                    state.items = JSON.parse(savedItems);
+                } catch (error) {
+                    console.error("Impossibile leggere gli articoli salvati", error);
+                    state.items = [];
                 }
             }
 
-            if (window.getComputedStyle(document.querySelector('.sidebar-nav')).position === 'sticky') {
-                mainContent.addEventListener('scroll', updateUI, { passive: true });
-            } else {
-                window.addEventListener('scroll', updateUI, { passive: true });
+            if (savedNotes) {
+                try {
+                    state.notes = JSON.parse(savedNotes);
+                } catch (error) {
+                    console.error("Impossibile leggere le note salvate", error);
+                    state.notes = [];
+                }
             }
+        };
 
+        const persistState = () => {
+            localStorage.setItem(STORAGE_KEYS.ITEMS, JSON.stringify(state.items));
+            localStorage.setItem(STORAGE_KEYS.NOTES, JSON.stringify(state.notes));
+        };
 
-            // 2. Scroll-spy con Intersection Observer
-            function activateTocLink(id) {
-                tocLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
+        const renderItems = () => {
+            itemsContainer.innerHTML = "";
+            if (!state.items.length) {
+                itemsEmptyState.hidden = false;
+                return;
+            }
+            itemsEmptyState.hidden = true;
+
+            state.items
+                .slice()
+                .sort((a, b) => Number(a.completed) - Number(b.completed))
+                .forEach((item) => {
+                    const card = document.createElement("article");
+                    card.className = "item-card";
+                    card.setAttribute("role", "listitem");
+
+                    const details = document.createElement("div");
+                    details.className = "item-details";
+
+                    const title = document.createElement("h3");
+                    title.textContent = item.name;
+                    details.appendChild(title);
+
+                    const meta = document.createElement("div");
+                    meta.className = "item-meta";
+
+                    const quantity = document.createElement("span");
+                    quantity.textContent = item.quantity;
+                    meta.appendChild(quantity);
+
+                    const owner = document.createElement("span");
+                    owner.className = "tag";
+                    owner.textContent = item.owner;
+                    owner.style.backgroundColor = friendsColors[item.owner] || "rgba(77, 171, 247, 0.12)";
+                    owner.style.color = "#1f2933";
+                    meta.appendChild(owner);
+
+                    if (item.completed) {
+                        const completedTag = document.createElement("span");
+                        completedTag.className = "tag";
+                        completedTag.style.backgroundColor = "rgba(42, 157, 143, 0.15)";
+                        completedTag.style.color = "#2a9d8f";
+                        completedTag.textContent = "Comprato";
+                        meta.appendChild(completedTag);
                     }
+
+                    details.appendChild(meta);
+
+                    const actions = document.createElement("div");
+                    actions.className = "actions";
+
+                    const toggleBtn = document.createElement("button");
+                    toggleBtn.type = "button";
+                    toggleBtn.className = `ghost ${item.completed ? "completed" : ""}`;
+                    toggleBtn.textContent = item.completed ? "Da comprare" : "Fatto";
+                    toggleBtn.addEventListener("click", () => toggleItem(item.id));
+
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.type = "button";
+                    deleteBtn.className = "ghost";
+                    deleteBtn.textContent = "Elimina";
+                    deleteBtn.addEventListener("click", () => deleteItem(item.id));
+
+                    actions.append(toggleBtn, deleteBtn);
+
+                    card.append(details, actions);
+                    itemsContainer.appendChild(card);
                 });
+        };
+
+        const renderNotes = () => {
+            notesContainer.innerHTML = "";
+            if (!state.notes.length) {
+                notesEmptyState.hidden = false;
+                return;
             }
+            notesEmptyState.hidden = true;
 
-            function createObserver() {
-                if (intersectionObserver) intersectionObserver.disconnect();
+            state.notes
+                .slice()
+                .sort((a, b) => b.timestamp - a.timestamp)
+                .forEach((note) => {
+                    const noteCard = document.createElement("article");
+                    noteCard.className = "note-card";
 
-                const options = {
-                    root: null, // viewport
-                    rootMargin: '0px 0px -60% 0px', // si attiva quando la sezione è nel 40% superiore
-                    threshold: 0
-                };
-                
-                intersectionObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            activateTocLink(entry.target.id);
-                        }
+                    const meta = document.createElement("div");
+                    meta.className = "note-meta";
+
+                    const author = document.createElement("span");
+                    author.textContent = note.author;
+                    author.style.fontWeight = "700";
+                    author.style.color = varFromFriend(note.author);
+                    meta.appendChild(author);
+
+                    const date = document.createElement("time");
+                    date.dateTime = new Date(note.timestamp).toISOString();
+                    date.textContent = new Date(note.timestamp).toLocaleString("it-IT", {
+                        day: "2-digit",
+                        month: "short",
+                        hour: "2-digit",
+                        minute: "2-digit"
                     });
-                }, options);
+                    meta.appendChild(date);
 
-                sections.forEach(section => intersectionObserver.observe(section));
-            }
-            
-            createObserver();
-            
-            // 3. Filtro Audience
-            if (audienceFilterControls) {
-                audienceFilterControls.addEventListener('click', (e) => {
-                    if (e.target.tagName === 'BUTTON') {
-                        const filter = e.target.dataset.filter;
-                        
-                        document.body.className = 'aud-tutti'; // Reset
-                        document.body.classList.add(`aud-${filter}`);
-                        if (filter !== 'tutti') {
-                            document.body.classList.add('filter-active');
-                        }
+                    const content = document.createElement("p");
+                    content.textContent = note.message;
 
-                        audienceFilterControls.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-                        e.target.classList.add('active');
-                    }
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.type = "button";
+                    deleteBtn.className = "ghost";
+                    deleteBtn.textContent = "Rimuovi";
+                    deleteBtn.addEventListener("click", () => deleteNote(note.id));
+
+                    noteCard.append(meta, content, deleteBtn);
+                    notesContainer.appendChild(noteCard);
                 });
+        };
+
+        const varFromFriend = (friend) => {
+            const color = friendsColors[friend];
+            if (!color) {
+                return "#708296";
+            }
+            return color;
+        };
+
+        const addItem = (event) => {
+            event.preventDefault();
+            const formData = new FormData(itemForm);
+            const name = formData.get("item").trim();
+            const quantity = formData.get("quantity").trim();
+            const owner = formData.get("owner");
+
+            if (!name || !quantity || !owner) {
+                return;
             }
 
-            // 4. Navigazione da tastiera e pulsanti
-            function getCurrentSectionIndex() {
-                let currentSection = sectionIds[0];
-                let lastVisibleTop = -Infinity;
+            state.items.push({
+                id: createId(),
+                name,
+                quantity,
+                owner,
+                completed: false
+            });
+            persistState();
+            renderItems();
+            itemForm.reset();
+            itemForm.querySelector("input").focus();
+        };
 
-                for (const section of sections) {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-                        currentSection = section.id;
-                        break;
-                    }
-                    if (rect.top < window.innerHeight / 2 && rect.top > lastVisibleTop) {
-                        lastVisibleTop = rect.top;
-                        currentSection = section.id;
-                    }
-                }
-                return sectionIds.indexOf(currentSection);
+        const toggleItem = (id) => {
+            state.items = state.items.map((item) =>
+                item.id === id ? { ...item, completed: !item.completed } : item
+            );
+            persistState();
+            renderItems();
+        };
+
+        const deleteItem = (id) => {
+            state.items = state.items.filter((item) => item.id !== id);
+            persistState();
+            renderItems();
+        };
+
+        const addNote = (event) => {
+            event.preventDefault();
+            const author = noteForm.querySelector("select").value;
+            const message = noteForm.querySelector("textarea").value.trim();
+
+            if (!author || !message) {
+                return;
             }
-            
-            function navigateToSection(index) {
-                if (index >= 0 && index < sectionIds.length) {
-                    const targetSection = document.getElementById(sectionIds[index]);
-                    if (targetSection) {
-                         targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-            }
 
-            prevBtn.addEventListener('click', () => {
-                let currentIndex = getCurrentSectionIndex();
-                navigateToSection(currentIndex - 1);
+            state.notes.push({
+                id: createId(),
+                author,
+                message,
+                timestamp: Date.now()
             });
+            persistState();
+            renderNotes();
+            noteForm.reset();
+            noteForm.querySelector("select").focus();
+        };
 
-            nextBtn.addEventListener('click', () => {
-                let currentIndex = getCurrentSectionIndex();
-                navigateToSection(currentIndex + 1);
-            });
+        const deleteNote = (id) => {
+            state.notes = state.notes.filter((note) => note.id !== id);
+            persistState();
+            renderNotes();
+        };
 
-            document.addEventListener('keydown', (e) => {
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        document.addEventListener("DOMContentLoaded", () => {
+            loadState();
+            renderItems();
+            renderNotes();
 
-                let currentIndex = getCurrentSectionIndex();
-                if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    navigateToSection(currentIndex + 1);
-                } else if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    navigateToSection(currentIndex - 1);
-                }
-            });
-
+            itemForm.addEventListener("submit", addItem);
+            noteForm.addEventListener("submit", addNote);
         });
     </script>
 </body>
 </html>
-
