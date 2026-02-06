@@ -3,202 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CoopStock - Magazzino Comunità Educative</title>
+  <title>CinqueInContatto</title>
   <style>
     :root {
-      --bg: #f3f6fb;
+      --bg: #f4f7ff;
       --card: #ffffff;
-      --text: #203040;
-      --muted: #607080;
-      --primary: #2557d6;
-      --ok: #147a44;
-      --warn: #ce7a00;
-      --danger: #be2d2d;
-      --border: #d8e1ea;
-      --shadow: 0 8px 25px rgba(10, 30, 60, 0.08);
+      --text: #162238;
+      --muted: #5f708f;
+      --primary: #4f46e5;
+      --secondary: #0ea5e9;
+      --ok: #15803d;
+      --warn: #b45309;
+      --danger: #b91c1c;
+      --border: #dce5f2;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
     }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
+    .container { max-width: 1150px; margin: 0 auto; padding: 1rem; }
+    .hero {
+      border-radius: 18px;
+      padding: 1.2rem;
+      color: white;
+      background: linear-gradient(135deg, #4338ca 0%, #4f46e5 45%, #0ea5e9 100%);
+      box-shadow: 0 12px 30px rgba(27, 35, 70, 0.18);
     }
-    header {
-      background: linear-gradient(135deg, #1d4ed8, #2563eb 55%, #0ea5e9);
-      color: #fff;
-      border-radius: 16px;
-      padding: 1.4rem;
-      box-shadow: var(--shadow);
-      margin-bottom: 1rem;
-    }
-    h1 { margin: 0 0 .4rem; font-size: 1.6rem; }
-    .subtitle { margin: 0; opacity: .92; }
+    h1 { margin: 0 0 .4rem; }
+    p { margin: .2rem 0; }
+    .small { color: var(--muted); font-size: .9rem; }
     .grid { display: grid; gap: 1rem; }
-    .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-    .main-grid { grid-template-columns: 1fr; }
-    @media (min-width: 980px) {
-      .main-grid { grid-template-columns: 360px 1fr; }
-    }
+    .kpi { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 1rem; }
+    .main { grid-template-columns: 1fr; margin-top: 1rem; }
+    @media (min-width: 960px) { .main { grid-template-columns: 360px 1fr; } }
     .card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 1rem;
-      box-shadow: var(--shadow);
+      box-shadow: 0 8px 22px rgba(17, 24, 39, 0.07);
     }
-    .kpi-label { color: var(--muted); font-size: .9rem; }
-    .kpi-value { margin-top: .3rem; font-size: 1.6rem; font-weight: 700; }
-    .ok { color: var(--ok); }
-    .warn { color: var(--warn); }
-    .danger { color: var(--danger); }
-    label { display: block; margin: .65rem 0 .3rem; font-weight: 600; }
-    input, select {
+    .kpi-label { color: var(--muted); font-size: .85rem; }
+    .kpi-value { font-size: 1.5rem; margin-top: .3rem; font-weight: 700; }
+    label { display: block; margin: .65rem 0 .35rem; font-weight: 600; }
+    input, select, textarea {
       width: 100%;
-      padding: .58rem .65rem;
       border: 1px solid var(--border);
       border-radius: 10px;
+      padding: .58rem .65rem;
       font-size: .95rem;
       background: #fff;
     }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    textarea { min-height: 76px; resize: vertical; }
+    .row { display: grid; gap: .7rem; grid-template-columns: 1fr 1fr; }
     button {
-      margin-top: .9rem;
       border: 0;
       border-radius: 10px;
-      padding: .65rem .9rem;
+      padding: .62rem .85rem;
       color: #fff;
       background: var(--primary);
       font-weight: 700;
       cursor: pointer;
+      margin-top: .9rem;
     }
-    button.secondary { background: #475569; }
-    button.export { background: #0369a1; }
-    button:disabled { opacity: .5; cursor: not-allowed; }
-    .toolbar {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: .7rem;
-      margin-bottom: .7rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .92rem;
-    }
-    th, td {
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      padding: .55rem .25rem;
-    }
-    th { color: var(--muted); font-weight: 700; }
-    .tag {
-      display: inline-block;
-      border-radius: 999px;
-      padding: .2rem .55rem;
-      font-size: .8rem;
-      font-weight: 700;
-    }
-    .tag-ok { background: #dcfce7; color: #166534; }
-    .tag-warn { background: #fef3c7; color: #92400e; }
-    .tag-danger { background: #fee2e2; color: #991b1b; }
-    .small { color: var(--muted); font-size: .85rem; }
-    .split { display: grid; gap: 1rem; grid-template-columns: 1fr; }
-    @media (min-width: 980px) { .split { grid-template-columns: 1fr 1fr; } }
+    button.alt { background: #475569; }
+    button.cyan { background: #0c7fb3; }
+    .columns { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 960px) { .columns { grid-template-columns: 1fr 1fr; } }
+    table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    th, td { text-align: left; border-bottom: 1px solid var(--border); padding: .5rem .2rem; }
+    th { color: var(--muted); font-size: .85rem; }
+    .badge { display: inline-block; border-radius: 999px; padding: .2rem .52rem; font-weight: 700; font-size: .78rem; }
+    .ok { background: #dcfce7; color: #166534; }
+    .warn { background: #fef3c7; color: #92400e; }
+    .danger { background: #fee2e2; color: #991b1b; }
+    .muted { color: var(--muted); }
   </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>CoopStock</h1>
-      <p class="subtitle">Gestione magazzino per cooperative sociali e comunità educative: tracciamento scorte, movimenti e urgenze.</p>
-    </header>
+    <section class="hero">
+      <h1>CinqueInContatto 👋</h1>
+      <p>Mini app per 5 amici: messaggi rapidi, eventi e task condivisi in un’unica pagina.</p>
+      <p class="small" style="color:#dbeafe;">Funziona in locale e salva tutto nel browser con localStorage.</p>
+    </section>
 
-    <section class="grid kpi-grid" id="kpi"></section>
+    <section id="kpi" class="grid kpi"></section>
 
-    <section class="grid main-grid" style="margin-top:1rem;">
+    <section class="grid main">
       <article class="card">
-        <h2>Registra movimento</h2>
-        <p class="small">Carico: entrata materiale · Scarico: uscita verso comunità educative o consumi interni.</p>
+        <h2>Aggiungi aggiornamento</h2>
+        <label for="author">Amico</label>
+        <select id="author">
+          <option>Anna</option><option>Luca</option><option>Marta</option><option>Gio</option><option>Sam</option>
+        </select>
 
-        <label for="itemName">Articolo</label>
-        <input id="itemName" placeholder="Es. Quaderni A4" />
+        <label for="message">Messaggio</label>
+        <textarea id="message" placeholder="Es. Chi viene sabato sera?"></textarea>
 
         <div class="row">
           <div>
-            <label for="category">Categoria</label>
-            <select id="category">
-              <option value="Didattica">Didattica</option>
-              <option value="Igiene">Igiene</option>
-              <option value="Alimentari">Alimentari</option>
-              <option value="Farmacia">Farmacia</option>
-              <option value="Cancelleria">Cancelleria</option>
-              <option value="Altro">Altro</option>
+            <label for="kind">Tipo</label>
+            <select id="kind">
+              <option value="chat">Chat</option>
+              <option value="evento">Evento</option>
+              <option value="task">Task</option>
             </select>
           </div>
           <div>
-            <label for="unit">Unità</label>
-            <input id="unit" value="pz" />
+            <label for="due">Data (opzionale)</label>
+            <input id="due" type="date" />
           </div>
         </div>
 
-        <div class="row">
-          <div>
-            <label for="type">Tipo</label>
-            <select id="type">
-              <option value="in">Carico (+)</option>
-              <option value="out">Scarico (-)</option>
-            </select>
-          </div>
-          <div>
-            <label for="quantity">Quantità</label>
-            <input id="quantity" type="number" min="1" value="1" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="threshold">Soglia minima</label>
-            <input id="threshold" type="number" min="0" value="5" />
-          </div>
-          <div>
-            <label for="destination">Destinazione</label>
-            <input id="destination" placeholder="Es. Comunità Aurora" />
-          </div>
-        </div>
-
-        <button id="saveMovement">Salva movimento</button>
-        <button id="resetData" class="secondary" type="button">Ripristina dati demo</button>
+        <button id="savePost">Pubblica</button>
+        <button id="resetApp" class="alt" type="button">Ripristina demo</button>
       </article>
 
       <article class="card">
-        <div class="toolbar">
-          <input id="search" placeholder="Cerca articolo o categoria..." />
-          <button id="exportCsv" class="export" type="button">Esporta CSV</button>
-        </div>
-        <div class="split">
+        <div class="row">
           <div>
-            <h2>Stock attuale</h2>
+            <label for="filter">Filtra per tipo</label>
+            <select id="filter">
+              <option value="all">Tutti</option>
+              <option value="chat">Chat</option>
+              <option value="evento">Eventi</option>
+              <option value="task">Task</option>
+            </select>
+          </div>
+          <div>
+            <label for="search">Cerca testo</label>
+            <input id="search" placeholder="cena, cinema, regalo..." />
+          </div>
+        </div>
+
+        <div class="columns" style="margin-top:1rem;">
+          <div>
+            <h2>Bacheca</h2>
             <table>
-              <thead>
-                <tr><th>Articolo</th><th>Categoria</th><th>Q.tà</th><th>Stato</th></tr>
-              </thead>
-              <tbody id="inventoryRows"></tbody>
+              <thead><tr><th>Quando</th><th>Amico</th><th>Tipo</th><th>Messaggio</th></tr></thead>
+              <tbody id="postRows"></tbody>
             </table>
           </div>
           <div>
-            <h2>Ultimi movimenti</h2>
+            <h2>Prossimi eventi / task</h2>
             <table>
-              <thead>
-                <tr><th>Data</th><th>Mov.</th><th>Articolo</th><th>Q.tà</th><th>Dest.</th></tr>
-              </thead>
-              <tbody id="movementRows"></tbody>
+              <thead><tr><th>Data</th><th>Tipo</th><th>Dettaglio</th></tr></thead>
+              <tbody id="nextRows"></tbody>
             </table>
+            <button id="exportJson" class="cyan" type="button">Esporta backup JSON</button>
           </div>
         </div>
       </article>
@@ -206,18 +162,12 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'coopstock-data-v1';
-    const demoData = {
-      inventory: [
-        { name: 'Quaderni A4', category: 'Didattica', unit: 'pz', quantity: 40, threshold: 20 },
-        { name: 'Sapone liquido', category: 'Igiene', unit: 'flaconi', quantity: 8, threshold: 10 },
-        { name: 'Pasta secca', category: 'Alimentari', unit: 'kg', quantity: 25, threshold: 12 },
-        { name: 'Cerotti', category: 'Farmacia', unit: 'scatole', quantity: 3, threshold: 4 }
-      ],
-      movements: [
-        { date: '2026-02-01 09:15', type: 'out', name: 'Quaderni A4', quantity: 10, destination: 'Comunità Aurora' },
-        { date: '2026-02-02 12:00', type: 'in', name: 'Sapone liquido', quantity: 4, destination: 'Fornitore Solidale' },
-        { date: '2026-02-03 17:20', type: 'out', name: 'Pasta secca', quantity: 6, destination: 'Comunità Girasole' }
+    const STORAGE_KEY = 'cinque-in-contatto-v1';
+    const demo = {
+      posts: [
+        { at: '2026-02-06 09:00', author: 'Anna', type: 'chat', text: 'Ragazzi cena venerdì?', due: '' },
+        { at: '2026-02-06 11:30', author: 'Luca', type: 'evento', text: 'Partita a calcetto', due: '2026-02-10' },
+        { at: '2026-02-06 13:15', author: 'Marta', type: 'task', text: 'Prenotare tavolo per 5', due: '2026-02-09' }
       ]
     };
 
@@ -225,143 +175,117 @@
 
     function loadState() {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return structuredClone(demoData);
-      try { return JSON.parse(raw); } catch { return structuredClone(demoData); }
+      if (!raw) return structuredClone(demo);
+      try { return JSON.parse(raw); } catch { return structuredClone(demo); }
     }
 
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    function stockStatus(item) {
-      if (item.quantity <= 0) return ['Esaurito', 'tag-danger'];
-      if (item.quantity <= item.threshold) return ['Sotto scorta', 'tag-warn'];
-      return ['OK', 'tag-ok'];
+    function nowIt() {
+      return new Date().toLocaleString('it-IT', { hour12: false }).replace(',', '');
     }
 
-    function formatDate(d = new Date()) {
-      return d.toLocaleString('it-IT', { hour12: false }).replace(',', '');
+    function typeBadge(type) {
+      if (type === 'evento') return '<span class="badge ok">Evento</span>';
+      if (type === 'task') return '<span class="badge warn">Task</span>';
+      return '<span class="badge">Chat</span>';
     }
 
     function renderKpi() {
-      const totalItems = state.inventory.length;
-      const totalUnits = state.inventory.reduce((a, b) => a + b.quantity, 0);
-      const alerts = state.inventory.filter(i => i.quantity <= i.threshold).length;
-      const outToday = state.movements
-        .filter(m => m.type === 'out' && m.date.startsWith(new Date().toLocaleDateString('sv-SE')))
-        .reduce((a, b) => a + b.quantity, 0);
+      const total = state.posts.length;
+      const events = state.posts.filter(p => p.type === 'evento').length;
+      const tasks = state.posts.filter(p => p.type === 'task').length;
+      const activeFriends = new Set(state.posts.map(p => p.author)).size;
 
       document.getElementById('kpi').innerHTML = `
-        <article class="card"><div class="kpi-label">Articoli censiti</div><div class="kpi-value">${totalItems}</div></article>
-        <article class="card"><div class="kpi-label">Unità disponibili</div><div class="kpi-value">${totalUnits}</div></article>
-        <article class="card"><div class="kpi-label">Allerte scorta</div><div class="kpi-value ${alerts ? 'warn' : 'ok'}">${alerts}</div></article>
-        <article class="card"><div class="kpi-label">Scarichi oggi</div><div class="kpi-value ${outToday ? 'danger' : ''}">${outToday}</div></article>
+        <article class="card"><div class="kpi-label">Messaggi totali</div><div class="kpi-value">${total}</div></article>
+        <article class="card"><div class="kpi-label">Eventi creati</div><div class="kpi-value">${events}</div></article>
+        <article class="card"><div class="kpi-label">Task aperti</div><div class="kpi-value">${tasks}</div></article>
+        <article class="card"><div class="kpi-label">Amici attivi</div><div class="kpi-value">${activeFriends}/5</div></article>
       `;
     }
 
-    function renderInventory() {
-      const q = document.getElementById('search').value.trim().toLowerCase();
-      const filtered = state.inventory.filter(i =>
-        !q || i.name.toLowerCase().includes(q) || i.category.toLowerCase().includes(q)
-      ).sort((a, b) => a.name.localeCompare(b.name));
+    function renderPosts() {
+      const filter = document.getElementById('filter').value;
+      const search = document.getElementById('search').value.trim().toLowerCase();
 
-      document.getElementById('inventoryRows').innerHTML = filtered.map(item => {
-        const [label, cls] = stockStatus(item);
-        return `<tr>
-          <td>${item.name}<div class="small">Soglia: ${item.threshold} ${item.unit}</div></td>
-          <td>${item.category}</td>
-          <td>${item.quantity} ${item.unit}</td>
-          <td><span class="tag ${cls}">${label}</span></td>
-        </tr>`;
-      }).join('') || '<tr><td colspan="4" class="small">Nessun risultato.</td></tr>';
+      const rows = [...state.posts].reverse().filter(p => {
+        const byType = filter === 'all' || p.type === filter;
+        const byText = !search || p.text.toLowerCase().includes(search) || p.author.toLowerCase().includes(search);
+        return byType && byText;
+      });
+
+      document.getElementById('postRows').innerHTML = rows.map(p => `
+        <tr>
+          <td>${p.at}</td>
+          <td>${p.author}</td>
+          <td>${typeBadge(p.type)}</td>
+          <td>${p.text}${p.due ? `<div class="small">Scadenza: ${p.due}</div>` : ''}</td>
+        </tr>
+      `).join('') || '<tr><td colspan="4" class="muted">Nessun messaggio.</td></tr>';
     }
 
-    function renderMovements() {
-      const rows = [...state.movements].slice(-10).reverse();
-      document.getElementById('movementRows').innerHTML = rows.map(m => `
+    function renderNext() {
+      const rows = state.posts
+        .filter(p => p.due)
+        .sort((a, b) => a.due.localeCompare(b.due))
+        .slice(0, 8);
+
+      document.getElementById('nextRows').innerHTML = rows.map(p => `
         <tr>
-          <td>${m.date}</td>
-          <td>${m.type === 'in' ? 'Carico' : 'Scarico'}</td>
-          <td>${m.name}</td>
-          <td>${m.type === 'in' ? '+' : '-'}${m.quantity}</td>
-          <td>${m.destination || '-'}</td>
+          <td>${p.due}</td>
+          <td>${typeBadge(p.type)}</td>
+          <td>${p.text} <span class="small">(${p.author})</span></td>
         </tr>
-      `).join('') || '<tr><td colspan="5" class="small">Nessun movimento.</td></tr>';
+      `).join('') || '<tr><td colspan="3" class="muted">Nessuna data in programma.</td></tr>';
     }
 
     function renderAll() {
       renderKpi();
-      renderInventory();
-      renderMovements();
+      renderPosts();
+      renderNext();
     }
 
-    function registerMovement() {
-      const name = document.getElementById('itemName').value.trim();
-      const category = document.getElementById('category').value;
-      const unit = document.getElementById('unit').value.trim() || 'pz';
-      const type = document.getElementById('type').value;
-      const quantity = Number(document.getElementById('quantity').value);
-      const threshold = Number(document.getElementById('threshold').value);
-      const destination = document.getElementById('destination').value.trim();
+    function publish() {
+      const author = document.getElementById('author').value;
+      const text = document.getElementById('message').value.trim();
+      const type = document.getElementById('kind').value;
+      const due = document.getElementById('due').value;
 
-      if (!name || !quantity || quantity < 1) {
-        alert('Inserisci articolo e quantità valida.');
+      if (!text) {
+        alert('Scrivi un messaggio prima di pubblicare.');
         return;
       }
 
-      let item = state.inventory.find(i => i.name.toLowerCase() === name.toLowerCase());
-      if (!item) {
-        item = { name, category, unit, quantity: 0, threshold: Math.max(0, threshold || 0) };
-        state.inventory.push(item);
-      }
-
-      if (type === 'in') {
-        item.quantity += quantity;
-      } else {
-        if (item.quantity < quantity) {
-          alert('Quantità non disponibile in stock.');
-          return;
-        }
-        item.quantity -= quantity;
-      }
-
-      item.category = category;
-      item.unit = unit;
-      item.threshold = Math.max(0, threshold || 0);
-
-      state.movements.push({ date: formatDate(), type, name: item.name, quantity, destination });
+      state.posts.push({ at: nowIt(), author, type, text, due });
       saveState();
-      document.getElementById('itemName').value = '';
-      document.getElementById('quantity').value = 1;
-      document.getElementById('destination').value = '';
+      document.getElementById('message').value = '';
+      document.getElementById('due').value = '';
       renderAll();
     }
 
-    function exportCsv() {
-      const header = ['Articolo', 'Categoria', 'Quantita', 'Unita', 'Soglia'];
-      const rows = state.inventory.map(i => [i.name, i.category, i.quantity, i.unit, i.threshold]);
-      const content = [header, ...rows]
-        .map(r => r.map(v => `"${String(v).replaceAll('"', '""')}"`).join(';'))
-        .join('\n');
-
-      const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+    function exportJson() {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'coopstock-inventario.csv';
+      link.download = 'cinque-in-contatto-backup.json';
       link.click();
       URL.revokeObjectURL(url);
     }
 
-    function resetData() {
+    function resetDemo() {
       localStorage.removeItem(STORAGE_KEY);
       location.reload();
     }
 
-    document.getElementById('saveMovement').addEventListener('click', registerMovement);
-    document.getElementById('search').addEventListener('input', renderInventory);
-    document.getElementById('exportCsv').addEventListener('click', exportCsv);
-    document.getElementById('resetData').addEventListener('click', resetData);
+    document.getElementById('savePost').addEventListener('click', publish);
+    document.getElementById('filter').addEventListener('change', renderPosts);
+    document.getElementById('search').addEventListener('input', renderPosts);
+    document.getElementById('exportJson').addEventListener('click', exportJson);
+    document.getElementById('resetApp').addEventListener('click', resetDemo);
 
     renderAll();
   </script>
