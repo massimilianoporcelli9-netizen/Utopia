@@ -1,0 +1,1623 @@
+<!-- Mansionario "Nemo e Dory" — Comunità educativa residenziale mamma-bambino (Gualdo Cattaneo) -->
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <title>Mansionario "Nemo e Dory" — Comunità mamma-bambino</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: light;
+      --educativo: #0b5ed7;
+      --cura: #0f9d58;
+      --sicurezza: #c62828;
+      --amministrativo: #c27c0e;
+      --bg: #f5f7fb;
+      --text: #101225;
+      --border: #cfd6e4;
+      --focus: #ffbf47;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    a:focus, button:focus, summary:focus {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+    header {
+      background: white;
+      padding: 2rem 1rem 1.5rem;
+      border-bottom: 4px solid var(--educativo);
+      position: relative;
+    }
+    header h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2rem;
+    }
+    .hero-meta {
+      display: grid;
+      gap: 0.5rem;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      font-size: 0.95rem;
+    }
+    .pill {
+      background: rgba(11,94,215,0.1);
+      color: var(--educativo);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .pill svg { width: 1rem; height: 1rem; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(16,18,37,0.08);
+    }
+    nav .nav-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 0.75rem 1rem 0.5rem;
+    }
+    .search-group {
+      position: relative;
+      flex: 1 1 220px;
+    }
+    .search-group input {
+      width: 100%;
+      padding: 0.55rem 2.5rem 0.55rem 2rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .search-group svg {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      fill: currentColor;
+      opacity: 0.6;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .filters label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    select, button {
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: white;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    button:hover, select:hover {
+      background: #eaf1ff;
+    }
+    .quick-filters button {
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .quick-filters button.active {
+      background: var(--educativo);
+      color: white;
+      border-color: var(--educativo);
+    }
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(11,94,215,0.15);
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: var(--educativo);
+      transition: width 0.2s ease;
+    }
+    main {
+      padding: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+    }
+    .toc {
+      position: sticky;
+      top: 5.5rem;
+      align-self: start;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1rem;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .layout {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: minmax(0,1fr);
+    }
+    @media (min-width: 1100px) {
+      .layout {
+        grid-template-columns: 260px minmax(0,1fr);
+      }
+    }
+    .section {
+      background: white;
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(16,18,37,0.05);
+    }
+    .section h2 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    details {
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      margin: 1rem 0;
+      background: #fdfdff;
+      overflow: hidden;
+    }
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    summary::-webkit-details-marker { display: none; }
+    .badge {
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+    }
+    .badge.educativo { background: var(--educativo); }
+    .badge.cura { background: var(--cura); }
+    .badge.sicurezza { background: var(--sicurezza); }
+    .badge.amministrativo { background: var(--amministrativo); }
+    .card-content {
+      padding: 0 1rem 1rem;
+      display: grid;
+      gap: 1rem;
+    }
+    .checklist ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .checklist li {
+      display: flex;
+      gap: 0.5rem;
+      align-items: start;
+    }
+    .checklist input[type="checkbox"] {
+      width: 1.1rem;
+      height: 1.1rem;
+      margin-top: 0.2rem;
+    }
+    .sop ol {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .buttons button {
+      font-weight: 600;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: white;
+    }
+    caption {
+      font-weight: 700;
+      text-align: left;
+      padding: 0.5rem 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.65rem;
+      text-align: left;
+    }
+    th {
+      background: #eef2ff;
+    }
+    .pillars {
+      background: rgba(11,94,215,0.08);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+    .why-card {
+      background: rgba(16,18,37,0.05);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+    .icon-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    .icon-label svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      fill: currentColor;
+    }
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(16,18,37,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 2000;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+    }
+    .modal-content button {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    @media print {
+      nav, .buttons, .quick-filters, .modal { display: none !important; }
+      body { background: white; }
+      main { margin: 0; padding: 1rem; }
+      .section { box-shadow: none; page-break-inside: avoid; }
+      table { font-size: 0.85rem; }
+      @page { size: A4; margin: 12mm; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="pill">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v2H6a2 2 0 0 0-2 2v9h16v-9a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm0 2a3 3 0 0 1 3 3v2H9V7a3 3 0 0 1 3-3Zm-5 9h2v5H7v-5Zm4 0h2v5h-2v-5Zm6 0v5h-2v-5h2Z"/></svg>
+      Comunità mamma-bambino "Nemo e Dory"
+    </span>
+    <h1>Canvas operativo e mansionario</h1>
+    <div class="hero-meta">
+      <div><strong>Indirizzo:</strong> [DA COMPILARE], Gualdo Cattaneo (PG)</div>
+      <div><strong>Contatti h24:</strong> Tel. [DA COMPILARE] · Email [DA COMPILARE]</div>
+      <div><strong>Turni standard:</strong> 07:00-15:00 · 14:00-22:00 · 22:00-07:00</div>
+      <div><strong>Capienza:</strong> 5 nuclei mamma-bambino · 8 posti letto bambini</div>
+    </div>
+    <div class="pillars" role="note">
+      <strong>Principi guida rapidi</strong>
+      <span>• Attaccamento sicuro e tutela integrata del minore</span>
+      <span>• Empowerment genitoriale e autonomia socio-abitativa</span>
+      <span>• Coordinamento inter-istituzionale trasparente e tracciabile</span>
+    </div>
+  </header>
+  <nav aria-label="Strumenti mansionario">
+    <div class="progress-container" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="nav-inner">
+      <div class="search-group">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14Z"/></svg>
+        <label class="sr-only" for="searchInput">Cerca nel mansionario</label>
+        <input id="searchInput" type="search" placeholder="Cerca mansioni, ruoli, parole chiave" aria-label="Cerca nel mansionario" />
+      </div>
+      <div class="filters" role="group" aria-label="Filtri">
+        <label for="roleFilter">Ruolo</label>
+        <select id="roleFilter" aria-label="Filtra per ruolo">
+          <option value="">Tutti</option>
+          <option>Coordinatore/trice</option>
+          <option>Educatore/trice diurno</option>
+          <option>Educatore/trice notturno/a</option>
+          <option>Operatore socio-educativo/OSS</option>
+          <option>Psicologo/a</option>
+          <option>Assistente sociale/Amministrazione</option>
+          <option>Volontari/Tirocinanti</option>
+        </select>
+        <label for="shiftFilter">Turno</label>
+        <select id="shiftFilter" aria-label="Filtra per turno">
+          <option value="">Tutti</option>
+          <option>Diurno</option>
+          <option>Serale</option>
+          <option>Notturno</option>
+          <option>H24</option>
+        </select>
+        <label for="areaFilter">Area</label>
+        <select id="areaFilter" aria-label="Filtra per area">
+          <option value="">Tutte</option>
+          <option>Educativo</option>
+          <option>Cura/Salute</option>
+          <option>Sicurezza</option>
+          <option>Amministrativo</option>
+        </select>
+      </div>
+      <div class="quick-filters" role="group" aria-label="Filtri rapidi">
+        <button data-quick="diurno">Diurno</button>
+        <button data-quick="notturno">Notturno</button>
+        <button data-quick="emergenze">Emergenze</button>
+        <button data-quick="onboarding">Nuovo personale</button>
+      </div>
+      <div class="buttons">
+        <button type="button" id="printBtn">Stampa/Salva PDF</button>
+        <button type="button" id="onePagerBtn">Scarica One-Pager Turno</button>
+        <button type="button" id="registroBtn">Registro Consegne</button>
+        <button type="button" id="quickSopBtn" aria-haspopup="dialog" aria-controls="quickSopModal">Quick-SOP ?</button>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="layout">
+      <aside class="toc" aria-label="Indice">
+        <strong>Indice sezioni</strong>
+        <ol>
+          <li><a href="#intro">0. Introduzione &amp; principi</a></li>
+          <li><a href="#ruoli">1. Ruoli &amp; responsabilità</a></li>
+          <li><a href="#turni">2. Turnazioni &amp; routine</a></li>
+          <li><a href="#processi">3. Processi educativi (SOP)</a></li>
+          <li><a href="#tutela">4. Tutela, salute &amp; sicurezza</a></li>
+          <li><a href="#strumenti">5. Strumenti &amp; registri</a></li>
+          <li><a href="#kpi">6. Indicatori di qualità &amp; audit</a></li>
+          <li><a href="#onboarding">7. Onboarding nuovo/a in turno</a></li>
+        </ol>
+      </aside>
+      <div>
+        <section id="intro" class="section" data-tags="introduzione h24 educativo">
+          <h2>0. Introduzione &amp; principi</h2>
+          <p class="icon-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3v5a9 9 0 0 0 18 0h-2a7 7 0 0 1-14 0V6Zm5 4a2 2 0 1 1 4 0v1h-4v-1Z"/></svg>Accoglienza centrata su madre e bambino</p>
+          <p><strong>Finalità del servizio:</strong> accogliere nuclei mamma-bambino in situazione di vulnerabilità garantendo protezione, accompagnamento educativo e supporto alla genitorialità responsabile.</p>
+          <p><strong>Cornice educativa:</strong> approccio centrato sull'attaccamento, sviluppo delle competenze genitoriali, promozione dell'autonomia abitativa e sociale, tutela integrata dei minori e empowerment della rete familiare.</p>
+          <p><strong>Riferimenti normativi:</strong> [DA COMPILARE] (normativa regionale strutture residenziali, protocolli tribunale per i minorenni, linee guida servizi socio-educativi).</p>
+          <p><strong>Privacy e GDPR:</strong> trattamento dati nel rispetto del Regolamento (UE) 2016/679, registri accessibili solo a personale autorizzato, informative consegnate e firmate da ogni madre ospite, divieto di divulgazione verso terzi non autorizzati.</p>
+          <div class="why-card" aria-label="Perché conta">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>Assicura coerenza con mandato dell'ente inviante e tutela legale.</li>
+              <li>Definisce standard operativi condivisi per tutto il personale.</li>
+              <li>Protegge diritti e dignità di madri e bambini accolti.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="ruoli" class="section" data-tags="ruoli educativo amministrativo">
+          <h2>1. Ruoli &amp; responsabilità</h2>
+          <div class="table-wrapper">
+            <table>
+              <caption>Matrice RACI per ruoli chiave</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Attività</th>
+                  <th scope="col">Coordinatore/trice</th>
+                  <th scope="col">Educatore/trice diurno</th>
+                  <th scope="col">Educatore/trice notturno/a</th>
+                  <th scope="col">Operatore socio-educativo/OSS</th>
+                  <th scope="col">Psicologo/a</th>
+                  <th scope="col">Assistente sociale/Amministrazione</th>
+                  <th scope="col">Volontari/Tirocinanti</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">PEI/PAI del nucleo</th>
+                  <td>R</td>
+                  <td>A</td>
+                  <td>I</td>
+                  <td>I</td>
+                  <td>C</td>
+                  <td>I</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <th scope="row">Gestione turni</th>
+                  <td>A</td>
+                  <td>I</td>
+                  <td>I</td>
+                  <td>I</td>
+                  <td>-</td>
+                  <td>C</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <th scope="row">Consegne e registri</th>
+                  <td>C</td>
+                  <td>A</td>
+                  <td>A</td>
+                  <td>R</td>
+                  <td>I</td>
+                  <td>C</td>
+                  <td>I</td>
+                </tr>
+                <tr>
+                  <th scope="row">Emergenze sanitarie</th>
+                  <td>A</td>
+                  <td>R</td>
+                  <td>R</td>
+                  <td>C</td>
+                  <td>C</td>
+                  <td>I</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <th scope="row">Audit qualità</th>
+                  <td>A</td>
+                  <td>C</td>
+                  <td>C</td>
+                  <td>I</td>
+                  <td>C</td>
+                  <td>R</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <article data-role="Coordinatore/trice" data-shift="H24" data-area="Amministrativo Educativo" class="role-card">
+            <details open>
+              <summary>
+                Coordinatore/trice di comunità
+                <span class="badge amministrativo">Amministrativo</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Mission:</strong> garantire continuità gestionale, qualità educativa e conformità normativa del servizio.</div>
+                <div class="checklist" aria-label="Attività ricorrenti">
+                  <strong>Attività ricorrenti</strong>
+                  <ul>
+                    <li><input type="checkbox" aria-label="Pianifica turni e coperture" />Pianifica turni, ferie e reperibilità.</li>
+                    <li><input type="checkbox" aria-label="Supervisiona PEI" />Supervisiona PEI/PAI, approva revisioni mensili.</li>
+                    <li><input type="checkbox" aria-label="Conduce briefing" />Conduce briefing settimanali di équipe e debriefing post-crisi.</li>
+                    <li><input type="checkbox" aria-label="Interfaccia con enti" />Interfaccia con enti invianti, Tribunale, servizi territoriali.</li>
+                  </ul>
+                </div>
+                <div><strong>Deliverable/Registri:</strong> piano turni mensile, verbali équipe, report crisi, registro audit.</div>
+                <div><strong>Indicatori qualità:</strong> copertura turni 100%, revisioni PEI entro 30 gg, incident report chiusi entro 72h.</div>
+                <div><strong>Limiti/Confini:</strong> non sostituisce ruoli educativi salvo emergenze, non gestisce contante personale ospiti.</div>
+                <div class="sop" aria-label="SOP gestione crisi">
+                  <strong>SOP gestione crisi (1-2-3)</strong>
+                  <ol>
+                    <li>Riceve allerta dall'operatore, raccoglie dati e valuta gravità.</li>
+                    <li>Attiva protocolli (sanitari, sicurezza, tutela minori) e coordina risorse.</li>
+                    <li>Documenta l'evento, pianifica follow-up e comunica agli enti.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice diurno" data-shift="Diurno" data-area="Educativo" class="role-card">
+            <details>
+              <summary>
+                Educatore/trice professionale (diurno)
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Mission:</strong> sostenere madri e bambini nelle routine quotidiane promuovendo competenze genitoriali e autonomia.</div>
+                <div class="checklist">
+                  <strong>Attività ricorrenti</strong>
+                  <ul>
+                    <li><input type="checkbox" aria-label="Conduce interventi educativi" />Conduce interventi educativi individuali e di gruppo.</li>
+                    <li><input type="checkbox" aria-label="Registra osservazioni" />Registra osservazioni su diario educativo e schede PEI.</li>
+                    <li><input type="checkbox" aria-label="Accompagna esterni" />Accompagna madre/bambino a scuola, consultorio, servizi.</li>
+                    <li><input type="checkbox" aria-label="Facilita laboratori" />Facilita laboratori competenze domestiche e cura neonati.</li>
+                  </ul>
+                </div>
+                <div><strong>Deliverable/Registri:</strong> diario educativo, PEI aggiornati, modulistica accompagnamenti.</div>
+                <div><strong>Indicatori qualità:</strong> 100% PEI con obiettivi SMART, adesione appuntamenti sanitari ≥90%.</div>
+                <div><strong>Limiti/Confini:</strong> non somministra farmaci senza delega, non effettua valutazioni cliniche.</div>
+                <div class="sop">
+                  <strong>SOP documentazione (1-2-3)</strong>
+                  <ol>
+                    <li>Compila diario entro fine turno con osservazioni oggettive.</li>
+                    <li>Collega fatti a obiettivi PEI, segnala criticità alla coordinatrice.</li>
+                    <li>Archivia file su [piattaforma] e invia alert in caso di emergenze.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice notturno/a" data-shift="Notturno" data-area="Sicurezza Educativo" class="role-card">
+            <details>
+              <summary>
+                Educatore/trice notturno/a
+                <span class="badge sicurezza">Sicurezza</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Mission:</strong> garantire sicurezza, vigilanza e continuità educativa nelle ore notturne.</div>
+                <div class="checklist">
+                  <strong>Attività ricorrenti</strong>
+                  <ul>
+                    <li><input type="checkbox" aria-label="Effettua ronde" />Effettua ronde strutturate ogni 60 minuti.</li>
+                    <li><input type="checkbox" aria-label="Gestisce emergenze" />Gestisce emergenze sanitarie/comportamentali attivando protocolli.</li>
+                    <li><input type="checkbox" aria-label="Controlla accessi" />Controlla accessi, registra rientri tardivi autorizzati.</li>
+                    <li><input type="checkbox" aria-label="Aggiorna consegne" />Redige report notturno e aggiorna registro consegne.</li>
+                  </ul>
+                </div>
+                <div><strong>Deliverable/Registri:</strong> registro ronde, report notturno, check antincendio.</div>
+                <div><strong>Indicatori qualità:</strong> ronde registrate 100%, tempo risposta emergenza &lt;5 minuti.</div>
+                <div><strong>Limiti/Confini:</strong> non lascia la struttura, non modifica terapie senza delega medica.</div>
+                <div class="sop">
+                  <strong>SOP allerta notturna (1-2-3)</strong>
+                  <ol>
+                    <li>Valuta segnalazione (pianto, allarme, richiesta madre) e verifica in sicurezza.</li>
+                    <li>Interviene secondo protocollo (insonnia/pianto [DA COMPILARE], emergenza sanitaria, conflitto).</li>
+                    <li>Documenta azioni, informa il turno mattutino e la coordinatrice.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Operatore socio-educativo/OSS" data-shift="H24" data-area="Cura/Salute Sicurezza" class="role-card">
+            <details>
+              <summary>
+                Operatore socio-educativo / OSS
+                <span class="badge cura">Cura/Salute</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Mission:</strong> sostenere il benessere quotidiano di madri e bambini attraverso supporto pratico e igienico-sanitario.</div>
+                <div class="checklist">
+                  <strong>Attività ricorrenti</strong>
+                  <ul>
+                    <li><input type="checkbox" aria-label="Supporta igiene" />Supporta igiene personale e cura neonati rispettando autonomie.</li>
+                    <li><input type="checkbox" aria-label="Gestisce pasti" />Gestisce preparazione/porzionatura pasti e dieta speciale.</li>
+                    <li><input type="checkbox" aria-label="Somministra farmaci" />Somministra farmaci secondo protocollo [DA COMPILARE] con doppia verifica.</li>
+                    <li><input type="checkbox" aria-label="Riordina ambienti" />Effettua riordino ambienti comuni, check DPI e lavanderia.</li>
+                  </ul>
+                </div>
+                <div><strong>Deliverable/Registri:</strong> registro farmaci, check-list pulizie, inventario DPI.</div>
+                <div><strong>Indicatori qualità:</strong> zero errori somministrazione, audit igiene ≥95% conformità.</div>
+                <div><strong>Limiti/Confini:</strong> non conduce colloqui educativi individuali, non firma documenti legali.</div>
+                <div class="sop">
+                  <strong>SOP somministrazione farmaci (1-2-3)</strong>
+                  <ol>
+                    <li>Verifica prescrizione, consensi e scadenze insieme a un secondo operatore.</li>
+                    <li>Somministra farmaco, registra tripla firma (preparazione, somministrazione, verifica).</li>
+                    <li>Ripone in armadietto chiuso, aggiorna registro scorte e segnala anomalie.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Psicologo/a" data-shift="Diurno" data-area="Educativo" class="role-card">
+            <details>
+              <summary>
+                Psicologo/a [se previsto]
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Mission:</strong> offrire supporto clinico e supervisione psicopedagogica all'équipe e ai nuclei.</div>
+                <div class="checklist">
+                  <strong>Attività ricorrenti</strong>
+                  <ul>
+                    <li><input type="checkbox" aria-label="Conduce colloqui" />Conduce colloqui clinici con madri e bambini (frequenza [DA COMPILARE]).</li>
+                    <li><input type="checkbox" aria-label="Sostegno genitoriale" />Facilita sessioni di sostegno genitoriale e psicoeducazione.</li>
+                    <li><input type="checkbox" aria-label="Supervisione équipe" />Conduce supervisione d'équipe programmata.</li>
+                    <li><input type="checkbox" aria-label="Redige report" />Redige report clinici per Tribunale/servizi con consenso.</li>
+                  </ul>
+                </div>
+                <div><strong>Deliverable/Registri:</strong> cartelle cliniche riservate, verbali supervisione, report trimestrali.</div>
+                <div><strong>Indicatori qualità:</strong> presenze ai colloqui ≥80%, attuazione piani supporto entro 10 gg dal bisogno.</div>
+                <div><strong>Limiti/Confini:</strong> non prescrive farmaci, non interviene senza consenso informato.</div>
+                <div class="sop">
+                  <strong>SOP accesso psicologico (1-2-3)</strong>
+                  <ol>
+                    <li>Riceve segnalazione dal team, valuta priorità clinica.</li>
+                    <li>Programma incontro, raccoglie consensi privacy specifici.</li>
+                    <li>Condivide esiti sintetici con équipe preservando riservatezza.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Assistente sociale/Amministrazione" data-shift="Diurno" data-area="Amministrativo" class="role-card">
+            <details>
+              <summary>
+                Assistente sociale / Amministrazione
+                <span class="badge amministrativo">Amministrativo</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Mission:</strong> presidiare relazione con enti invianti e gestione amministrativa dei progetti individuali.</div>
+                <div class="checklist">
+                  <strong>Attività ricorrenti</strong>
+                  <ul>
+                    <li><input type="checkbox" aria-label="Coordina enti" />Coordina incontri con servizi sociali, tribunale, consultori.</li>
+                    <li><input type="checkbox" aria-label="Gestisce budget" />Gestisce budget famiglie [DA COMPILARE] e rendicontazioni.</li>
+                    <li><input type="checkbox" aria-label="Archivia documenti" />Mantiene archivio documentale sicuro e aggiornato.</li>
+                    <li><input type="checkbox" aria-label="Supporta audit" />Supporta audit e invio report istituzionali.</li>
+                  </ul>
+                </div>
+                <div><strong>Deliverable/Registri:</strong> fascicoli digitali, piani economici, verbali incontri istituzionali.</div>
+                <div><strong>Indicatori qualità:</strong> documenti consegnati entro scadenze, zero non conformità amministrative.</div>
+                <div><strong>Limiti/Confini:</strong> non entra nelle stanze senza consenso, non modifica PEI senza équipe.</div>
+                <div class="sop">
+                  <strong>SOP gestione documenti (1-2-3)</strong>
+                  <ol>
+                    <li>Riceve documentazione, verifica completezza e firme.</li>
+                    <li>Archivia su [piattaforma], assegna permessi di accesso.</li>
+                    <li>Programma reminder scadenze e aggiornamenti.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Volontari/Tirocinanti" data-shift="Diurno" data-area="Educativo" class="role-card">
+            <details>
+              <summary>
+                Volontari / Tirocinanti
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Mission:</strong> supportare attività educative e quotidiane sotto supervisione.</div>
+                <div class="checklist">
+                  <strong>Attività ricorrenti</strong>
+                  <ul>
+                    <li><input type="checkbox" aria-label="Affiancamento" />Affiancamento a educatori in laboratori e routine.</li>
+                    <li><input type="checkbox" aria-label="Supporto compiti" />Supporto compiti scolastici bambini in presenza educatore.</li>
+                    <li><input type="checkbox" aria-label="Animazione" />Animazione ludica supervisionata in spazi comuni.</li>
+                  </ul>
+                </div>
+                <div><strong>Deliverable/Registri:</strong> scheda presenza volontario, report tutor, check liste attività.</div>
+                <div><strong>Indicatori qualità:</strong> 100% attività supervisionate, feedback positivo madre/bambino.</div>
+                <div><strong>Limiti/Confini:</strong> no somministrazione farmaci, no turni solitari, no uso immagini senza consenso scritto.</div>
+                <div class="sop">
+                  <strong>SOP ingresso volontario (1-2-3)</strong>
+                  <ol>
+                    <li>Firma patto volontario e privacy, riceve badge temporaneo.</li>
+                    <li>Segue affiancamento con tutor designato per minimo 3 turni.</li>
+                    <li>Compila scheda feedback al termine del servizio.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <div class="why-card">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>Chiarezza di ruoli riduce sovrapposizioni e conflitti.</li>
+              <li>Indicatori e deliverable monitorano la qualità dell'intervento.</li>
+              <li>Confini professionali preservano sicurezza giuridica ed etica.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="turni" class="section" data-tags="turni diurno notturno sicurezza educativo">
+          <h2>2. Turnazioni &amp; routine</h2>
+          <p class="icon-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm1 3h-2v6l5 3 1-1.73-4-2.27V7Z"/></svg>Coordinamento orari e passaggi di consegne</p>
+          <article data-role="Coordinatore/trice Educatore/trice diurno Operatore socio-educativo/OSS" data-shift="Diurno" data-area="Educativo Cura/Salute">
+            <details open>
+              <summary>
+                Apertura turno diurno (07:00–15:00 / 08:00–16:00)
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="checklist">
+                  <strong>Checklist apertura</strong>
+                  <ul>
+                    <li><input type="checkbox" />Leggere consegne e verificare criticità aperte.</li>
+                    <li><input type="checkbox" />Controllare stato nuclei, presenze e segnalare assenze.</li>
+                    <li><input type="checkbox" />Validare agenda del giorno (appuntamenti, scadenze documentali).</li>
+                    <li><input type="checkbox" />Verificare farmaci del giorno e firme programmate.</li>
+                    <li><input type="checkbox" />Pianificare pasti, spese e rientri con OSS.</li>
+                  </ul>
+                </div>
+                <div><strong>Brief 10’:</strong> aggiornamento stato emotivo madri, eventuali restrizioni Tribunale, assegnazione compiti.</div>
+                <div class="sop">
+                  <strong>Routine oraria</strong>
+                  <ol>
+                    <li><strong>07:00-08:00:</strong> sveglia nuclei, supporto igiene mattutina, check sonno notte.</li>
+                    <li><strong>08:00-09:00:</strong> colazioni assistite, verifica presidi per neonati.</li>
+                    <li><strong>09:00-11:00:</strong> accompagnamenti scuola/consultorio, incontri individuali.</li>
+                    <li><strong>11:00-13:00:</strong> laboratori competenze domestiche, preparazione pranzo.</li>
+                    <li><strong>13:00-15:00:</strong> pranzo, pulizie leggere, aggiornamento diari e PEI.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice diurno Operatore socio-educativo/OSS" data-shift="Serale" data-area="Educativo Cura/Salute">
+            <details>
+              <summary>
+                Turno serale (14:00–22:00)
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Obiettivi:</strong> accompagnare routine serale, garantire clima rassicurante e consegne complete al notturno.</div>
+                <div class="checklist">
+                  <strong>Compiti principali</strong>
+                  <ul>
+                    <li><input type="checkbox" />Supporto compiti scolastici e attività strutturate post-merenda.</li>
+                    <li><input type="checkbox" />Monitoraggio rientri da attività esterne, registrazione orari.</li>
+                    <li><input type="checkbox" />Preparazione bagnetto/igiene serale con coaching alle madri.</li>
+                    <li><input type="checkbox" />De-escalation serale: routine calmanti, letture, gestione conflitti.</li>
+                    <li><input type="checkbox" />Lavatrici e gestione biancheria secondo piano pulizie.</li>
+                    <li><input type="checkbox" />Redazione consegne strutturate al notturno con priorità.</li>
+                  </ul>
+                </div>
+                <div class="sop">
+                  <strong>SOP consegne serali (1-2-3)</strong>
+                  <ol>
+                    <li>Compilare registro consegne con eventi significativi e farmaci programmati.</li>
+                    <li>Segnalare criticità aperte (conflitti, sintomi, visite previste).</li>
+                    <li>Confronto verbale con notturnista (min. 10 minuti) prima dell'uscita.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice notturno/a" data-shift="Notturno" data-area="Sicurezza">
+            <details>
+              <summary>
+                Turno notturno (22:00–07:00)
+                <span class="badge sicurezza">Sicurezza</span>
+              </summary>
+              <div class="card-content">
+                <div><strong>Obiettivi:</strong> vigilanza continua, gestione emergenze e continuità documentale.</div>
+                <div class="checklist">
+                  <strong>Routine notturna</strong>
+                  <ul>
+                    <li><input type="checkbox" />Ronde strutturate ogni ora con registrazione luoghi visitati.</li>
+                    <li><input type="checkbox" />Controllo dispositivi antincendio e vie di fuga libere.</li>
+                    <li><input type="checkbox" />Accoglienza rientri autorizzati, verifica condizioni.</li>
+                    <li><input type="checkbox" />Gestione protocollo insonnia/pianto minore [DA COMPILARE].</li>
+                    <li><input type="checkbox" />Aggiornamento registro farmaci (eventuali richieste notturne).</li>
+                  </ul>
+                </div>
+                <div class="sop">
+                  <strong>SOP report notturno (1-2-3)</strong>
+                  <ol>
+                    <li>Annotare orari ronde e osservazioni principali.</li>
+                    <li>Segnalare eventi o allarmi con azioni intraprese.</li>
+                    <li>Trasferire informazioni al turno diurno entro le 07:00.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Tutti" data-shift="H24" data-area="Amministrativo">
+            <details>
+              <summary>
+                Chiusura turno (tutti)
+                <span class="badge amministrativo">Amministrativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="checklist">
+                  <strong>Checklist handover</strong>
+                  <ul>
+                    <li><input type="checkbox" />Utilizzare schema SBAR (Situazione, Background, Assessment, Raccomandazioni).</li>
+                    <li><input type="checkbox" />Aggiornare registro consegne con orario, firma e destinatario.</li>
+                    <li><input type="checkbox" />Caricare documenti digitali su [piattaforma] con tag turno/data.</li>
+                    <li><input type="checkbox" />Segnalare incident/near miss attraverso form dedicato.</li>
+                  </ul>
+                </div>
+                <div class="sop">
+                  <strong>SOP handover (1-2-3)</strong>
+                  <ol>
+                    <li>Preparare sintesi scritta e materiali di supporto prima del passaggio.</li>
+                    <li>Condurre consegna in spazio dedicato, verificare comprensione del subentrante.</li>
+                    <li>Registrare eventuali azioni posticipate e responsabili assegnati.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <div class="why-card">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>Routine condivise riducono errori e garantiscono continuità educativa.</li>
+              <li>Handover strutturato limita perdite di informazione e rischi.</li>
+              <li>Monitoraggio orario facilita audit e miglioramento continuo.</li>
+            </ul>
+          </div>
+        </section>
+                        <th scope="col">Azioni correttive</th>
+                        <th scope="col">Firma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Cucina</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Incident / Near-miss report</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Data/Ora</th>
+                        <th scope="col">Luogo</th>
+                        <th scope="col">Descrizione evento</th>
+                        <th scope="col">Persone coinvolte</th>
+                        <th scope="col">Azioni immediate</th>
+                        <th scope="col">Follow-up</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Piano pasti &amp; allergie</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Settimana</th>
+                        <th scope="col">Pasto</th>
+                        <th scope="col">Menu</th>
+                        <th scope="col">Allergie/intolleranze</th>
+                        <th scope="col">Note OSS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>[____]</td>
+                        <td>Colazione/Pranzo/Cena</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Piano pulizie</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Area</th>
+                        <th scope="col">Frequenza</th>
+                        <th scope="col">Responsabile</th>
+                        <th scope="col">Data esecuzione</th>
+                        <th scope="col">Firma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Nursery</td>
+                        <td>Quotidiana</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Calendario turni &amp; matrice RACI</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Settimana</th>
+                        <th scope="col">Turno</th>
+                        <th scope="col">Operatore</th>
+                        <th scope="col">Ruolo</th>
+                        <th scope="col">Note</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>[____]</td>
+                        <td>Diurno/Serale/Notturno</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+          </article>
+          <div class="why-card">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>Template uniformano la raccolta dati e semplificano audit.</li>
+              <li>Registri strutturati migliorano tracciabilità e accountability.</li>
+              <li>Supportano onboarding e continuità documentale.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="processi" class="section" data-tags="processi educativo cura/salute">
+          <h2>3. Processi educativi (SOP)</h2>
+          <article data-role="Tutti" data-shift="Diurno" data-area="Educativo">
+            <details open>
+              <summary>
+                Accoglienza nuovo nucleo
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="sop">
+                  <strong>Passi operativi</strong>
+                  <ol>
+                    <li><strong>Pre-ingresso:</strong> ricezione invio, verifica documenti (decreto, piani sanitari, consensi) [DA COMPILARE].</li>
+                    <li><strong>Giorno 1:</strong> accoglienza con presentazione équipe, consegna regolamento e modulistica.</li>
+                    <li><strong>Prime 72h:</strong> orientamento spazi, valutazione rischi, definizione piano osservativo.</li>
+                  </ol>
+                </div>
+                <div class="checklist">
+                  <strong>Checklist documenti</strong>
+                  <ul>
+                    <li><input type="checkbox" />Documento identità madre e minori.</li>
+                    <li><input type="checkbox" />Tessere sanitarie, pediatra, vaccini.</li>
+                    <li><input type="checkbox" />Consenso privacy e autorizzazioni immagini.</li>
+                    <li><input type="checkbox" />Piano terapeutico/farmaci aggiornato.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice diurno Coordinatore/trice Psicologo/a" data-shift="H24" data-area="Educativo">
+            <details>
+              <summary>
+                PEI/PAI del nucleo
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="sop">
+                  <strong>SOP PEI/PAI (1-2-3)</strong>
+                  <ol>
+                    <li>Assessment iniziale entro 10 gg (osservazioni educatori, psicologo, servizi).</li>
+                    <li>Definizione obiettivi SMART, interventi e indicatori di monitoraggio condivisi con la madre.</li>
+                    <li>Revisione mensile con firme madre/servizi e aggiornamento piattaforma.</li>
+                  </ol>
+                </div>
+                <div><strong>Output attesi:</strong> scheda PEI firmata, piano azione settimanale, report avanzamento mensile.</div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice diurno Operatore socio-educativo/OSS" data-shift="Diurno" data-area="Cura/Salute Educativo">
+            <details>
+              <summary>
+                Sostegno genitoriale
+                <span class="badge cura">Cura/Salute</span>
+              </summary>
+              <div class="card-content">
+                <div class="sop">
+                  <strong>Focus intervento</strong>
+                  <ol>
+                    <li>Pianificare routine bambino (pasti, sonno, igiene) con strumenti visivi.</li>
+                    <li>Affiancare madre su budgeting domestico e gestione spese.</li>
+                    <li>Coordinare agenda sanitaria (vaccini, visite specialistiche) con consultorio [DA COMPILARE].</li>
+                    <li>Mappare rete familiare e attivare supporti formali/informali [DA COMPILARE].</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice diurno" data-shift="Diurno" data-area="Educativo">
+            <details>
+              <summary>
+                Accompagnamenti esterni
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="checklist">
+                  <strong>Checklist operativa</strong>
+                  <ul>
+                    <li><input type="checkbox" />Verificare consensi e deleghe firmate per scuola/servizi.</li>
+                    <li><input type="checkbox" />Preparare modulistica viaggio e contatti emergenza.</li>
+                    <li><input type="checkbox" />Registrare orari partenza/arrivo e esito appuntamento.</li>
+                    <li><input type="checkbox" />Archiviare documenti rilasciati (es. certificazioni).</li>
+                  </ul>
+                </div>
+                <div class="sop">
+                  <strong>SOP accompagnamento (1-2-3)</strong>
+                  <ol>
+                    <li>Pianificare tragitto e mezzi, confermare appuntamento.</li>
+                    <li>Durante l'accompagnamento, monitorare interazioni e raccogliere evidenze.</li>
+                    <li>Riferire all'équipe tramite diario e consegne entro fine turno.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Tutti" data-shift="Diurno" data-area="Educativo">
+            <details>
+              <summary>
+                Laboratori interni
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <p>Ambiti: competenze abitative, cucina, cura neonati, uso sicuro spazi (lavanderia, cucina condivisa, nursery).</p>
+                <div class="checklist">
+                  <strong>Preparazione laboratorio</strong>
+                  <ul>
+                    <li><input type="checkbox" />Definire obiettivi specifici e materiali.</li>
+                    <li><input type="checkbox" />Prevedere indicatori osservabili (puntualità, partecipazione, esiti).</li>
+                    <li><input type="checkbox" />Compilare scheda laboratorio e feedback madre.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+          <div class="why-card">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>SOP condivise assicurano uniformità e qualità educativa.</li>
+              <li>Checklist riduce omissioni documentali e di sicurezza.</li>
+              <li>Focus su genitorialità sostiene obiettivi di autonomia.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="tutela" class="section" data-tags="sicurezza cura/salute emergenze">
+          <h2>4. Tutela, salute &amp; sicurezza</h2>
+          <p class="icon-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4v6h6v4h-6v6h-4v-6H4V8h6V2Z"/></svg>Gestione clinica e protocolli di sicurezza</p>
+          <p class="icon-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7l1 2h8v3h-2l2 4v7h-4v-4H8v4H4V4Zm2 2v12h2v-4h8v4h2v-3.5L15.5 9H18V8h-7l-1-2H6Z"/></svg>Evacuazione e gestione vie di fuga</p>
+          <article data-role="Operatore socio-educativo/OSS Educatore/trice diurno" data-shift="H24" data-area="Cura/Salute">
+            <details open>
+              <summary>
+                Somministrazione farmaci
+                <span class="badge cura">Cura/Salute</span>
+              </summary>
+              <div class="card-content">
+                <div class="checklist">
+                  <strong>Principi chiave</strong>
+                  <ul>
+                    <li><input type="checkbox" />Tripla firma (preparazione, somministrazione, verifica).</li>
+                    <li><input type="checkbox" />Armadietto chiuso a chiave, accesso autorizzato.</li>
+                    <li><input type="checkbox" />Controllo scadenze settimanale e inventario mensile.</li>
+                    <li><input type="checkbox" />Protocollo medici di riferimento [DA COMPILARE].</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice notturno/a" data-shift="Notturno" data-area="Sicurezza">
+            <details>
+              <summary>
+                Emergenze mediche
+                <span class="badge sicurezza">Sicurezza</span>
+              </summary>
+              <div class="card-content">
+                <div class="sop">
+                  <strong>SOP emergenze (1-2-3)</strong>
+                  <ol>
+                    <li>Valutare situazione, attivare 118 se necessario, contattare pediatra/guardia medica.</li>
+                    <li>Applicare triage interno (verde/giallo/rosso), assicurare area e rassicurare nucleo.</li>
+                    <li>Compilare verbale evento, informare coordinatrice e servizi invianti.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Tutti" data-shift="H24" data-area="Sicurezza">
+            <details>
+              <summary>
+                Protezione minori
+                <span class="badge sicurezza">Sicurezza</span>
+              </summary>
+              <div class="card-content">
+                <div class="checklist">
+                  <strong>Protocollo</strong>
+                  <ul>
+                    <li><input type="checkbox" />Rilevare segnali sospetti di maltrattamento/trascuratezza.</li>
+                    <li><input type="checkbox" />Documentare fatti oggettivi, evitare giudizi.</li>
+                    <li><input type="checkbox" />Allertare coordinatrice e attivare catena segnalazione servizi/Tribunale.</li>
+                    <li><input type="checkbox" />Archiviare verbali in cartella protetta.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Tutti" data-shift="H24" data-area="Sicurezza">
+            <details>
+              <summary>
+                Antincendio ed evacuazione
+                <span class="badge sicurezza">Sicurezza</span>
+              </summary>
+              <div class="card-content">
+                <p>Ruoli: capo emergenza (coordinatrice), addetti evacuazione (educatori), addetti primo soccorso (OSS formati). Punto raccolta: [DA COMPILARE]. Prove semestrali.</p>
+                <div class="sop">
+                  <strong>SOP evacuazione (1-2-3)</strong>
+                  <ol>
+                    <li>Attivare allarme, raccogliere bambini e madri nelle zone sicure.</li>
+                    <li>Dirigere verso punto raccolta, verificare presenze tramite registro emergenza.</li>
+                    <li>Attendere soccorsi, compilare report drill/evento.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Educatore/trice diurno" data-shift="H24" data-area="Sicurezza">
+            <details>
+              <summary>
+                Gestione conflitti &amp; de-escalation
+                <span class="badge sicurezza">Sicurezza</span>
+              </summary>
+              <div class="card-content">
+                <div class="sop">
+                  <strong>Linee guida</strong>
+                  <ol>
+                    <li>Applicare comunicazione non violenta, ascolto attivo, posizionamento sicuro.</li>
+                    <li>Utilizzare tecniche di grounding, proporre pause strutturate.</li>
+                    <li>No restraint salvo protocolli [DA COMPILARE]; coinvolgere coordinatrice e servizi.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <article data-role="Tutti" data-shift="H24" data-area="Amministrativo">
+            <details>
+              <summary>
+                Privacy &amp; GDPR
+                <span class="badge amministrativo">Amministrativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="checklist">
+                  <strong>Principi</strong>
+                  <ul>
+                    <li><input type="checkbox" />Foto/video vietati salvo consenso scritto e registrato.</li>
+                    <li><input type="checkbox" />Archiviazione documenti in armadi chiusi e repository cifrato.</li>
+                    <li><input type="checkbox" />Diritto d'accesso gestito tramite modulistica dedicata.</li>
+                    <li><input type="checkbox" />Distruzione documenti secondo policy retention.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+          <div class="why-card">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>Standard di sicurezza proteggono vita e salute dei nuclei.</li>
+              <li>Procedure documentate facilitano formazione e audit.</li>
+              <li>Privacy e tutela minori sono obblighi legali imprescindibili.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="strumenti" class="section" data-tags="strumenti amministrativo educativo">
+          <h2>5. Strumenti &amp; registri</h2>
+          <article data-role="Tutti" data-shift="H24" data-area="Amministrativo">
+            <details open>
+              <summary>
+                Template principali
+                <span class="badge amministrativo">Amministrativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Registro consegne</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Data/Ora</th>
+                        <th scope="col">Turno uscente</th>
+                        <th scope="col">Turno entrante</th>
+                        <th scope="col">Eventi rilevanti</th>
+                        <th scope="col">Azioni da completare</th>
+                        <th scope="col">Firma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Diario educativo del nucleo</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Osservazioni oggettive</th>
+                        <th scope="col">Collegamento PEI</th>
+                        <th scope="col">Esiti/interventi</th>
+                        <th scope="col">Firma operatore</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Check-in spazi e DPI</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Area</th>
+                        <th scope="col">Stato igiene</th>
+                        <th scope="col">DPI disponibili</th>
+                        <th scope="col">Criticità</th>
+                        <th scope="col">Azioni correttive</th>
+                        <th scope="col">Firma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Cucina</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Incident / Near-miss report</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Data/Ora</th>
+                        <th scope="col">Luogo</th>
+                        <th scope="col">Descrizione evento</th>
+                        <th scope="col">Persone coinvolte</th>
+                        <th scope="col">Azioni immediate</th>
+                        <th scope="col">Follow-up</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Piano pasti &amp; allergie</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Settimana</th>
+                        <th scope="col">Pasto</th>
+                        <th scope="col">Menu</th>
+                        <th scope="col">Allergie/intolleranze</th>
+                        <th scope="col">Note OSS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>[____]</td>
+                        <td>Colazione/Pranzo/Cena</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Piano pulizie</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Area</th>
+                        <th scope="col">Frequenza</th>
+                        <th scope="col">Responsabile</th>
+                        <th scope="col">Data esecuzione</th>
+                        <th scope="col">Firma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Nursery</td>
+                        <td>Quotidiana</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <caption>Calendario turni &amp; matrice RACI</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Settimana</th>
+                        <th scope="col">Turno</th>
+                        <th scope="col">Operatore</th>
+                        <th scope="col">Ruolo</th>
+                        <th scope="col">Note</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>[____]</td>
+                        <td>Diurno/Serale/Notturno</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                        <td>[____]</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+          </article>
+          <div class="why-card">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>Template uniformano la raccolta dati e semplificano audit.</li>
+              <li>Registri strutturati migliorano tracciabilità e accountability.</li>
+              <li>Supportano onboarding e continuità documentale.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="kpi" class="section" data-tags="kpi audit amministrativo">
+          <h2>6. Indicatori di qualità (KPI) &amp; audit</h2>
+          <article data-role="Coordinatore/trice Assistente sociale/Amministrazione" data-shift="H24" data-area="Amministrativo">
+            <details open>
+              <summary>
+                Monitoraggio KPI
+                <span class="badge amministrativo">Amministrativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="checklist">
+                  <strong>KPI proposti</strong>
+                  <ul>
+                    <li><input type="checkbox" />Puntualità consegne (%) per turno.</li>
+                    <li><input type="checkbox" />Completezza registri (numero campi compilati / campi totali).</li>
+                    <li><input type="checkbox" />Aderenza PEI (obiettivi raggiunti / pianificati).</li>
+                    <li><input type="checkbox" />Presenze a colloqui programmati.</li>
+                    <li><input type="checkbox" />Segnalazioni tutela chiuse entro 30 gg.</li>
+                    <li><input type="checkbox" />Eventi avversi (n°/mese) e near-miss.</li>
+                    <li><input type="checkbox" />Soddisfazione utenti [strumento] semestrale.</li>
+                  </ul>
+                </div>
+                <div class="sop">
+                  <strong>Ciclo PDCA</strong>
+                  <ol>
+                    <li>Audit trimestrale (raccolta dati, analisi scostamenti).</li>
+                    <li>Definizione azioni correttive con responsabili e scadenze.</li>
+                    <li>Retrospettiva équipe e aggiornamento mansionario se necessario.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <div class="why-card">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>KPI misurabili favoriscono miglioramento continuo e trasparenza.</li>
+              <li>Audit regolari assicurano conformità normativa e contrattuale.</li>
+              <li>Feedback utenti orienta personalizzazione degli interventi.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="onboarding" class="section" data-tags="onboarding formativo educativo">
+          <h2>7. Onboarding “Nuovo/a in turno”</h2>
+          <article data-role="Tutti" data-shift="H24" data-area="Educativo Amministrativo">
+            <details open>
+              <summary>
+                Percorso 30-60-90 giorni
+                <span class="badge educativo">Educativo</span>
+              </summary>
+              <div class="card-content">
+                <div class="checklist">
+                  <strong>Fasi onboarding</strong>
+                  <ul>
+                    <li><input type="checkbox" />Assegnazione tutor e briefing valori servizio.</li>
+                    <li><input type="checkbox" />Micro-quiz settimanali su SOP critiche (farmaci, tutela minori, emergenze).</li>
+                    <li><input type="checkbox" />Affiancamento turni (minimo 6 turni: 3 diurni, 2 serali, 1 notturno).</li>
+                    <li><input type="checkbox" />Verifica competenze 60° giorno con coordinatrice.</li>
+                    <li><input type="checkbox" />Riconoscimento firma digitale lettura mansionario entro 90° giorno.</li>
+                  </ul>
+                </div>
+                <div class="sop">
+                  <strong>SOP onboarding (1-2-3)</strong>
+                  <ol>
+                    <li>Programmare calendario affiancamenti e materiali formativi personalizzati.</li>
+                    <li>Monitorare progressi attraverso checklist tutor e feedback reciproci.</li>
+                    <li>Validare autonomia operatore con prova pratica e firma presa visione procedure.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+          </article>
+          <div class="why-card">
+            <strong>Perché conta</strong>
+            <ul>
+              <li>Onboarding strutturato riduce errori nei primi mesi.</li>
+              <li>Assicura allineamento culturale e operativo con l’équipe.</li>
+              <li>Documenta responsabilità formative e compliance.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <div class="modal" id="quickSopModal" role="dialog" aria-modal="true" aria-labelledby="quickSopTitle">
+    <div class="modal-content">
+      <button type="button" id="closeModal" aria-label="Chiudi">✕</button>
+      <h2 id="quickSopTitle">Quick-SOP emergenze</h2>
+      <ul>
+        <li><strong>Sanitaria:</strong> valuta ABC, chiama 118, prepara documenti sanitari, aggiorna registro eventi.</li>
+        <li><strong>Incendio:</strong> attiva allarme, accompagna nuclei al punto raccolta [DA COMPILARE], verifica presenze.</li>
+        <li><strong>Tutela minori:</strong> documenta fatti, informa coordinatrice, invia segnalazione scritta entro 24h.</li>
+        <li><strong>Violenza/conflitto:</strong> applica de-escalation, chiama supporto interno, valuta bisogno forze ordine [DA COMPILARE].</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    const progressBar = document.getElementById('progressBar');
+    const searchInput = document.getElementById('searchInput');
+    const roleFilter = document.getElementById('roleFilter');
+    const shiftFilter = document.getElementById('shiftFilter');
+    const areaFilter = document.getElementById('areaFilter');
+    const quickButtons = document.querySelectorAll('[data-quick]');
+    const sections = document.querySelectorAll('.section, .role-card, article[data-role]');
+    const modal = document.getElementById('quickSopModal');
+    const closeModal = document.getElementById('closeModal');
+    const quickSopBtn = document.getElementById('quickSopBtn');
+
+    document.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (scrollTop / height) * 100;
+      progressBar.style.width = progress + '%';
+    });
+
+    function applyFilters() {
+      const term = searchInput.value.toLowerCase();
+      const role = roleFilter.value.toLowerCase();
+      const shift = shiftFilter.value.toLowerCase();
+      const area = areaFilter.value.toLowerCase();
+
+      document.querySelectorAll('article[data-role], section.section').forEach(el => {
+        const tags = (el.dataset.tags || '').toLowerCase();
+        const roles = (el.dataset.role || '').toLowerCase();
+        const shifts = (el.dataset.shift || '').toLowerCase();
+        const areas = (el.dataset.area || '').toLowerCase();
+        const text = el.textContent.toLowerCase();
+        const matchesTerm = !term || text.includes(term);
+        const matchesRole = !role || roles.includes(role);
+        const matchesShift = !shift || shifts.includes(shift);
+        const matchesArea = !area || areas.includes(area);
+        el.style.display = matchesTerm && matchesRole && matchesShift && matchesArea ? '' : 'none';
+      });
+    }
+
+    [searchInput, roleFilter, shiftFilter, areaFilter].forEach(input => {
+      input.addEventListener('input', applyFilters);
+      input.addEventListener('change', applyFilters);
+    });
+
+    quickButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        quickButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.quick;
+        roleFilter.value = '';
+        areaFilter.value = '';
+        shiftFilter.value = '';
+        searchInput.value = '';
+        document.querySelectorAll('article[data-role], section.section').forEach(el => {
+          const tags = (el.dataset.tags || el.dataset.shift || el.dataset.role || el.dataset.area || '').toLowerCase();
+          el.style.display = !filter || tags.includes(filter) ? '' : 'none';
+        });
+      });
+    });
+
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    document.getElementById('registroBtn').addEventListener('click', () => {
+      const target = document.querySelector('caption');
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+    document.getElementById('onePagerBtn').addEventListener('click', () => {
+      alert('One-Pager Turno: utilizzare stampa selettiva o esportazione PDF della sezione turni.');
+    });
+
+    quickSopBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+      closeModal.focus();
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('active');
+      quickSopBtn.focus();
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.classList.remove('active');
+        quickSopBtn.focus();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        quickSopBtn.focus();
+      }
+      if (event.key === '?' && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+        modal.classList.add('active');
+        closeModal.focus();
+      }
+    });
+  </script>
+</body>
+</html>
